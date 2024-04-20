@@ -1,0 +1,25 @@
+name: name
+
+on:
+  push:
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: ya
+        run: sh ./hui.sh
+
+      - name: ye
+        run: git add huj
+
+      - name: bal
+        run: git commit
+
+      - name: aaa
+        run: git push
+        
