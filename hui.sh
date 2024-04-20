@@ -1,4 +1,4 @@
-sudo apt update
+#sudo apt update
 sudo apt install apktool -y
 
 echo '{' > huj
