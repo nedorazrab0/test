@@ -1,1 +1,1 @@
-echo 66 > huj
+echo "$RANDOM" > huj
