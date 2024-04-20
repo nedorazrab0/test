@@ -6,7 +6,7 @@ apktool d --no-assets -fsbo ./euapp/ ./euapp.apk
                                                                                                                                                                                                                               
 echo '{' > pif.json                                                                                                                                                                                                           
 for val in PRODUCT DEVICE MANUFACTURER BRAND MODEL FINGERPRINT SECURITY_PATCH FIRST_API_LEVEL; do                                                                                                                             
-    key="$(grep "$val" ./euapp.out/res/xml/inject_fields.xml | awk -F 'value=' '{print $2}' | awk '{print $1}')"                                                                                                                  
+    key="$(grep "$val" ./euapp/res/xml/inject_fields.xml | awk -F 'value=' '{print $2}' | awk '{print $1}')"                                                                                                                  
     echo "\"$val\": ${key:-\"null\"}" >> pif.json                                                                                                                                                                                 
 done                                                                                                                                                                                                                          
 echo '}' >> pif.json 
