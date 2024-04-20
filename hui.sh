@@ -2,7 +2,7 @@ link="$(curl -fs https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/
 curl -vLo ./euapp.apk "$link"
 [[ -f ./euapp.apk ]] && echo HUI
 sudo apt install apktool -y                                                                                                                                                                                                   
-apktool d -fsb --no-assets ./euapp.apk                                                                                                                                                                                        
+apktool d --no-assets -fsbo ./euapp/ ./euapp.apk                                                                                                                                                                                        
                                                                                                                                                                                                                               
 echo '{' > pif.json                                                                                                                                                                                                           
 for val in PRODUCT DEVICE MANUFACTURER BRAND MODEL FINGERPRINT SECURITY_PATCH FIRST_API_LEVEL; do                                                                                                                             
