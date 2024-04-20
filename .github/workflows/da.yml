@@ -9,9 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: jhjhjh
-        uses: actions/checkout@v4
-
+    
       - name: ya
         run: sh ./hui.sh
 
