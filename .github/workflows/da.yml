@@ -14,12 +14,10 @@ jobs:
       - name: ya
         run: sh ./hui.sh
 
-      - name: ye
-        run: git add huj
-
-      - name: bal
-        run: git commit
-
-      - name: aaa
-        run: git push
-        
+      - name: ebal
+        run: |
+           git config --global user.name "123"
+           git config --global user.email "username@users.noreply.github.com"
+           git add huj
+           git commit
+           git push
