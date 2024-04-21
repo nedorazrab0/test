@@ -1,6 +1,6 @@
 link="$(curl -fs https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/rss?path=/xiaomi.eu/Xiaomi.eu-app | awk '/link/ && /app/' | sed -n 1p | awk -F '>' '{print $2}' | awk -F '<' '{print $1}')"
 curl -fsLo ./euapp.apk "$link"
-sudo apt-cache install apktool
+#sudo apt-cache install apktool
 apktool d --no-assets -fsbo ./euapp/ ./euapp.apk
 
 echo '{' > pif.json
