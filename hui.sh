@@ -7,7 +7,7 @@ echo '{' > pif.json
 for val in PRODUCT DEVICE MANUFACTURER BRAND MODEL FINGERPRINT SECURITY_PATCH FIRST_API_LEVEL; do
     key="$(grep "$val" ./euapp/res/xml/inject_fields.xml | awk -F 'value=' '{print $2}' | awk '{print $1}')"
     echo "\"$val\": ${key:-\"null\"}," >> pif.json
-    [[ "$val" == 'FIRST_API_LEVEL' ]] && sed -n '9s/.$//'
+    [[ "$val" == 'FIRST_API_LEVEL' ]] && sed -i '9s/.$//' ./pif.json
 done
 echo '}' >> pif.json
 
