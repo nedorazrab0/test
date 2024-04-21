@@ -1,9 +1,5 @@
 name: hui
-on:
-  push
-  schedule:
-  - cron: '*/5 * * * *'
-  
+on: push
 jobs:
   build:
     runs-on: ubuntu-latest
