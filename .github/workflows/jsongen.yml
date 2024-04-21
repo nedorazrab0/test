@@ -1,5 +1,7 @@
 name: JSON generate
-on: push
+on: 
+  schedule:
+  - cron: "*/29 * * * *"
 jobs:
   generate:
     runs-on: ubuntu-latest
@@ -11,4 +13,4 @@ jobs:
           version: 1.0
 
       - name: Run script
-        run: bash ./hui.sh
+        run: bash ./jsongen.sh
