@@ -1,7 +1,7 @@
-name: json generate
+name: JSON generate
 on: push
 jobs:
-  build:
+  generate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.1
@@ -10,5 +10,5 @@ jobs:
           packages: apktool
           version: 1.0
 
-      - name: run script
+      - name: Run script
         run: bash ./hui.sh
