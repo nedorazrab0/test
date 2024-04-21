@@ -10,7 +10,10 @@ jobs:
 
     steps:
       - name: jhjhjh
-        uses: actions/checkout@v3
-        
+        uses: actions/checkout@latest
+      - uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: apktool
+          version: 1.0
       - name: ya
         run: bash ./hui.sh
