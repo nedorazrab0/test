@@ -1,7 +1,7 @@
 name: JSON generate
 on: 
   schedule:
-  - cron: "*/29 * * * *"
+  - cron: "00 * * * *"
 jobs:
   generate:
     runs-on: ubuntu-latest
