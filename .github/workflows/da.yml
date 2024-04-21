@@ -1,4 +1,4 @@
-name: hui
+name: json generate
 on: push
 jobs:
   build:
@@ -10,5 +10,5 @@ jobs:
           packages: apktool
           version: 1.0
 
-      - name: suka
+      - name: run script
         run: bash ./hui.sh
