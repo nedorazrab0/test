@@ -13,5 +13,5 @@ echo '}' >> pif.json
 git config --global user.name 'github-actions'
 git config --global user.email 'github-actions@github.com'
 git add pif.json
-git commit -m "hz"
+git commit -m "Update pif.json"
 git push
