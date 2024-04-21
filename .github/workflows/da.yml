@@ -7,6 +7,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    name: ebat
     steps:
       - uses: actions/checkout@v4.1.1
       - uses: awalsh128/cache-apt-pkgs-action@latest
