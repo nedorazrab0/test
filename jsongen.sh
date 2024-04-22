@@ -12,6 +12,8 @@ for val in PRODUCT DEVICE MANUFACTURER BRAND MODEL FINGERPRINT SECURITY_PATCH FI
 done
 echo '}' >> pif.json
 
+sleep 86400
+
 # release pif.json
 git config --global user.name 'github-actions'
 git config --global user.email 'github-actions@github.com'
