@@ -1,7 +1,7 @@
 name: JSON generate
 on:
   schedule:
-  - cron: "*/1 * * * *"
+  - cron: "*/29 * * * *"
 jobs:
   generate:
     runs-on: ubuntu-latest
@@ -11,6 +11,4 @@ jobs:
         with:
           packages: apktool
           version: 1.0
-
-      - name: Run script
-        run: bash ./jsongen.sh
+      - run: bash ./jsongen.sh
