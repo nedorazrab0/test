@@ -1,7 +1,7 @@
 name: Track link
 on:
   schedule:
-  - cron: "*/5 * * * *"
+  - cron: "*/59 * * * *"
 jobs:
   Tracking:
     runs-on: ubuntu-latest
