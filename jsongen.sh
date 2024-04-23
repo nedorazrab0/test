@@ -24,5 +24,5 @@ while [[ "$SECONDS" -lt 21570 ]]; do
     git commit -m "Update"
     git push
     fi
-    sleep 60
+    sleep 10
 done
