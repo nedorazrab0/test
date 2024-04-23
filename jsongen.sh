@@ -1,6 +1,9 @@
-while [[ "$SECONDS" -lt 21600 ]]; do
+while [[ "$SECONDS" -lt 21570 ]]; do
     # get link & download apk
     link="$(curl -fs https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms/rss?path=/xiaomi.eu/Xiaomi.eu-app | awk '/link/ && /app/' | sed -n 1p | awk -F '>' '{print $2}' | awk -F '<' '{print $1}')"
+
+    if ! [[ "$(cat ./link.txt)" == "$link" || -f ./link.txt ]]; then
+    echo "$link" > ./link.txt
     curl -fsLo ./euapp.apk "$link"
     apktool d --no-assets -fsbo ./euapp/ ./euapp.apk
 
@@ -16,8 +19,12 @@ while [[ "$SECONDS" -lt 21600 ]]; do
     # release pif.json
     git config --global user.name 'github-actions'
     git config --global user.email 'github-actions@github.com'
+    git add link.txt
     git add pif.json
-    git commit -m "Update pif.json"
+    git commit -m "Update"
     git push
+    else
+    echo 'netu'
+    fi
     sleep 60
 done
