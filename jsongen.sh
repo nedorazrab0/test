@@ -23,8 +23,6 @@ while [[ "$SECONDS" -lt 21570 ]]; do
     git add pif.json
     git commit -m "Update"
     git push
-    else
-    echo 'netu'
     fi
     sleep 60
 done
