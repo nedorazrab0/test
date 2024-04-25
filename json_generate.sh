@@ -1,5 +1,5 @@
 # get apk
-curl -fsLo ./euapp.apk "$link"
+curl -fsZLo ./euapp.apk "$link"
 apktool d --no-assets -fsbo ./euapp/ ./euapp.apk
 
 # generate json
