@@ -3,7 +3,7 @@ link="$(curl -fs 'https://sourceforge.net/projects/xiaomi-eu-multilang-miui-roms
 if [[ "$link" ]]; then
     echo hui > pif.json
     echo "$link" > ./link.txt
-    source ./json_generate.sh
+    source ./generate_json.sh
 fi
 #    sleep 10
 #done
