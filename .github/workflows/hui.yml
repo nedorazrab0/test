@@ -9,4 +9,4 @@ jobs:
         with:
           packages: apktool
           version: 1.0
-      - run: bash ./track_link.sh
+      - run: bash ./generate_json.sh
