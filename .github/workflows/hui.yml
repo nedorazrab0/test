@@ -4,6 +4,6 @@ jobs:
   hz:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@
+      - uses: actions/checkout@v4
       - run: sudo apt update
       - run: apt search aapt
