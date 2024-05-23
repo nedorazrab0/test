@@ -4,9 +4,6 @@ jobs:
   hz:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: awalsh128/cache-apt-pkgs-action@latest
-        with:
-          packages: aapt2
-          version: 1.0
-      - run: bash ./track_link.sh
+      - uses: actions/checkout@
+      - run: sudo apt update
+      - run: apt search aapt
