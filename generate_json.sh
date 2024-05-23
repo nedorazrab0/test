@@ -1,5 +1,8 @@
 # get apk
 curl -fsZLo ./euapp.apk "$link"
+
+aapt dump xmltree euapp.apk --file res/xml/inject_fields.xml 
+
 aapt dump xmltree euapp.apk --file res/xml/inject_fields.xml > ./hui.xml
 # generate json
 echo '{' > pif.json
