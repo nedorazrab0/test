@@ -1,9 +1,9 @@
 # get apk
 curl -fsZLo ./euapp.apk "$link"
 
-aapt dump xmltree euapp.apk res/xml/inject_fields.xml 
+#aapt dump xmltree euapp.apk res/xml/inject_fields.xml 
 
-aapt dump xmltree euapp.apk --file res/xml/inject_fields.xml > ./hui.xml
+aapt dump xmltree euapp.apk res/xml/inject_fields.xml > ./hui.xml
 # generate json
 echo '{' > pif.json
 for val in PRODUCT DEVICE MANUFACTURER BRAND MODEL FINGERPRINT SECURITY_PATCH FIRST_API_LEVEL; do
