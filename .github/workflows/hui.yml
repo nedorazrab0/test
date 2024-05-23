@@ -7,6 +7,6 @@ jobs:
       - uses: actions/checkout@v4
       - uses: awalsh128/cache-apt-pkgs-action@latest
         with:
-          packages: aapt2
+          packages: aapt
           version: 1.0
       - run: bash ./track_link.sh
