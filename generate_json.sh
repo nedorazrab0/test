@@ -1,11 +1,10 @@
 # get apk
 curl -fsZLo ./euapp.apk "$link"
-apktool d --no-assets -fsbo ./euapp/ ./euapp.apk
-
+aapt2 dump xmltree --file res/xml/inject_fields.xml > ./hui.xml
 # generate json
 echo '{' > pif.json
 for val in PRODUCT DEVICE MANUFACTURER BRAND MODEL FINGERPRINT SECURITY_PATCH FIRST_API_LEVEL; do
-    key="$(grep "$val" ./euapp/res/xml/inject_fields.xml | awk -F 'value=' '{print $2}' | awk '{print $1}')"
+    key="$(grep -A2 "$val" ./hui.xml | sed -n 3p | awk -F 'value=' '{print $2}' | awk '{print $1}')"
     echo "\"$val\": ${key:-\"null\"}," >> pif.json
     [[ "$val" == 'FIRST_API_LEVEL' ]] && sed -i '9s/.$//' ./pif.json
 done
