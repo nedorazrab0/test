@@ -23,7 +23,7 @@ else
     echo "DEVICE_INITIAL_SDK_INT $(grep 'SECURITY_PATCH' ./pif.json | awk '{print $2}')" >> pif.json
 fi
 
-
+#awk '{printf "\"%s\": \"%s\"\n", $1, $2}'
 #sed -i '$s/.$//' ./pif.json
 # release pif.json
 git config --global user.name 'github-actions'
