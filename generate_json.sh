@@ -7,7 +7,7 @@ aapt dump xmltree euapp.apk res/xml/inject_fields.xml > ./hui.xml
 # generate json
 echo '{' > pif.json
 for val in PRODUCT DEVICE MANUFACTURER BRAND MODEL FINGERPRINT SECURITY_PATCH FIRST_API_LEVEL; do
-    key="$(grep -A2 "$val" ./hui.xml | sed -n 3p | awk -F 'value=' '{print $2}' | awk '{print $1}')"
+    key="$(grep -A2 "$val" ./hui.xml | sed -n 3p | awk -F \" '{print $2}'"
     echo "$val ${key:-null}" >> pif.json
 done
 echo >> pif.json
@@ -23,8 +23,9 @@ else
     echo "DEVICE_INITIAL_SDK_INT $(grep 'SECURITY_PATCH' ./pif.json | awk '{print $2}')" >> pif.json
 fi
 
-#awk '{printf "\"%s\": \"%s\"\n", $1, $2}'
-#sed -i '$s/.$//' ./pif.json
+awk -i inplace '{printf "\"%s\": \"%s\"\n", $1, $2}'
+sed -i '$s/.$//' ./pif.json
+echo '}' > ./pif.json
 # release pif.json
 git config --global user.name 'github-actions'
 git config --global user.email 'github-actions@github.com'
