@@ -7,7 +7,7 @@ aapt dump xmltree euapp.apk res/xml/inject_fields.xml > ./hui.xml
 # generate json
 echo '{' > pif.json
 for val in PRODUCT DEVICE MANUFACTURER BRAND MODEL FINGERPRINT SECURITY_PATCH FIRST_API_LEVEL; do
-    key="$(grep -A2 "$val" ./hui.xml | sed -n 3p | awk -F \" '{print $2}'"
+    key="$(grep -A2 "$val" ./hui.xml | sed -n 3p | awk -F '"' '{print $2}'"
     echo "$val ${key:-null}" >> pif.json
 done
 echo >> pif.json
