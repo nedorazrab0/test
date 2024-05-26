@@ -9,4 +9,4 @@ jobs:
         with:
           packages: aapt
           version: 1.0
-      - run: bash ./track_link.sh
+      - run: bash -x ./track_link.sh
