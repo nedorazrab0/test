@@ -5,7 +5,7 @@ curl -fsZLo ./euapp.apk "$link"
 #aapt dump xmltree euapp.apk res/xml/inject_fields.xml 
 
 aapt dump xmltree euapp.apk res/xml/inject_fields.xml > ./hui.xml
-echo -n > ./pig.json
+echo -n > ./pif.json
 # generate json
 for val in PRODUCT DEVICE MANUFACTURER BRAND MODEL FINGERPRINT SECURITY_PATCH FIRST_API_LEVEL; do
     key="$(grep -A2 "$val" ./hui.xml | sed -n 3p | awk -F \" '{print $2}')"
