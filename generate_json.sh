@@ -23,7 +23,7 @@ else
     echo "DEVICE_INITIAL_SDK_INT $(grep 'SECURITY_PATCH' ./pif.json | awk '{print $2}')" >> pif.json
 fi
 
-awk -i inplace '{printf "\"%s\": \"%s\"\n", $1, $2}' ./pif.json
+#awk -i inplace '{printf "\"%s\": \"%s\"\n", $1, $2}' ./pif.json
 sed -i '$s/.$//' ./pif.json
 echo '}' > ./pif.json
 # release pif.json
