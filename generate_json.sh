@@ -1,4 +1,4 @@
-set -x
+
 # get apk
 curl -fsZLo ./euapp.apk "$link"
 
