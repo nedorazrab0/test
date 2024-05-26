@@ -17,7 +17,7 @@ echo 'TAGS release-keys' >> ./pif.json
 echo "ID $(grep 'FINGERPRINT' ./pif.json | awk -F '/' '{print $4}')" >> ./pif.json
 echo "INCREMENTAL $(grep 'FINGERPRINT' ./pif.json | awk -F '/' '{print $5}' | awk -F ':' '{print $1}')" >> ./pif.json
 echo "RELEASE $(grep 'FINGERPRINT' ./pif.json | awk -F '/' '{print $3}' | awk -F ':' '{print $2}')" >> ./pif.json
-if [[ "$(grep 'SECURITY_PATCH' ./pif.json | awk '{print $2}')" == 'null' ]]; then
+if [[ "$(grep 'FIRST_API_LEVEL' ./pif.json | awk '{print $2}')" == 'null' ]]; then
     echo 'DEVICE_INITIAL_SDK_INT 25' >> ./pif.json
 else
     echo "DEVICE_INITIAL_SDK_INT $(grep 'FIRST_API_LEVEL' ./pif.json | awk '{print $2}')" >> pif.json
