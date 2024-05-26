@@ -16,8 +16,8 @@ echo >> pif.json
 echo 'TYPE user' >> ./pif.json
 echo 'TAGS release-keys' >> ./pif.json
 echo "ID $(grep 'FINGERPRINT' ./pif.json | awk -F '/' '{print $4}')" >> ./pif.json
-echo "INCREMENTAL $(grep 'FINGERPRINT' ./pif.json | awk -F '/' '{print $5}' | awk -F ':' '{print $1}')"
-echo "RELEASE $(grep 'FINGERPRINT' ./pif.json | awk -F '/' '{print $3}' | awk -F ':' '{print $2}')"
+echo "INCREMENTAL $(grep 'FINGERPRINT' ./pif.json | awk -F '/' '{print $5}' | awk -F ':' '{print $1}')" >> ./pif.json
+echo "RELEASE $(grep 'FINGERPRINT' ./pif.json | awk -F '/' '{print $3}' | awk -F ':' '{print $2}')" >> ./pif.json
 if [[ "$(grep 'SECURITY_PATCH' ./pif.json | awk '{print $2}')" == 'null' ]]; then
     echo 'DEVICE_INITIAL_SDK_INT 25' >> ./pif.json
 else
@@ -26,7 +26,7 @@ fi
 
 awk -i inplace '{printf "\"%s\": \"%s\"\n", $1, $2}' ./pif.json
 sed -i '$s/.$//' ./pif.json
-echo '}' > ./pif.json
+echo '}' >> ./pif.json
 # release pif.json
 git config --global user.name 'github-actions'
 git config --global user.email 'github-actions@github.com'
