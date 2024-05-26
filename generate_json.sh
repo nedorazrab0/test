@@ -24,7 +24,7 @@ else
 fi
 
 #awk -i inplace '{printf "\"%s\": \"%s\"\n", $1, $2}' ./pif.json
-sed -i '$s/.$//' ./pif.json
+#sed -i '$s/.$//' ./pif.json
 echo '}' > ./pif.json
 # release pif.json
 git config --global user.name 'github-actions'
