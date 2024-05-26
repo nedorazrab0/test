@@ -22,8 +22,8 @@ else
     echo "DEVICE_INITIAL_SDK_INT $(grep 'FIRST_API_LEVEL' ./pif.json | awk '{print $2}')" >> pif.json
 fi
 
-awk -i inplace '{printf "\"%s\": \"%s\"\,\n", $1, $2}' ./pif.json
-sed -i '1i\{'
+awk -i inplace '{printf "    \"%s\": \"%s\"\,\n", $1, $2}' ./pif.json
+sed -i '1i\{' ./pif.json
 sed -i '$s/.$//' ./pif.json
 echo '}' >> ./pif.json
 # release pif.json
