@@ -1,14 +1,11 @@
-
-# get apk
+# get data
 curl --parallel-max 0 -Lo ./euapp.apk "$link"
+aapt dump xmltree ./euapp.apk res/xml/inject_fields.xml > ./fields.txt
 
-#aapt dump xmltree euapp.apk res/xml/inject_fields.xml 
-
-aapt dump xmltree euapp.apk res/xml/inject_fields.xml > ./hui.xml
-echo -n > ./pif.json
 # generate json
+echo -n > ./pif.json
 for val in BRAND MANUFACTURER PRODUCT DEVICE MODEL SECURITY_PATCH FINGERPRINT; do
-    key="$(grep -A2 "$val" ./hui.xml | sed -n 3p | awk -F \" '{print $2}')"
+    key="$(grep -A2 "$val" ./fields.txt | sed -n 3p | awk -F '"' '{print $2}')"
     echo "$val ${key:-null}" >> pif.json
 done
 
@@ -26,10 +23,12 @@ else
     echo "DEVICE_INITIAL_SDK_INT $apilvl" >> pif.json
 fi
 
+# { "foo": "bar" }
 awk -i inplace '{printf "    \"%s\": \"%s\"\,\n", $1, $2}' ./pif.json
 sed -i '1i\{' ./pif.json
 sed -i '$s/.$//' ./pif.json
 echo '}' >> ./pif.json
+
 # release pif.json
 git config --global user.name 'github-actions'
 git config --global user.email 'github-actions@github.com'
