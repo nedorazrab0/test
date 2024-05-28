@@ -7,7 +7,7 @@ curl -fsZLo ./euapp.apk "$link"
 aapt dump xmltree euapp.apk res/xml/inject_fields.xml > ./hui.xml
 echo -n > ./pif.json
 # generate json
-for val in PRODUCT DEVICE MANUFACTURER BRAND MODEL FINGERPRINT SECURITY_PATCH FIRST_API_LEVEL; do
+for val in BRAND MANUFACTURER PRODUCT DEVICE MODEL SECURITY_PATCH FINGERPRINT; do
     key="$(grep -A2 "$val" ./hui.xml | sed -n 3p | awk -F \" '{print $2}')"
     echo "$val ${key:-null}" >> pif.json
 done
@@ -17,10 +17,11 @@ echo 'TAGS release-keys' >> ./pif.json
 echo "ID $(grep 'FINGERPRINT' ./pif.json | awk -F '/' '{print $4}')" >> ./pif.json
 echo "INCREMENTAL $(grep 'FINGERPRINT' ./pif.json | awk -F '/' '{print $5}' | awk -F ':' '{print $1}')" >> ./pif.json
 echo "RELEASE $(grep 'FINGERPRINT' ./pif.json | awk -F '/' '{print $3}' | awk -F ':' '{print $2}')" >> ./pif.json
-if [[ "$(grep 'FIRST_API_LEVEL' ./pif.json | awk '{print $2}')" == 'null' ]]; then
+apilvl="$(grep -A2 "FIRST_API_LEVEL" ./hui.xml | sed -n 3p | awk -F \" '{print $2}')"
+if [[ "$apilvl" == 'null' ]]; then
     echo 'DEVICE_INITIAL_SDK_INT 25' >> ./pif.json
 else
-    echo "DEVICE_INITIAL_SDK_INT $(grep 'FIRST_API_LEVEL' ./pif.json | awk '{print $2}')" >> pif.json
+    echo "DEVICE_INITIAL_SDK_INT $apilvl" >> pif.json
 fi
 
 awk -i inplace '{printf "    \"%s\": \"%s\"\,\n", $1, $2}' ./pif.json
