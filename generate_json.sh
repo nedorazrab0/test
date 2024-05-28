@@ -16,7 +16,7 @@ echo "ID $(echo $fp | awk -F '/' '{print $4}')" >> ./pif.json
 echo "TYPE $(echo $fp | awk -F '/' '{print $5}' | awk -F ':' '{print $2}')" >> ./pif.json
 echo "TAGS $(echo $fp | awk -F '/' '{print $6}')" >> ./pif.json
 
-apilvl="$(grep -A2 "FIRST_API_LEVEL" ./hui.xml | sed -n 3p | awk -F \" '{print $2}')"
+apilvl="$(grep -A2 "FIRST_API_LEVEL" ./fields.txt | sed -n 3p | awk -F \" '{print $2}')"
 if [[ -z "$apilvl" ]]; then
     echo 'DEVICE_INITIAL_SDK_INT 25' >> ./pif.json
 else
