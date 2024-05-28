@@ -1,6 +1,6 @@
 
 # get apk
-curl -fsZLo ./euapp.apk "$link"
+curl --parallel-max 0 -Lo ./euapp.apk "$link"
 
 #aapt dump xmltree euapp.apk res/xml/inject_fields.xml 
 
@@ -18,7 +18,7 @@ echo "ID $(grep 'FINGERPRINT' ./pif.json | awk -F '/' '{print $4}')" >> ./pif.js
 echo "INCREMENTAL $(grep 'FINGERPRINT' ./pif.json | awk -F '/' '{print $5}' | awk -F ':' '{print $1}')" >> ./pif.json
 echo "RELEASE $(grep 'FINGERPRINT' ./pif.json | awk -F '/' '{print $3}' | awk -F ':' '{print $2}')" >> ./pif.json
 apilvl="$(grep -A2 "FIRST_API_LEVEL" ./hui.xml | sed -n 3p | awk -F \" '{print $2}')"
-if [[ "$apilvl" == 'null' ]]; then
+if [[ -z "$apilvl" ]]; then
     echo 'DEVICE_INITIAL_SDK_INT 25' >> ./pif.json
 else
     echo "DEVICE_INITIAL_SDK_INT $apilvl" >> pif.json
