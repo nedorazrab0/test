@@ -1,7 +1,9 @@
 # get data
 curl --parallel-immediate --parallel-max 0 -ZLo ./euapp.apk "$link"
-aapt dump xmltree ./euapp.apk res/xml/inject_fields.xml > ./fields.txt
+aapt dump xmltree ./euapp.apk res/xml/inject_fields.xml
 
+
+never(){
 # generate json
 echo -n > ./pif.json
 for val in BRAND MANUFACTURER PRODUCT DEVICE MODEL SECURITY_PATCH FINGERPRINT; do
@@ -35,3 +37,4 @@ git config --global user.email 'github-actions@github.com'
 git add ./link.txt ./pif.json
 git commit -m "New pif.json"
 git push
+}
