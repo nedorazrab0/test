@@ -1,5 +1,5 @@
 # get data
-aapt dump xmltree <(curl -Lo- "$link") res/xml/inject_fields.xml
+aapt dump xmltree <(curl -L --output - "$link") res/xml/inject_fields.xml
 
 
 never(){
