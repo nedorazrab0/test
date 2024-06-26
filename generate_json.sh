@@ -1,6 +1,5 @@
 # get data
-curl --parallel-immediate --parallel-max 0 -ZLo ./euapp.apk "$link"
-aapt dump xmltree ./euapp.apk res/xml/inject_fields.xml
+aapt dump xmltree <<(curl -Lo ./euapp.apk "$link") res/xml/inject_fields.xml
 
 
 never(){
