@@ -7,10 +7,16 @@ read -p '- Country ISO code (for mirrors): ' loc
 read -p '- раскладка (ru_RU)' kblr
 read -p '- Do you want to destroy your own disk? (y/n): ' agreement
 
+name=hui
+password=123
+zone=Europe/Moscow
+loc=RU
+kblr=en_US
+
 case "$agreement" in
     y) true;;
     n) exit 0;;
-    *) exit 1;;
+    *) true;;
 esac
 
 lsblk -do name,model,size,rm,tran
@@ -25,12 +31,12 @@ parted -s "$blk" mkpart 'boot' ext4 33Mib 1057MiB
 parted -s "$blk" mkpart 'arch' f2fs 1057MiB 100%
 parted -s "$blk" set 1 boot on
 
-mkdir -p /mnt/eai/
-mount ${blk}3 /mnt/eai/
-mkdir -p /mnt/eai/boot/
+mount ${blk}3 /mnt/
+mkdir -p /mnt/boot/
 mount ${blk}2 /mnt/eai/boot/
-mkdir -p /mnt/eai/boot/efi/
-mount ${blk}1 /mnt/eai/boot/efi/
+mkdir -p /mnt/boot/efi/
+mount ${blk}1 /mnt/boot/efi/
+read
 
 sed -i -e 's/#ParallelDownloads = 5/ParallelDownloads = 15/' -e 's/#Colors/Colors/' -e 's/#VerbosePkgLists/VerbosePkgLists/' /etc/pacman.conf
 
