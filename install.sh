@@ -44,17 +44,20 @@ read
 
 sed -i -e 's/#ParallelDownloads = 5/ParallelDownloads = 15/' -e 's/#Colors/Colors/' -e 's/#VerbosePkgLists/VerbosePkgLists/' /etc/pacman.conf
 
+pacman-key --init
+pacman-key --populate archlinux
 pacman -Syy
 pacman -S pacman-contrib --noconfirm
 curl "https://archlinux.org/mirrorlist/?country=${loc}&protocol=https&use_mirror_status=on" | sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -wn 6 - > /var/eai/mirrorlist
 cat /var/eai/mirrorlist > /etc/pacman.d/mirrorlist
 
-pacstrap -K base linux-lts linux-firmware amd-ucode
+pacstrap -K /mnt base linux-lts linux-firmware amd-ucode
 
 kbl="${kblr}.UTF-8 UTF-8"
 sed -i -e "s/#$kbl/$kbl/" /mnt/etc/locale.gen
 genfstab -Up /mnt > /mnt/etc/fstab
 
+mkdir /var/eai
 curl -o /var/eai/inchroot.sh https://raw.githubusercontent.com/nedorazrab0/test/main/inchroot.sh
 chmod +x /var/eai/inchroot.sh
 arch-chroot /mnt /var/eai/inchroot.sh
