@@ -24,6 +24,7 @@ read -p '- Disk name: ' disk
 sleep 1
 
 blk="/dev/$disk"
+umount ${blk}*
 wipefs --all "$blk"
 parted -s "$blk" mktable gpt
 parted -s "$blk" mkpart 'esp' fat32 1Mib 33Mib
