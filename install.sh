@@ -26,11 +26,11 @@ parted -s "$blk" mkpart 'arch' f2fs 1057MiB 100%
 parted -s "$blk" set 1 boot on
 
 mkdir -p /mnt/eai/
-mount "${blk}*3" /mnt/eai/
+mount ${blk}*3 /mnt/eai/
 mkdir -p /mnt/eai/boot/
-mount "${blk}*2" /mnt/eai/boot/
+mount ${blk}*2 /mnt/eai/boot/
 mkdir -p /mnt/eai/boot/efi/
-mount "${blk}*1" /mnt/eai/boot/efi/
+mount ${blk}*1 /mnt/eai/boot/efi/
 
 sed -i -e 's/#ParallelDownloads = 5/ParallelDownloads = 15/' -e 's/#Colors/Colors/' -e 's/#VerbosePkgLists/VerbosePkgLists/' /etc/pacman.conf
 
