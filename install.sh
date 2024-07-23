@@ -52,13 +52,13 @@ cat /var/eai/mirrorlist > /etc/pacman.d/mirrorlist
 pacstrap -K base linux-lts linux-firmware amd-ucode
 
 kbl="${kblr}.UTF-8 UTF-8"
-sed -i -e "s/#$kbl/$kbl/" /mnt/eai/etc/locale.gen
-genfstab -Up /mnt/eai/ > /mnt/eai/etc/fstab
+sed -i -e "s/#$kbl/$kbl/" /mnt/etc/locale.gen
+genfstab -Up /mnt > /mnt/etc/fstab
 
 curl -o /var/eai/inchroot.sh https://raw.githubusercontent.com/nedorazrab0/test/main/inchroot.sh
-arch-chroot /mnt/eai/ bash /var/eai/inchroot.sh
+arch-chroot /mnt bash /var/eai/inchroot.sh
 
 echo 'Goodbye ;)'
-umount -R /mnt/eai/
+umount -R /mnt
 sleep 1
 poweroff
