@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+echo CHROOT
+read
 
 echo 'arch' > /etc/hostname
 locale-gen
