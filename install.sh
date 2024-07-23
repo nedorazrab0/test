@@ -56,8 +56,9 @@ sed -i -e "s/#$kbl/$kbl/" /mnt/etc/locale.gen
 genfstab -Up /mnt > /mnt/etc/fstab
 
 curl -o /var/eai/inchroot.sh https://raw.githubusercontent.com/nedorazrab0/test/main/inchroot.sh
-arch-chroot /mnt bash /var/eai/inchroot.sh
-
+chmod +x /var/eai/inchroot.sh
+arch-chroot /mnt /var/eai/inchroot.sh
+read
 echo 'Goodbye ;)'
 umount -R /mnt
 sleep 1
