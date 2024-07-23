@@ -26,11 +26,14 @@ sleep 1
 blk="/dev/$disk"
 umount ${blk}*
 wipefs --all "$blk"
-parted "$blk" mktable gpt
-parted "$blk" mkpart 'esp' fat32 1Mib 33Mib
-parted "$blk" mkpart 'boot' ext4 33Mib 1057MiB
-parted "$blk" mkpart 'arch' f2fs 1057MiB 100%
-parted "$blk" set 1 boot on
+parted -s "$blk" mktable gpt
+parted -s "$blk" mkpart primary 1Mib 33Mib
+parted -s "$blk" mkpart primary ext4 33Mib 1057MiB
+parted -s "$blk" mkpart primary f2fs 1057MiB 100%
+mkfs.fat -F32 -n 'esp' /dev/vda1
+mkfs.ext4 -FL 'boot' /dev/vda2
+mkfs.f2fs -fl 'arch' /dev/vda3
+parted -s "$blk" set 1 boot on
 
 mount ${blk}3 /mnt/
 mkdir -p /mnt/boot/
