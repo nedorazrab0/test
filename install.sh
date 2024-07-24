@@ -26,7 +26,7 @@ sleep 1
 blk="/dev/$disk"
 umount ${blk}*
 wipefs --all "$blk"
-parted -s "$blk" mktable gpt
+parted -s "$blk" mktable msdos
 parted -s "$blk" mkpart primary 1Mib 2Mib
 parted -s "$blk" mkpart primary ext4 2Mib 1026MiB
 parted -s "$blk" mkpart primary f2fs 1026MiB 100%
