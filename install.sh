@@ -51,11 +51,13 @@ curl "https://archlinux.org/mirrorlist/?country=${loc}&protocol=https&use_mirror
 cat /etc/hui > /etc/pacman.d/mirrorlist
 
 pacstrap -K /mnt base linux-lts linux-firmware amd-ucode
-cat /var/eai/mirrorlist > /mnt/etc/pacman.d/mirrorlist
+echo
+cat /etc/pacman.d/mirrorlist
+read
+cat /etc/hui > /mnt/etc/pacman.d/mirrorlist
 kbl="${kblr}.UTF-8 UTF-8"
 sed -i -e "s/#$kbl/$kbl/" /mnt/etc/locale.gen
 genfstab -Up /mnt > /mnt/etc/fstab
-cat /etc/hui > /etc/pacman.d/mirrorlist
 sed -i -e 's/#ParallelDownloads = 5/ParallelDownloads = 15/' -e 's/#Colors/Colors/' -e 's/#VerbosePkgLists/VerbosePkgLists/' /mnt/etc/pacman.conf
 
 curl -fso /mnt/etc/pizda https://raw.githubusercontent.com/nedorazrab0/test/main/inchroot.sh
