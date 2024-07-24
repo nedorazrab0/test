@@ -2,6 +2,10 @@
 echo CHROOT
 read
 
+zone=Europe/Moscow
+name=hui
+password=123
+
 echo 'arch' > /etc/hostname
 locale-gen
 ln -sf "/usr/share/zoneinfo/$zone" /etc/localtime
@@ -17,7 +21,7 @@ pacman -S opendoas networkmanager network-manager-applet git bash-completion \
 systemctl enable NetworkManager gdm
 echo 'permit persist :wheel as root' > /etc/doas.conf
 chmod 400 /etc/doas.conf
-grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=arch
+grub-install /dev/vda
 grub-mkconfig -o /boot/grub/grub.cfg
 
 exit
