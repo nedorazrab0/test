@@ -60,8 +60,8 @@ sed -i -e "s/#$kbl/$kbl/" /mnt/etc/locale.gen
 genfstab -Up /mnt > /mnt/etc/fstab
 sed -i -e 's/#ParallelDownloads = 5/ParallelDownloads = 15/' -e 's/#Colors/Colors/' -e 's/#VerbosePkgLists/VerbosePkgLists/' /mnt/etc/pacman.conf
 
-curl -fso /mnt/etc/pizda https://raw.githubusercontent.com/nedorazrab0/test/main/inchroot.sh
-chmod +x /etc/pizda
+curl -o /mnt/etc/pizda https://raw.githubusercontent.com/nedorazrab0/test/main/inchroot.sh
+chmod +x /mnt/etc/pizda
 arch-chroot /mnt /etc/pizda
 read
 echo 'Goodbye ;)'
