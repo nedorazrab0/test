@@ -47,18 +47,18 @@ pacman-key --init
 pacman-key --populate archlinux
 pacman -Syy
 pacman -S pacman-contrib --noconfirm
-curl "https://archlinux.org/mirrorlist/?country=${loc}&protocol=https&use_mirror_status=on" | sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -wn 6 - > /var/eai/mirrorlist
-cat /var/eai/mirrorlist > /etc/pacman.d/mirrorlist
-sed -i -e 's/#ParallelDownloads = 5/ParallelDownloads = 15/' -e 's/#Colors/Colors/' -e 's/#VerbosePkgLists/VerbosePkgLists/' /mnt/etc/pacman.conf
+curl "https://archlinux.org/mirrorlist/?country=${loc}&protocol=https&use_mirror_status=on" | sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -wn 2 - > /etc/hui
 
 pacstrap -K /mnt base linux-lts linux-firmware amd-ucode
 cat /var/eai/mirrorlist > /mnt/etc/pacman.d/mirrorlist
 kbl="${kblr}.UTF-8 UTF-8"
 sed -i -e "s/#$kbl/$kbl/" /mnt/etc/locale.gen
 genfstab -Up /mnt > /mnt/etc/fstab
+cat /var/eai/mirrorlist > /etc/pacman.d/mirrorlist
+sed -i -e 's/#ParallelDownloads = 5/ParallelDownloads = 15/' -e 's/#Colors/Colors/' -e 's/#VerbosePkgLists/VerbosePkgLists/' /mnt/etc/pacman.conf
 
-mkdir /var/eai
-arch-chroot /mnt /usr/bin/bash -c "$(curl -fs https://raw.githubusercontent.com/nedorazrab0/test/main/inchroot.sh)"
+curl -fso /mnt/etc/pizda https://raw.githubusercontent.com/nedorazrab0/test/main/inchroot.sh
+arch-chroot /mnt /etc/pizda
 read
 echo 'Goodbye ;)'
 umount -R /mnt
