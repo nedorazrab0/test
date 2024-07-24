@@ -48,6 +48,7 @@ pacman-key --populate archlinux
 pacman -Syy
 pacman -S pacman-contrib --noconfirm
 curl "https://archlinux.org/mirrorlist/?country=${loc}&protocol=https&use_mirror_status=on" | sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -wn 2 - > /etc/hui
+cat /etc/hui > /etc/pacman.d/mirrorlist
 
 pacstrap -K /mnt base linux-lts linux-firmware amd-ucode
 cat /var/eai/mirrorlist > /mnt/etc/pacman.d/mirrorlist
