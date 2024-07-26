@@ -22,21 +22,20 @@ esac
 lsblk -do name,model,size,rm,tran
 read -p '- Disk name: ' disk
 sleep 1
+umount /dev/$disk*
+wipefs --all /dev/$disk
+echo -n 'label:gpt\n,512M,U,-\n,1G,\n,+,' | sfdisk -fw always /dev/$disk
 
-blk="/dev/$disk"
-umount ${blk}*
-wipefs -af "$blk"
-parted -s "$blk" mktable gpt \
-                 mkpart 'esp' fat32 1Mib 513Mib \
-                 mkpart 'boot' ext4 513Mib 1536MiB \
-                 mkpart 'arch' f2fs 1536MiB 100% \
-                 set 1 boot on
+mkfs.fat -F32 -n 'esp' /dev/$disk*1
+mkfs.ext4 -FL 'boot' /dev/$disk*2
+mkfs.f2fs -fl 'arch' /dev/$disk*3
+
 read
-mount ${blk}3 /mnt/
+mount /dev/$disk*3 /mnt/
 mkdir -p /mnt/boot/
-mount ${blk}2 /mnt/boot/
+mount /dev/$disk*2 /mnt/boot/
 mkdir -p /mnt/boot/efi/
-mount ${blk}1 /mnt/boot/efi/
+mount /dev/$disk*1 /mnt/boot/efi/
 read
 sed -i -e 's/#ParallelDownloads = 5/ParallelDownloads = 15/' -e 's/#Colors/Colors/' -e 's/#VerbosePkgLists/VerbosePkgLists/' /etc/pacman.conf
 
