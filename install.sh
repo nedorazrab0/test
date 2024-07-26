@@ -27,8 +27,8 @@ wipefs --all /dev/$disk
 echo -e 'label:gpt\n,512M,U,-,\n,1G,\n,+,\n' | sfdisk /dev/$disk
 
 mkfs.fat -F32 -n 'ESP' /dev/$disk*1
-mkfs.ext4 -FL 'boot' /dev/$disk*2
-mkfs.f2fs -fl 'arch' /dev/$disk*3
+mke2fs -FL 'boot' /dev/$disk*2
+mkfs.f2fs -fil 'arch' -O extra_attr,inode_checksum,sb_checksum,compression /dev/$disk*3
 
 read
 mount /dev/$disk*3 /mnt/
