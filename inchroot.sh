@@ -11,6 +11,7 @@ pacman -S android-tools android-udev opendoas networkmanager network-manager-app
           vulkan-radeon libva-mesa-driver \
           gdm gnome grub efibootmgr --noconfirm
 
+pacman -R totem gnome-tour --noconfirm
 systemctl enable NetworkManager gdm
 grub-install --efi-directory=/boot/efi --target=x86_64-efi
 grub-mkconfig -o /boot/grub/grub.cfg
