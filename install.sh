@@ -1,22 +1,16 @@
 #!/usr/bin/env bash
 
 read -p '- Username: ' name
-read -p '- Password: ' password
+read -ps '- Password: ' password
 read -p '- Timezone (Europe/Moscow):' zone
 read -p '- Country ISO code (for mirrors): ' loc
-read -p '- раскладка (ru_RU)' kblr
+read -p '- Locale (ru_RU)' kbl
 read -p '- Do you want to destroy your own disk? (y/n): ' agreement
-
-name=hui
-password=123
-zone=Europe/Moscow
-loc=RU
-kblr=en_US
 
 case "$agreement" in
     y) true;;
     n) exit 0;;
-    *) true;;
+    *) exit 1;;
 esac
 
 lsblk -do name,model,size,rm,tran
@@ -30,37 +24,33 @@ mkfs.fat -F32 -n 'ESP' /dev/$disk*1
 mke2fs -FL 'boot' /dev/$disk*2
 mkfs.f2fs -fil 'arch' -O extra_attr,inode_checksum,sb_checksum,compression /dev/$disk*3
 
-read
-mount /dev/$disk*3 /mnt/
-mkdir -p /mnt/boot/
-mount /dev/$disk*2 /mnt/boot/
-mkdir -p /mnt/boot/efi/
-mount /dev/$disk*1 /mnt/boot/efi/
-read
+mount /dev/$disk*3 /mnt
+mkdir -p /mnt/boot
+mount /dev/$disk*2 /mnt/boot
+mkdir -p /mnt/boot/efi
+mount /dev/$disk*1 /mnt/boot/efi
 sed -i -e 's/#ParallelDownloads = 5/ParallelDownloads = 15/' -e 's/#Colors/Colors/' -e 's/#VerbosePkgLists/VerbosePkgLists/' /etc/pacman.conf
 
-pacman-key --init
-pacman-key --populate archlinux
-pacman -Syy
+pacman -Sy
 pacman -S pacman-contrib --noconfirm
-curl "https://archlinux.org/mirrorlist/?country=${loc}&protocol=https&use_mirror_status=on" | sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -wn 2 - > /etc/hui
-cat /etc/hui > /etc/pacman.d/mirrorlist
+curl "https://archlinux.org/mirrorlist/?country=${loc}&protocol=https&use_mirror_status=on" | sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -wn 2 - > /tmp/mlist
+cat /tmp/mlist > /etc/pacman.d/mirrorlist
 
 pacstrap -K /mnt base linux-lts linux-firmware amd-ucode
-echo
-cat /etc/pacman.d/mirrorlist
-read
-cat /etc/hui > /mnt/etc/pacman.d/mirrorlist
-kbl="${kblr}.UTF-8 UTF-8"
-sed -i -e "s/#$kbl/$kbl/" /mnt/etc/locale.gen
+cat /tmp/mlist > /mnt/etc/pacman.d/mirrorlist
+echo 'permit persist :wheel as root' > /mnt/etc/doas.conf
+chmod 400 /mnt/etc/doas.conf
+echo 'arch' > /mnt/etc/hostname
+sed -i -e 's/#en_US.UTF-8/en_US.UTF-8/' -e "s/#$kbl.UTF-8/$kbl.UTF-8/" /mnt/etc/locale.gen
 genfstab -Up /mnt | sed 's/lz4/zstd:6,compress_chksum/' > /mnt/etc/fstab
-sed -i -e 's/#ParallelDownloads = 5/ParallelDownloads = 15/' -e 's/#Colors/Colors/' -e 's/#VerbosePkgLists/VerbosePkgLists/' /mnt/etc/pacman.conf
 
-curl -o /mnt/etc/pizda https://raw.githubusercontent.com/nedorazrab0/test/main/inchroot.sh
-chmod +x /mnt/etc/pizda
-arch-chroot /mnt /etc/pizda
-read
+curl -o /mnt/tmp/inchroot.sh https://raw.githubusercontent.com/nedorazrab0/test/main/inchroot.sh
+chmod 500 /mnt/tmp/inchroot.sh
+arch-chroot /mnt /tmp/inchroot.sh "$name" "$password" "$zone"
+echo -e '#!/usr/bin/env bash\n\nflatpak install flathub com.google.Chrome com.discordapp.Discord io.mpv.Mpv --noninteractive -y\n rm -f "$(realpath "$0")"' > /mnt/usr/bin/flatpaks.sh
+chmod 555 /mnt/usr/bin/flatpaks.sh
+rm -f /mnt/tmp/inchroot.sh
 echo 'Goodbye ;)'
-umount -R /mnt
 sleep 1
+umount -R /mnt
 poweroff
