@@ -53,7 +53,7 @@ read
 cat /etc/hui > /mnt/etc/pacman.d/mirrorlist
 kbl="${kblr}.UTF-8 UTF-8"
 sed -i -e "s/#$kbl/$kbl/" /mnt/etc/locale.gen
-genfstab -Up /mnt > /mnt/etc/fstab
+genfstab -Up /mnt | sed 's/lz4/zstd:6,compress_chksum/' > /mnt/etc/fstab
 sed -i -e 's/#ParallelDownloads = 5/ParallelDownloads = 15/' -e 's/#Colors/Colors/' -e 's/#VerbosePkgLists/VerbosePkgLists/' /mnt/etc/pacman.conf
 
 curl -o /mnt/etc/pizda https://raw.githubusercontent.com/nedorazrab0/test/main/inchroot.sh
