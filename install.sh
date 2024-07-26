@@ -24,7 +24,7 @@ read -p '- Disk name: ' disk
 sleep 1
 umount /dev/$disk*
 wipefs --all /dev/$disk
-echo -n 'label:gpt\n,512M,U,-\n,1G,\n,+,' | sfdisk -fw always /dev/$disk
+echo -e 'label:gpt\n,512M,U,-,\n,1G,\n,+,\n' | sfdisk -fw always /dev/$disk
 
 mkfs.fat -F32 -n 'esp' /dev/$disk*1
 mkfs.ext4 -FL 'boot' /dev/$disk*2
