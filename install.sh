@@ -24,6 +24,7 @@ mkfs.fat -F32 -n 'ESP' /dev/$disk*1
 mke2fs -FL 'boot' /dev/$disk*2
 mkfs.f2fs -fil 'arch' -O extra_attr,inode_checksum,sb_checksum,compression /dev/$disk*3
 
+umount -R /mnt
 mount /dev/$disk*3 /mnt
 mkdir -p /mnt/boot
 mount /dev/$disk*2 /mnt/boot
