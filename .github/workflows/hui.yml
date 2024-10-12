@@ -1,12 +1,21 @@
-name: ebal
-on: push
+name: mkng
+
+on:
+  push:
+    branches: [main]
 jobs:
-  hz:
+  cmprsng:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: awalsh128/cache-apt-pkgs-action@latest
-        with:
-          packages: aapt
-          version: 1.0
-      - run: bash -x ./track_link.sh
+      - name: mkng n fle
+        run: |
+          tar -cvf ./rch-nstll.tar ./*
+          zstd --ultra -20 ./rch-nstll.tar
+      - name: rlsng
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add rch-nstll.zst
+          git commit -m 'hui'
+          git push
