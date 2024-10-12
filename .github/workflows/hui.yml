@@ -18,6 +18,8 @@ jobs:
           tar -cvf ./.rch-nstll.tar ./*
           zstd --ultra -vf20 ./.rch-nstll.tar
       - name: rlsng
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: gh release create v1.2.3 './.rch-nstll#msds' --notes 'hui'
 #        run: |
 #          git config user.name 'github-actions[bot]'
