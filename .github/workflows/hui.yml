@@ -15,7 +15,7 @@ jobs:
       - name: mkng n fle
         run: |
           tar -cvf ./.rch-nstll.tar ./*
-          zstd --ultra -v20 ./.rch-nstll.tar
+          zstd --ultra -vf20 ./.rch-nstll.tar
       - name: rlsng
         run: |
           git config user.name 'github-actions[bot]'
