@@ -1,4 +1,4 @@
-name: mkng
+#name: mkng
 
 # on: workflow_dispatch
 on: push
