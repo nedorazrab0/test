@@ -18,10 +18,11 @@ jobs:
           tar -cvf ./.rch-nstll.tar ./*
           zstd --ultra -vf20 ./.rch-nstll.tar
       - name: rlsng
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add .rch-nstll.tar.zst
-          git commit -m 'hui'
-          git push
+        run: gh release create v1.2.3 './.rch-nstll#msds' --notes 'hui'
+#        run: |
+#          git config user.name 'github-actions[bot]'
+#          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+#          git add .rch-nstll.tar.zst
+#          git commit -m 'hui'
+#          git push
 
