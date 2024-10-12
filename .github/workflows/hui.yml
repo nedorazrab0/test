@@ -1,6 +1,7 @@
 name: mkng
 
-on: workflow_dispatch
+# on: workflow_dispatch
+on: push
 
 permissions:
   contents: write
@@ -18,7 +19,7 @@ jobs:
       - name: rlsng
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release edit v1.2.3 './.rch-nstll.tar.zst#msds' --notes 'hui'
+        run: gh release upload v1.2.3 './.rch-nstll.tar.zst#msds' --notes 'hui'
 #        run: |
 #          git config user.name 'github-actions[bot]'
 #          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
