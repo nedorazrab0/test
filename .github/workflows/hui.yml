@@ -11,4 +11,4 @@ jobs:
       - name: Compressing
         run: |
           time -p sudo dd if=/dev/zero of=/dev/shm/hui bs=4K count=1048576
-          time -p sudo dd if=/dev/zero > /dev/shm/hui bs=4K count=1048576
+          time -p sudo sh -c 'dd if=/dev/zero bs=4K count=1048576 > /dev/shm/hui'
