@@ -16,14 +16,10 @@ jobs:
 #     - uses: actions/checkout@v4
 #        with:
 #           set-safe-directory: '/dev/shm'
-      - name: hui
-        run: |
-          ls -lh
-          pwd
       - name: mkng n fle
         run: |
-          tar -cvf ./.rch-nstll.tar ./*
-          zstd --ultra -f20 ./.rch-nstll.tar
+          sudo tar -cvf ./.rch-nstll.tar ./*
+          sudo zstd --ultra -f20 ./.rch-nstll.tar
       - name: rlsng
         env:
           GH_TOKEN: ${{ github.token }}
