@@ -14,8 +14,8 @@ jobs:
       - name: hui
         run: |
           blkid /dev/sdb1
-          fdisk -l /dev/sda
-          fdisk -l /dev/sdb
+          sudo fdisk -l /dev/sda
+          sudo fdisk -l /dev/sdb
           sudo dd if=/dev/zero of=/dev/shm/hui bs=4096 count=1048576 conv=fsync
           dd if=/dev/zero of=./hui bs=4096 count=1048576 conv=fsync
           echo -
