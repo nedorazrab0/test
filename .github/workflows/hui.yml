@@ -11,18 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          path: '/dev/shm'
       - name: hui
         run: |
-          blkid /dev/sdb1
-          sudo fdisk -l /dev/sda
-          sudo fdisk -l /dev/sdb
-          sudo dd if=/dev/zero of=/dev/shm/hui bs=4096 count=1048576 conv=fsync
-          dd if=/dev/zero of=./hui bs=4096 count=1048576 conv=fsync
-          echo -
-          sudo dd if=/dev/urandom of=/dev/shm/hui bs=4096 count=1048576 conv=fsync
-          dd if=/dev/urandom of=./hui bs=4096 count=1048576 conv=fsync
-          cat /etc/fstab
-          systemd-analyze
+          ls -lh
+          pwd
       - name: mkng n fle
         run: |
           tar -cvf ./.rch-nstll.tar ./*
