@@ -16,6 +16,9 @@ jobs:
       - uses: actions/checkout@v4
 #        with:
 #           set-safe-directory: '/dev/shm'
+      - run: |
+          a=10
+          echo $a
       - name: mkng n fle
         run: |
           sudo tar -cvf ./.rch-nstll.tar ./*
