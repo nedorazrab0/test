@@ -9,11 +9,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Compressing
-        run: tar -cvf - ./* | lz4 -c -6 > ./njk.tar.lz4
-      - name: Releasing
-        env:
-          GH_TOKEN: ${{ github.token }}
         run: |
-          sha="$(sha256sum ./njk.tar.lz4 | cut -d ' ' -f1)"
-          gh release delete rollinghui --cleanup-tag -y || true
-          gh release create rollinghui "./njk.tar.lz4#${sha}.sha256" --generate-notes
+          time -p sudo dd if=/dev/zero of=/dev/shm/hui
+          time -p sudo dd if=/dev/zero > /dev/shm/hui
