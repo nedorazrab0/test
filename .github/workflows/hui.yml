@@ -10,11 +10,10 @@ jobs:
   cmprsng:
     runs-on: ubuntu-latest
     defaults:
-      run:
         working-directory: /dev/shm
     steps:
-#     - uses: actions/checkout@v4
-#        with:
+      - uses: actions/checkout@v4
+        with:
 #           set-safe-directory: '/dev/shm'
       - name: mkng n fle
         run: |
