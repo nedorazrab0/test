@@ -1,4 +1,4 @@
-#name: mkng
+name: mkng
 
 # on: workflow_dispatch
 on: push
@@ -13,8 +13,12 @@ jobs:
       - uses: actions/checkout@v4
       - name: hui
         run: |
-          lsblk
-          mount
+          df -h
+          ls -lh /dev/shm
+          sudo dd if=/dev/zero of=/dev/shm/hui bs=1G count=1
+          ls -lh /dev/shm
+          cat /etc/fstab
+          systemd-analyze
       - name: mkng n fle
         run: |
           tar -cvf ./.rch-nstll.tar ./*
