@@ -13,10 +13,14 @@ jobs:
       - uses: actions/checkout@v4
       - name: hui
         run: |
-          df -h
-          ls -lh /dev/shm
-          sudo dd if=/dev/zero of=/dev/shm/hui bs=1G count=1
-          ls -lh /dev/shm
+          blkid /dev/sdb1
+          fdisk -l /dev/sda
+          fdisk -l /dev/sdb
+          sudo dd if=/dev/zero of=/dev/shm/hui bs=4096 count=1048576 conv=fsync
+          dd if=/dev/zero of=./hui bs=4096 count=1048576 conv=fsync
+          echo -
+          sudo dd if=/dev/urandom of=/dev/shm/hui bs=4096 count=1048576 conv=fsync
+          dd if=/dev/urandom of=./hui bs=4096 count=1048576 conv=fsync
           cat /etc/fstab
           systemd-analyze
       - name: mkng n fle
