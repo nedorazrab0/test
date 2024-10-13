@@ -13,7 +13,7 @@ jobs:
       working-directory: /dev/shm
     steps:
       - uses: actions/checkout@v4
-        with:
+#        with:
 #           set-safe-directory: '/dev/shm'
       - name: mkng n fle
         run: |
