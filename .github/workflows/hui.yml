@@ -10,7 +10,8 @@ jobs:
   cmprsng:
     runs-on: ubuntu-latest
     defaults:
-      working-directory: /dev/shm
+      run:
+        working-directory: /dev/shm
     steps:
       - uses: actions/checkout@v4
 #        with:
