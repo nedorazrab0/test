@@ -11,6 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: hui
+        run: |
+          lsblk
+          mount
       - name: mkng n fle
         run: |
           tar -cvf ./.rch-nstll.tar ./*
