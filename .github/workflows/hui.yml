@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          path: '/dev/shm'
+          sparse-checkout: '/dev/shm'
       - name: hui
         run: |
           ls -lh
