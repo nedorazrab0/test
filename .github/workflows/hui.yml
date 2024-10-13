@@ -1,31 +1,19 @@
-name: mkng
-
-# on: workflow_dispatch
+name: rls
 on: push
-
 permissions:
   contents: write
 
 jobs:
-  cmprsng:
+  release:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: /dev/shm
     steps:
       - uses: actions/checkout@v4
-#        with:
-#           set-safe-directory: '/dev/shm'
-      - run: |
-          a=10
-          echo $a
-      - name: mkng n fle
-        run: |
-          sudo tar -cvf ./.rch-nstll.tar ./*
-          sudo zstd --ultra -f20 ./.rch-nstll.tar
-      - name: rlsng
+      - name: Compressing
+        run: tar -cvf - ./* | lz4 -c -6 > ./njk.tar.lz4
+      - name: Releasing
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create huy || true
-          gh release upload rolling './.rch-nstll.tar.zst' --clobber
+          sha="$(sha256sum ./njk.tar.lz4 | cut -d ' ' -f1)"
+          gh release delete rolling -y
+          gh release create rolling "./njk.tar.lz4#${sha}.sha256" --generate-notes
