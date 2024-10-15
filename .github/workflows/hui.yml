@@ -10,11 +10,4 @@ jobs:
       - uses: actions/checkout@v4
       - name: Compressing
         run: |
-          set +e
-          dd if=/dev/urandom of=./hui bs=256K count=4096 conv=fsync
-          list='blake2b512 blake2s256 md5 rmd160 sha1 sha224 sha256 sha3-224 sha3-256 sha3-384 sha3-512 sha384 sha512 sha512-224 sha512-256 shake128 shake256'
-          for i in $list; do
-              time -p openssl $i hui
-              echo
-          done
-
+          dd if=/dev/zero of=./hui bs=256K count=4096 conv=fsync
