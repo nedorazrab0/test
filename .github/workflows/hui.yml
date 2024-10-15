@@ -10,10 +10,12 @@ jobs:
       - uses: actions/checkout@v4
       - name: Compressing
         run: |
+          find /usr/bin -name '*ssl'
+          find /usr/bim -name '*tls'
           dd if=/dev/urandom of=./hui bs=1G count=1 conv=fsync
-          time -p openssl sha256 ./hui
-          time -p sha256sum --tag ./hui
-          echo -
-          find $PATH -name '*ssl'
-          echo -
-          find $PATH -name '*tls'
+          list='blake2b512 blake2s256 md4 md5 mdc2 rmd160 sha1 sha224 sha256 sha3-224 sha3-256 sha3-384 sha3-512 sha384 sha512 sha512-224 sha512-256 shake128 shake256'
+          for i in $list; do
+              time -p openssl $i hui
+              echo
+          done
+
