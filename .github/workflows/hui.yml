@@ -12,4 +12,8 @@ jobs:
         run: |
           dd if=/dev/urandom of=./hui bs=1G count=1 conv=fsync
           time -p openssl sha256 ./hui
-          time -p sha256 --tag ./hui
+          time -p sha256sum --tag ./hui
+          echo -
+          find $PATH -name '*ssl'
+          echo -
+          find $PATH -name '*tls'
