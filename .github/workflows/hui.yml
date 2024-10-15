@@ -16,6 +16,4 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          sha="$(echo "$a" | sha256sum - | cut -d ' ' -f1)"
-          gh release delete rolling --cleanup-tag -y || true
-          echo "$a" | gh release create rolling <(echo "$a")
+          openssl
