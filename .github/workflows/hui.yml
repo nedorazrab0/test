@@ -10,10 +10,6 @@ jobs:
       - uses: actions/checkout@v4
       - name: Compressing
         run: |
-          rm -f ./README.md
-          a="$(tar -cvf - ./* | lz4 -12zvcf --favor-decSpeed -)"
-      - name: Releasing
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          openssl
+          dd if=/dev/urandom of=./hui bs=1G count=1 conv=fsync
+          time -p openssl sha256 ./hui
+          time -p sha256 --tag ./hui
