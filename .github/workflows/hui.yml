@@ -10,4 +10,6 @@ jobs:
       - uses: actions/checkout@v4
       - name: Compressing
         run: |
-          find /usr/bin -name '*7*'
+          dd if=/dev/zero of=hui bs=1G count=1 conv=fsync
+          time -p zip -v9 hui
+          time -p 7za a hui.zip -mx=9 hui
