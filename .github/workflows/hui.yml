@@ -28,9 +28,7 @@ jobs:
           git commit -m 'json update'
           git push
       - name: Compressing
-        run: |
-          rm -rf ./.github ./README.md ./update.json
-          zip -rv9 abootloop.zip ./* -x ./.git
+        run: zip -rv9 abootloop.zip ./* -x ./.git ./.github ./README.md ./update.json
       - name: Releasing
         env:
           GH_TOKEN: ${{ github.token }}
