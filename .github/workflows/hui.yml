@@ -10,5 +10,6 @@ jobs:
       - uses: actions/checkout@v4
       - name: Compressing
         run: |
-          time -p dd if=/dev/zero of=./hui bs=4M count=256 conv=fsync status=none
-          time -p cat /dev/zero > hui
+          dd if=/dev/zero of=./hui bs=4M count=256 conv=fsync
+          time -p mv -vf hui hu1
+          time -p rm -vf hu1
