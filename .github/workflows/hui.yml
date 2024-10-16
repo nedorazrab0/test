@@ -1,5 +1,5 @@
 name: rls
-on: push
+on: workflow_dispatch
 permissions:
   contents: write
 
@@ -8,5 +8,32 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: a=10
-      - run: echo $a
+      - name: Updating service files
+        run: |
+          cat ./module.prop | tr -d ' ' | sudo tee /dev/shm/module.prop
+          sudo mv ./changelog.md /dev/shm
+          source /dev/shm/module.prop
+          
+          # Making a json
+          echo '{' > ./update.json
+          echo "    \"version\": \"$version\"," >> ./update.json
+          echo "    \"versionCode\": $versionCode," >> ./update.json
+          echo "    \"zipUrl\": \"https://github.com/Magisk-Modules-Alt-Repo/abootloop/releases/download/$version/abootloop.zip\"," >> ./update.json
+          echo '    "changelog": "https://raw.githubusercontent.com/Magisk-Modules-Alt-Repo/abootloop/main/changelog.md"' >> ./update.json
+          echo '}' >> ./update.json
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ./update.json
+          git commit -m 'json update'
+          git push
+      - name: Compressing
+        run: |
+          rm -rf ./.git ./.github ./README.md ./update.json
+          zip -rv9 abootloop.zip ./*
+      - name: Releasing
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          source ./module.prop
+          gh release create "$version" ./abootloop.zip --notes="$(cat /dev/shm/changelog.md)"
