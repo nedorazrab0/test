@@ -29,8 +29,8 @@ jobs:
           git push
       - name: Compressing
         run: |
-          rm -rf ./.git ./.github ./README.md ./update.json
-          zip -rv9 abootloop.zip ./*
+          rm -rf ./.github ./README.md ./update.json
+          zip -rv9 abootloop.zip ./* -x ./.git
       - name: Releasing
         env:
           GH_TOKEN: ${{ github.token }}
