@@ -16,7 +16,7 @@ jobs:
           
           # Making a json
           echo '{' > ./update.json
-          echo "    \"version\": \"$version\"," >> ./update.json
+          echo "    \"version\": \"${version}hui\"," >> ./update.json
           echo "    \"versionCode\": $versionCode," >> ./update.json
           echo "    \"zipUrl\": \"https://github.com/Magisk-Modules-Alt-Repo/abootloop/releases/download/$version/abootloop.zip\"," >> ./update.json
           echo '    "changelog": "https://raw.githubusercontent.com/Magisk-Modules-Alt-Repo/abootloop/main/changelog.md"' >> ./update.json
