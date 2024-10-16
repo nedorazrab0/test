@@ -12,5 +12,7 @@ jobs:
         run: |
           dd if=/dev/urandom of=hui bs=1G count=1 conv=fsync
           time -p zip -v9 hui.zip hui
-          time -p 7za a huii.zip -mx=9 hui
           ls -lh
+          mkdir huy
+          time -p unzip hui.zip -d huy
+          ls -lh . huy
