@@ -1,5 +1,5 @@
 name: rls
-on: workflow_dispatch
+on: push
 permissions:
   contents: write
 
@@ -10,4 +10,4 @@ jobs:
       - uses: actions/checkout@v4
       - name: Updating service files
         run: |
-         find /usr/bin -name '*cpio*'
+         echo LICENSE | cpio -oH crc
