@@ -11,10 +11,13 @@ jobs:
       - name: Updating service files
         run: |
          dd if=/dev/urandom of=hui bs=1G count=1 conv=fsync
-         time -p echo hui | cpio -ovHcrc > 1
-         time -p echo hui | cpio -ovHnewc > 2
-         time -p echo hui | cpio -ovHbin > 3
-         time -p tar -cvf - hui > 4
+         #time -p echo hui | cpio -ovHcrc > 1
+         #time -p echo hui | cpio -ovHnewc > 2
+         #time -p echo hui | cpio -ovHbin > 3
+         time -p tar -cvf - hui > 1
+         time -p tar -Hv7 -cvf - hui > 2
+         time -p tar -Hpax -cvf - hui > 3
+         time -p tar -Hustar -cvf - hui > 4
          ls -l
          file *
          ls -lh
