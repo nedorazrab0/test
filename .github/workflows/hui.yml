@@ -10,5 +10,11 @@ jobs:
       - uses: actions/checkout@v4
       - name: Updating service files
         run: |
-         find . -not -path '*/.*' | cpio -oH crc | zstd --ultra -vc20 > hui
+         dd if=/dev/urandom of=hui bs=1G count=1 conv=fsync
+         time -p echo hui | cpio -ovHcrc > 1
+         time -p echo hui | cpio -ovHnewc > 2
+         time -p echo hui | cpio -ovHbin > 3
+         time -p tar -cvf - hui > 4
+         ls -l
+         file *
          ls -lh
