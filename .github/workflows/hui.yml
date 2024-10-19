@@ -13,4 +13,6 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh release delete rolling --cleanup-tag -y || true
-          gh release create rolling "./123" --generate-notes --notes=pizda
+          gh release create rolling "./123" \
+          --generate-notes --notes="#### SHA256 Part:\n```\nhuipizda\n```\n> $(date)"
+
