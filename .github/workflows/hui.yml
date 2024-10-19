@@ -12,7 +12,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          shap=ad-o98-7hb--sx-bvj-8js
           gh release delete rolling --cleanup-tag -y || true
-          echo "#### SHA256 Part:\n\`\`\`$shap\`\`\`\n> $(date)" |\
+          echo -e "#### SHA256 Part:\n\`\`\`$shap\`\`\`\n> $(date)" |\
           gh release create rolling "./123" --generate-notes -F-
 
