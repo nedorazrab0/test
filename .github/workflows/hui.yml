@@ -14,6 +14,6 @@ jobs:
         run: |
           shap=ad-o98-7hb--sx-bvj-8js
           gh release delete rolling --cleanup-tag -y || true
-          echo -e "#### SHA256 Part:\n\`\`\`$shap\`\`\`\n> $(date)" |\
-          gh release create rolling "./123" --generate-notes -F-
+          echo -e "#### SHA256 Part:\n\`\`\`\n$shap\n\`\`\`\n> $(date)" |\
+          gh release create rolling "./123" -F-
 
