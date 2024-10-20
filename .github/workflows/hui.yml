@@ -11,4 +11,9 @@ jobs:
       - name: Updating service files
         shell: python
         run:
-          print("hui")
+          import json
+          hui = {
+              "z": "v",
+              "o": 123
+          }
+          print(json.dumps(hui))
