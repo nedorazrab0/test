@@ -10,5 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Updating service files
-        run: python3 ./.github/jui
+        run: |
+          eval "$(cat ./module.prop | tr -d ' ')"
+          python3 ./.github/hui.py
           
