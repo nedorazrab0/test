@@ -9,10 +9,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Updating service files
+        shell: python3
         run:
-          cat << EOF > hui
-          123
-              124
-          125
-          EOF
-          cat hui
+          print("hui")
