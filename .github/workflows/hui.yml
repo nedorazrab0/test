@@ -13,4 +13,5 @@ jobs:
         run: |
           eval "$(cat ./module.prop | tr -d ' ')"
           python3 ./.github/hui.py
+          cat update.json
           
