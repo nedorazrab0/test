@@ -1,0 +1,6 @@
+import json
+hui = {
+  "z": "v",
+  "o": 123
+}
+print(json.dumps(hui))
