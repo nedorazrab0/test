@@ -9,6 +9,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Updating service files
-        shell: python3
+        shell: python
         run:
           print("hui")
