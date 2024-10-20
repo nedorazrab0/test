@@ -9,11 +9,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Updating service files
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          shap=ad-o98-7hb--sx-bvj-8js
-          gh release delete rolling --cleanup-tag -y || true
-          echo -e "#### SHA256 Part:\n\`\`\`\n$shap\n\`\`\`\n> $(date)" |\
-          gh release create rolling "./123" -F-
-
+        run:
+          cat << EOF > hui
+          123
+              124
+          125
+          EOF
+          cat hui
