@@ -10,11 +10,5 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Updating service files
-        shell: python
-        run:
-          import json
-          hui = {
-          "z": "v",
-          "o": 123
-          }
-          print(json.dumps(hui))
+        run: python3 ./.github/jui
+          
