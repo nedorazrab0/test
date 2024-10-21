@@ -12,6 +12,7 @@ jobs:
       - name: Updating service files
         run: |
           eval "$(cat ./module.prop | tr -d ' ')"
-          python3 ./.github/hui.py "$version" "$versionCode" "$zipUrl" "$changelog"
+          python3 ./.github/hui.py "$version" "$versionCode" \
+                                   "$zipUrl" "$changelog"
           cat update.json
           
