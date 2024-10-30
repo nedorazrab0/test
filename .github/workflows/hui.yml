@@ -11,5 +11,5 @@ jobs:
       - uses: actions/checkout@v4
       - name: Updating service files
         run: |
-          cat ./module.prop >> "$GITHUB_ENV"
+          cat ./module.prop | tee -a "$GITHUB_ENV"
       - run: echo $version $name
