@@ -11,8 +11,5 @@ jobs:
       - uses: actions/checkout@v4
       - name: Updating service files
         run: |
-          eval "$(cat ./module.prop | tr -d ' ')"
-          python3 ./.github/hui.py "$version" "$versionCode" \
-                                   "$zipUrl" "$changelog"
-          cat update.json
-          
+          cat ./module.prop | tr -d ' ' >> "$GITHUB_ENV"
+      - run: echo $version $name
