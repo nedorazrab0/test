@@ -3,7 +3,7 @@
 mkdir -p /dev/shm/hui
 cd /dev/shm/hui
 
-dd if=/dev/urandom of=z bs=1G conv=fsync
+dd if=/dev/urandom of=z bs=1G count=1 conv=fsync
 
 time -p echo z | cpio -oH odc > zn
 time -p echo z | cpio -oH bin > zn
