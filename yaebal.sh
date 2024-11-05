@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-mkdir -p /dev/shm/hui
-cd /dev/shm/hui
-
 dd if=/dev/urandom of=z bs=1G count=1 conv=fsync
 
 echo v7
