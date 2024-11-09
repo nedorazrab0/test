@@ -3,7 +3,7 @@
 mkdir ./z
 cd ./z
 
-curl -Zo 'hui' 'https://download.fedoraproject.org/pub/fedora/linux/releases/41/Everything/x86_64/iso/Fedora-Everything-netinst-x86_64-41-1.4.iso'
+curl -ZLo 'hui' 'https://download.fedoraproject.org/pub/fedora/linux/releases/41/Everything/x86_64/iso/Fedora-Everything-netinst-x86_64-41-1.4.iso'
 
 echo '- xz9'
 time -p xz -9zekvc -T0 -M100% 'hui' > xz9
