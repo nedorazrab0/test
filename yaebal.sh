@@ -14,6 +14,8 @@ time -p zip -9 - 'hui' > zp9
 
 echo '- za6'
 time -p 7za a za6 'hui' -mx6
+echo '- za7'
+time -p 7za a za7 'hui' -mx7
 echo '- za8'
 time -p 7za a za8 'hui' -mx8
 echo '- za9'
@@ -36,6 +38,4 @@ echo '- xz9'
 time -p xz -8zekc -T0 -M100% 'hui' > xz9
 
 echo '****'
-ls -lh
-echo '****'
-ls -l
+ls -lS --block-size=M
