@@ -6,13 +6,15 @@ cd ./z
 curl -ZLo 'hui' 'https://geo.mirror.pkgbuild.com/iso/2024.11.01/archlinux-2024.11.01-x86_64.iso'
 echo '****'
 
-echo '- zp8'
-time -p zip -8v - hui > zp8
+time -p zip -9 - hui > zp
+time -p 7za a -tzip za 'hui' -mx7
+
+cd ..
+echo zp
+time -p unzip z/zp
 sleep 1
 
-echo '- za7'
-time -p 7za a -tzip za7 'hui' -mx7
+echo za
+time -p 7za x z/za.zip
 sleep 1
 
-echo '****'
-ls -lS --block-size=M
