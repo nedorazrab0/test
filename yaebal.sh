@@ -7,7 +7,7 @@ curl -ZLo 'hui' 'https://geo.mirror.pkgbuild.com/iso/2024.11.01/archlinux-2024.1
 echo '****'
 
 echo '- zp8'
-zip -8v - hui > zp8
+time -p zip -8v - hui > zp8
 sleep 1
 
 echo '- za7'
