@@ -8,8 +8,7 @@ echo '****'
 
 7za a -tzip za 'hui' -mx7
 
-rm -f hui
 echo za
-time -p 7za x za.zip
+time -p 7za x za.zip 123
 sleep 1
 
