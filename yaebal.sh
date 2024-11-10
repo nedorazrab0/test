@@ -7,22 +7,22 @@ curl -ZLo 'hui' 'https://geo.mirror.pkgbuild.com/iso/2024.11.01/archlinux-2024.1
 echo '****'
 
 echo 'b1'
-brotli -1vc 'hui' > b¹
+time -p brotli -1vc 'hui' > b¹
 sleep 1
 echo 'b3'
-brotli -3vc 'hui' > b3
+time -p brotli -3vc 'hui' > b3
 sleep 1
 echo 'b6'
-brotli -6vc 'hui' > b6
+time -p brotli -6vc 'hui' > b6
 sleep 1
 echo 'b9'
-brotli -9vc 'hui' > b9
+time -p brotli -9vc 'hui' > b9
 sleep 1
 echo 'b10'
-brotli -q10 -vc 'hui' > b10
+time -p brotli -q10 -vc 'hui' > b10
 sleep 1
 echo 'b11'
-brotli -Zvc 'hui' > b11
+time -p brotli -Zvc 'hui' > b11
 sleep 1
 
 echo '- za6'
