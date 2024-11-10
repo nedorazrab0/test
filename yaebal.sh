@@ -6,31 +6,16 @@ cd ./z
 curl -ZLo 'hui' 'https://geo.mirror.pkgbuild.com/iso/2024.11.01/archlinux-2024.11.01-x86_64.iso'
 echo '****'
 
-echo 'b1'
-time -p brotli -1vc 'hui' > b¹
-sleep 1
-echo 'b3'
-time -p brotli -3vc 'hui' > b3
-sleep 1
-echo 'b6'
-time -p brotli -6vc 'hui' > b6
-sleep 1
-echo 'b9'
-time -p brotli -9vc 'hui' > b9
-sleep 1
-echo 'b10'
-time -p brotli -q10 -vc 'hui' > b10
-sleep 1
-echo 'b11'
-time -p brotli -Zvc 'hui' > b11
+echo '- zp 9'
+zip -9v - hui > zp9
 sleep 1
 
 echo '- za6'
-time -p 7za a -t zip za6 'hui' -mx6
+time -p 7za a -tzip za6 'hui' -mx6
 echo '- za8'
-time -p 7za a -t zip za8 'hui' -mx8
+time -p 7za a -tzip za8 'hui' -mx8
 echo '- za9'
-time -p 7za a -t zip za9 'hui' -mx9
+time -p 7za a -tzip za9 'hui' -mx9
 
 
 echo '****'
