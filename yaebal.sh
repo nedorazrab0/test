@@ -3,7 +3,7 @@
 mkdir ./z
 cd ./z
 
-curl -ZLo 'hui' 'https://eu.dl.twrp.me/taoyao/twrp-3.7.1_12-0-taoyao.img'
+curl -ZLo 'hui' 'https://github.com/Slushi-Github/Redmi_Note_12S_Assets/raw/refs/heads/main/bootOriginal.img'
 echo '****'
 
 echo '- tv7'
