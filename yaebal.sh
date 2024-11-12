@@ -6,9 +6,33 @@ cd ./z
 curl -ZLo 'hui' 'https://geo.mirror.pkgbuild.com/iso/2024.11.01/archlinux-2024.11.01-x86_64.iso'
 echo '****'
 
-7za a -tzip za 'hui' -mx7
-
-echo za
-time -p 7za x za.zip 123
+echo '- tv7'
+time -p tar -H v7 -cf - hui > tv7
 sleep 1
 
+echo '- tps'
+time -p tar -H pax -cf - hui > tps
+sleep 1
+
+echo '- lz1'
+time -p lz4 -1zc tps > lz1
+sleep 
+
+echo '-lz12'
+time -p lz4 -12zc tps > lz12
+sleep 1
+
+echo '- zt19'
+time -p zstd -T0 -19zc tps > zt19
+sleep 1
+
+echo '- zt20'
+time -p zstd -T0 --ultra -20zc tps > zt20
+sleep 1
+
+echo '- zt22'
+time -p zstd -T0 --ultra -22zc tps > zt22
+sleep 1
+
+echo '****'
+ls -lS --block-size=M
