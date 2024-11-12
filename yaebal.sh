@@ -3,7 +3,7 @@
 mkdir ./z
 cd ./z
 
-curl -ZLo 'hui' https://mirrorbits.lineageos.org/full/lisa/20241105/boot.img'
+curl -ZLo 'hui' 'https://mirrorbits.lineageos.org/full/lisa/20241105/boot.img'
 echo '****'
 
 echo '- tv7'
