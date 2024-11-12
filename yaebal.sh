@@ -3,7 +3,7 @@
 mkdir ./z
 cd ./z
 
-curl -ZLo 'hui' https://eu.dl.twrp.me/taoyao/twrp-3.7.1_12-0-taoyao.img'
+curl -ZLo 'hui' 'https://eu.dl.twrp.me/taoyao/twrp-3.7.1_12-0-taoyao.img'
 echo '****'
 
 echo '- tv7'
