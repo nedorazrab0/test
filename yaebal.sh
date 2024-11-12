@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set +e
 
-apt search bsdtar
+
+sudo apt install libarchive-tools
 bsdtar --version
 command -v bsdtat
+ls -lhL $(which bsdtar)
