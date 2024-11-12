@@ -3,7 +3,7 @@
 mkdir ./z
 cd ./z
 
-curl -ZLo 'hui' 'https://geo.mirror.pkgbuild.com/iso/2024.11.01/archlinux-2024.11.01-x86_64.iso'
+curl -ZLo 'hui' https://eu.dl.twrp.me/taoyao/twrp-3.7.1_12-0-taoyao.img'
 echo '****'
 
 echo '- tv7'
@@ -16,7 +16,7 @@ sleep 1
 
 echo '- lz1'
 time -p lz4 -1zc tps > lz1
-sleep 
+sleep 1
 
 echo '-lz12'
 time -p lz4 -12zc tps > lz12
