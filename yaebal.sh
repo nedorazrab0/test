@@ -26,5 +26,13 @@ echo '- zt20'
 time -p zstd -T0 --ultra -20zc tps > zt20
 sleep 1
 
+echo '- zt22'
+time -p zstd -T0 --ultra -22zc tps > zt22
+sleep 1
+
+echo '- xz'
+time -p xz -9zekc -T0 -M100% tps > xz
+sleep 1
+
 echo '****'
 ls -lS --block-size=M
