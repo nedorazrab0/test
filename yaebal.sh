@@ -3,7 +3,7 @@
 mkdir ./z
 cd ./z
 
-curl -ZLo 'hui' 'https://github.com/Slushi-Github/Redmi_Note_12S_Assets/raw/refs/heads/main/bootOriginal.img'
+curl -ZLo 'hui' https://mirrorbits.lineageos.org/full/lisa/20241105/boot.img'
 echo '****'
 
 echo '- tv7'
@@ -22,16 +22,8 @@ echo '-lz12'
 time -p lz4 -12zc tps > lz12
 sleep 1
 
-echo '- zt19'
-time -p zstd -T0 -19zc tps > zt19
-sleep 1
-
 echo '- zt20'
 time -p zstd -T0 --ultra -20zc tps > zt20
-sleep 1
-
-echo '- zt22'
-time -p zstd -T0 --ultra -22zc tps > zt22
 sleep 1
 
 echo '****'
