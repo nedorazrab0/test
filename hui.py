@@ -3,5 +3,5 @@
 from hashlib import sha256
 
 with open("./zx", "rb") as f:
-    f.read(65536)
+    f.read()
     print(sha256(f).hexdigest)
