@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 
-from hashlib import sha256
+import hashlib
 
-file = "zx"
-sha = sha256()
-with open(file, "rb", buffering=0) as f:
-    f.read()
-    print(sha.hexdigest())
+def csha256(file_path):
+    sha256_hash = hashlib.sha256()
+    with open(file_path, "rb") as f:
+        for byte_block in iter(lambda: f.read(524288), b""):
+            sha256_hash.update(byte_block)
+    return sha256_hash.hexdigest()
+
+csha256("zx")
