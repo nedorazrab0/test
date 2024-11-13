@@ -7,4 +7,4 @@ with open("./zx", "rb") as x:
     dt = x.read(65536)
     hui.update(dt)
 
-print(hui.dexdigets)
+print(hui.hexdigets)
