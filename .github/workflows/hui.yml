@@ -11,6 +11,8 @@ jobs:
         uses: actions/checkout@v4
       - name: hui
         run: |
+          sudo apt-get update
+          sudo apt-get upgrade python3
           dd if=/dev/urandom of=./zx bs=1G count=1 conv=fsync
           time -p openssl sha256 ./zx
           time -p python3 ./hui.py
