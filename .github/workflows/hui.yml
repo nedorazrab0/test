@@ -1,5 +1,5 @@
 name: rls
-on: workflow_dispatch
+on: push
 permissions:
   contents: write
 
