@@ -2,9 +2,5 @@
 
 from hashlib import sha256
 
-hui = sha256()
-with open("./zx", "rb") as x:
-    dt = x.read()
-    hui.update(dt)
-
-print(hui.hexdigest)
+with open(zx, 'rb', buffering=0) as f:
+    hashlib.file_digest(f, 'sha256').hexdigest()
