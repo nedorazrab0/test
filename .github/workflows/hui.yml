@@ -1,8 +1,7 @@
 name: rls
-on: push
+on: workflow_dispatch
 permissions:
   contents: write
-
 
 jobs:
   release:
@@ -10,7 +9,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Updating service files
+      - name: hui
         run: |
-          time -p sudo apt-get update
-          time -p sudo apt-get install libarchive-tools
+          dd if=/dev/urandom of=./zx bs=1G count=1 conv=fsync
+          time -p openssl sha256 ./zx
+          time -p python3 ./hui.py
