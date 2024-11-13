@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 
-import hashlib
-# SUKA EBANIY PITON
-filename = "zx"
-sha256_hash = hashlib.sha256()
-with open(filename,"rb") as f:
-    # Read and update hash string value in blocks of 4K
-    for byte_block in iter(lambda: f.read(65536),b""):
-        sha256_hash.update(byte_block)
-    print(sha256_hash.hexdigest())
+from hashlib import sha256
+
+file = "zx"
+sha = sha256()
+with open(file, "rb", buffering=0) as f:
+    while sha := f.readinto(65536):
+        sha.update(ch)
+    print(sha.hexdigest())
