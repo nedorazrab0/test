@@ -1,5 +1,5 @@
 name: rls
-on: workflow_dispatch
+on: push
 permissions:
   contents: write
 
@@ -25,8 +25,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           sha="$(openssl sha256 ./njki | cut -d ' ' -f2)"
-          shapart="${sha:1:2}-${sha:3:5}-${sha:6:8}-
-                   -${sha:9:10}-${sha:11:13}-${sha:14:16}"
+          shapart="${sha:0:2}-${sha:2:3}-${sha:5:3}--${sha:8:2}-${sha:10:3}-${sha:13:3}"
 
           gh release delete rolling --cleanup-tag -y || true
           echo -e "SHA256 Part:\n\`${shapart}\`" \
