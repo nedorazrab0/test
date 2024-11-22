@@ -10,12 +10,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Installing `libarchive-tools`
+      - name: Calculating hash
         run: |
-         curl -fo hui 'https://www.mit.edu/~ecprice/wordlist.10000'
-         time -p cat hui | lz4 -1zc > lz1
-         time -p cat hui | lz4 -12zc > lz12
-         ls -lh lz*
-
-      - run: cat lz1
-      - run: cat lz12
+          sha="$(openssl sha256 ./README.md | cut -d ' ' -f2)"
+          echo shapart="${sha:0:2}-${sha:2:3}-${sha:5:3}-
+          -${sha:8:2}-${sha:10:3}-${sha:13:3}" | tee -a "${GITHUB_ENV}"
