@@ -11,4 +11,4 @@ jobs:
         shell: sh
     steps:
       - name: Checkout
-        run: echo "${GITHUB_ENV}"
+        run: echo "${GITHUB_ENV:2}"
