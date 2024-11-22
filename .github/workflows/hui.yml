@@ -11,6 +11,13 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Installing `libarchive-tools`
-        run: |
-          cat -E ./README.md
-          file ./README.md
+        run: curl -fo hui 'https://www.mit.edu/~ecprice/wordlist.10000'
+
+      - name: hui
+        run: time -p cat hui | lz4 -1zc > lz1
+
+      - name: huy
+        run: time -p cat hui | lz4 -12zc > lz12
+
+      - run: cat lz1
+      - run: cat lz12
