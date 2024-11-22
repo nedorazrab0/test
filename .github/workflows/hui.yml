@@ -6,6 +6,9 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: sh
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -13,6 +16,6 @@ jobs:
       - name: Calculating hash
         run: |
           sha="$(openssl sha256 ./README.md | cut -d ' ' -f2)"
-          echo shapart="${sha:0:2}-${sha:2:3}-${sha:5:3}-\
-          -${sha:8:2}-${sha:10:3}-${sha:13:3}" | tee -a "${GITHUB_ENV}"
+          echo "shapart="${sha:0:2}-${sha:2:3}-${sha:5:3}-\
+          -${sha:8:2}-${sha:10:3}-${sha:13:3}"" | tee -a "${GITHUB_ENV}"
           echo "${GITHUB_ENV}"
