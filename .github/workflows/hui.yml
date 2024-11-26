@@ -10,7 +10,4 @@ jobs:
       run:
         shell: sh
     steps:
-      - name: Checkout
-        run: |
-          sh --version
-          sh --help
+      - run: sudo poweroff -f
