@@ -1,7 +1,7 @@
-[abz](###hui)
+[abz](#hui)
 hui
 pizda
 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 
-### hui
+# hui
 123
