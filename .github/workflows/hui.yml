@@ -12,4 +12,6 @@ jobs:
           file hui.c
           gcc hui.c -o huih
           chmod +x huih
-          ./huih
+          file huih
+      - run: |
+          time -p ./huih
