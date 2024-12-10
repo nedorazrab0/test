@@ -2,6 +2,7 @@
 
 int main()
 {
+    int i;
     for (i = 0; i < 600000; i++) {
         int a;
         a++;
