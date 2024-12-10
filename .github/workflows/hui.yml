@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v4
       - run: |
           file hui.c
-          gcc hui.c -o huih
+          g++ hui.c -o huih
           chmod +x huih
           file huih*
           echo '****'
