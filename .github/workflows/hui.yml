@@ -14,7 +14,7 @@ jobs:
           chmod +x huih
           file huih*
           echo '****'
-          cat huih
+          ls -l hui.c huih
       - run: |
           time -p ./huih
           time -p python3 ./huih.py
