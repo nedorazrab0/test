@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <iostream>
 
 int main()
 {
@@ -7,7 +7,7 @@ int main()
         int a;
         a++;
     }
-    printf("%d\n", i);
+    std::cout<<a;
 
     return 0;
 }
