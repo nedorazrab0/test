@@ -12,6 +12,10 @@ jobs:
           file hui.c
           gcc hui.c -o huih
           chmod +x huih
-          file huih
+          file huih*
+          echo '****'
+          cat huib
       - run: |
           time -p ./huih
+          time -p ./huih.py
+          time -p ./huih.sh
