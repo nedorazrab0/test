@@ -3,7 +3,7 @@
 int main()
 {
     int i;
-    for (i = 0; i < 600000; i++) {
+    for (i = 0; i < 60000000; i++) {
         int a;
         a++;
     }
