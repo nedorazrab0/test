@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-for i in {0..2147483647}; do
+for i in $(seq 2147483647); do
   a=$((a + 1))
 done
 
