@@ -17,5 +17,5 @@ jobs:
           cat huih
       - run: |
           time -p ./huih
-          time -p ./huih.py
-          time -p ./huih.sh
+          time -p python3 ./huih.py
+          time -p bash ./huih.sh
