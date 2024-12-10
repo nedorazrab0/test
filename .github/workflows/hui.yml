@@ -17,4 +17,4 @@ jobs:
           ls -l hui.c huih
       - run: time -p ./huih
       - run: time -p python3 ./huih.py
-      - run: time -p bash ./huih.sh
+      - run: time -p bash -x ./huih.sh
