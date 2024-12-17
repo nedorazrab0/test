@@ -7,12 +7,6 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
       - run: |
-          file hui.c
-          g++ hui.c -o huih
-          chmod +x huih
-          file huih*
-          echo '****'
-          ls -l hui.c huih
-      - run: time -p bash ./huih.sh
+        ls /etc/skel
+        adduser --help
