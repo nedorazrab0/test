@@ -8,5 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
      - run: |
-        ls /etc/skel
-        adduser --help
+        command -v adduser useradd
+        file "$(command -v adduser useradd)"
+        echo '****'
+        cat "$(command -v adduser)"
