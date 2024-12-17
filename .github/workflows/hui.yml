@@ -8,6 +8,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
      - run: |
-        set +e
-        sudo locale-gen --lang 'ru' --lang en --lang
         sudo locale-gen --lang 'ru' --lang en
