@@ -8,10 +8,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
      - run: |
-        locale
-        export LANG=en_US.UTF-8
-        sudo locale-gen --purge --lang en_US.UTF-8
-        sudo apt update
-        locale
-        echo абв > хуй
-        cat хуй
+        ls /boot
+        sudo bootctl status
