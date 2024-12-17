@@ -8,4 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
      - run: |
-        ls /etc
+        echo 'ru_RU.UTF-8 UTF-8' >> /etc/locale.gen
+        set +e
+        locale
+        locale -a
