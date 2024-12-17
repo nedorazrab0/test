@@ -8,7 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
      - run: |
-        command -v adduser useradd
-        file "$(command -v adduser useradd)"
+        echo /usr/bin/* | head
+        file "$(command -v adduser)"
+        file "$(command -v useradd)"
         echo '****'
         cat "$(command -v adduser)"
