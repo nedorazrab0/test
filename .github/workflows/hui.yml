@@ -9,4 +9,4 @@ jobs:
     steps:
      - run: |
         ls /boot
-        sudo bootctl status
+        sudo cat /etc/default/grub
