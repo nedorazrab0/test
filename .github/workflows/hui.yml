@@ -8,4 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
      - run: |
-        sudo locale-gen --lang ru en
+        locale -a
+        locale
+        export LANG=ru_RU
+        sudo apt update
+        sudo locale-gen --purge
+        locale
+        echo 123
