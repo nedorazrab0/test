@@ -7,4 +7,4 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-     - run: sudo localedef -f UTF-8 -i fi_FI fi_FI.UTF-8; cat fi_FI.UTF-8
+     - run: sudo localedef -v -c -f UTF-8 -i fi_FI fi_FI.UTF-8
