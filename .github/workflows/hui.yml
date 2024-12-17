@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
      - run: |
-        echo 'ru_RU.UTF-8 UTF-8' >> /etc/locale.gen
+        echo 'ru_RU.UTF-8 UTF-8' | sudo tee -a /etc/locale.gen
         set +e
-        locale
-        locale -a
+        sudo locale
+        sudo locale -a
