@@ -7,4 +7,4 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-     - run: sudo localedef -f UTF-8 -i fi_FI fi_FI.UTF-8; locale; locale -a
+     - run: sudo apt update; apt search archiso
