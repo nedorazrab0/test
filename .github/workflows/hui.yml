@@ -12,7 +12,7 @@ jobs:
      - name: dc
        run: |
          docker pull archlinux
-         sudo docker run --name hui --privileged -t archlinux touch hzui
+         sudo docker run --name hui --privileged -t archlinux dd if=/dev/urandom of=hzui count=1 conv=fsync
          sudo docker cp hui:/hzui .
      - name: rls
        run: |
