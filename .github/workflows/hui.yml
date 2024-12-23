@@ -13,7 +13,7 @@ jobs:
        run: |
          docker pull archlinux
          sudo docker run --privileged -t archlinux touch hui
-         sudo find / -type f -name hui 2> /dev/null
+         sudo find /var/lib/docker/overlay2 -type f -name '*.iso' 2> /dev/null
 #     - name: rls
 #       run: |
 #         gh release delete iso --cleanup-tag -y || true
