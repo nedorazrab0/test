@@ -32,6 +32,7 @@ mkinitcpio-archiso
 pv
 zsh
 e2fsprogs
+iwd
 EOF
 
 rm -rf /usr/share/archiso/configs/baseline/{syslinux,grub}
