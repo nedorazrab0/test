@@ -3,5 +3,5 @@
 set -x
 ls -lh
 pacman -Sy archiso --noconfirm --disable-sandbox
-ls -lh /usr/share/archiso/configs
-cat /packages.x86_64
+ls -lh /usr/share/archiso/configs/baseline
+cat /usr/share/archiso/configs/baseline/packages.x86_64
