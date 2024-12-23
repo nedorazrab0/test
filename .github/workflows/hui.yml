@@ -16,7 +16,7 @@ jobs:
      - name: rls
        run: |
          gh release delete iso --cleanup-tag -y || true
-         sudo find /var/lib/docker/overlay2/* -type f -name 'hui' \
+         sudo find /var/lib/docker/overlay2 -type f -name 'hui' \
            -exec gh release create iso {} \+ 
        env:
          GH_TOKEN: ${{ github.token }}
