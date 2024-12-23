@@ -27,7 +27,8 @@ EOF
 cat << 'EOF' > /usr/share/archiso/configs/baseline/packages.x86_64
 base
 linux-zen
-booster
+mkinitcpio
+mkinitcpio-archiso
 pv
 zsh
 e2fsprogs
