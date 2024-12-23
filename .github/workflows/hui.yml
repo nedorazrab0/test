@@ -12,4 +12,4 @@ jobs:
      - name: dc
        run: |
          docker pull archlinux
-         docker run -t archlinux bash ./dct
+         docker run -t archlinux bash -c "$(cat ./dct)"
