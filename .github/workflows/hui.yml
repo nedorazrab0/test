@@ -13,7 +13,7 @@ jobs:
        run: |
          docker pull archlinux
          sudo docker run --privileged -t archlinux touch hui
-         find /var/lib/docker/overlay2 -type f -name '*.iso' 2> /dev/null
+         find /var/lib/docker/overlay2 -type f -name 'hui' 2> /dev/null
      - name: rls
        run: |
          exit
