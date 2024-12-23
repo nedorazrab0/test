@@ -23,5 +23,14 @@ file_permissions=(
 )
 EOF
 
+cat << 'EOF' > /usr/share/archiso/configs/baseline/packages.x86_64
+base
+linux-zen
+booster
+pv
+zsh
+e2fsprogs
+EOF
+
 rm -rf /usr/share/archiso/configs/baseline/{syslinux,grub}
 mkarchiso -v /usr/share/archiso/configs/baseline
