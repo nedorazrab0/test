@@ -3,5 +3,5 @@
 set -x
 ls -lh
 pacman -Sy archiso --noconfirm --disable-sandbox
-#ls -lh /usr/share/archiso/configs/*/grub
-cat /usr/share/archiso/configs/baseline/airootfs/etc/passwd
+ls -lh /usr/share/archiso/configs/*/airootfs/etc
+cat /usr/share/archiso/configs/*/airootfs/etc/passwd
