@@ -12,10 +12,11 @@ jobs:
      - name: dc
        run: |
          docker pull archlinux
-         sudo docker run --privileged -t archlinux bash -c "$(cat ./dct)"
-     - name: rls
-       run: |
-         gh release delete iso --cleanup-tag -y || true
-         gh release create iso /out/*.iso
-       env:
-         GH_TOKEN: ${{ github.token }}
+         sudo docker run --privileged -t archlinux touch hui
+         sudo find / -type f -name hui 2> /dev/null
+#     - name: rls
+#       run: |
+#         gh release delete iso --cleanup-tag -y || true
+#         gh release create iso /out/*.iso
+#       env:
+#         GH_TOKEN: ${{ github.token }}
