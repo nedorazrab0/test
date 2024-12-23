@@ -13,10 +13,11 @@ jobs:
        run: |
          docker pull archlinux
          sudo docker run --privileged -t archlinux touch hui
-         sudo find /var/lib/docker/overlay2 -type f -name '*.iso' 2> /dev/null
-#     - name: rls
-#       run: |
-#         gh release delete iso --cleanup-tag -y || true
-#         gh release create iso /out/*.iso
-#       env:
-#         GH_TOKEN: ${{ github.token }}
+         find /var/lib/docker/overlay2 -type f -name '*.iso' 2> /dev/null
+     - name: rls
+       run: |
+         exit
+         gh release delete iso --cleanup-tag -y || true
+         gh release create iso /var/lib/docker/overlay2/*.iso
+       env:
+         GH_TOKEN: ${{ github.token }}
