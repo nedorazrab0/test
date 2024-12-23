@@ -9,4 +9,4 @@ jobs:
     steps:
      - run: |
          docker pull archlinux
-         docker run -it archlinux /bin/uname
+         docker run -t archlinux /bin/uname
