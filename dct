@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-set -x
-ls -lh
 pacman -Sy archiso --noconfirm --disable-sandbox
-mkarchiso -v -w /dev/shm/archiso /usr/share/archiso/configs/releng
+ls -lh /usr/share/archiso/configs/baseline
+mkarchiso -v /usr/share/archiso/configs/baseline
