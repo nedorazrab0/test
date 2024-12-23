@@ -12,9 +12,8 @@ jobs:
      - name: dc
        run: |
          docker pull archlinux
-         sudo docker run --privileged -t archlinux touch hzui
-         sudo find /var/lib/docker/overlay2 -type f -name 'hzui' \
-           -exec mv . {} \+
+         sudo docker run --name hui --privileged -t archlinux touch hzui
+         sudo docker cp hui:/hzui .
      - name: rls
        run: |
          gh release delete iso --cleanup-tag -y || true
