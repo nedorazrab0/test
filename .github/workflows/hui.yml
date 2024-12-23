@@ -9,7 +9,7 @@ jobs:
     steps:
      - name: ckout
        uses: actions/checkout@v4
-     - name dc
+     - name: dc
        run: |
          docker pull archlinux
          docker run -t archlinux bash ./dct
