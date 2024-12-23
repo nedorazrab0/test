@@ -3,7 +3,7 @@
 set -x
 ls -lh
 pacman -Sy archiso --noconfirm --disable-sandbox
-mkarchiso -vN /usr/share/archiso/configs/releng -o /usr/123.iso
+mkarchiso -v /usr/share/archiso/configs/releng -o /usr/123.iso
 ls -lh /tmp/archiso-tmp
 ls -lh /tmp/archiso-tmp/*
 file /usr/123.iso
