@@ -32,11 +32,15 @@ linux
 linux-firmware
 mkinitcpio
 mkinitcpio-archiso
-pv
 zsh
-e2fsprogs
+arch-install-scripts
+btrfs-progs
+dosfstools
 iwd
 EOF
+
+cp /usr/share/archiso/configs/{releng,baseline}/airootfs/etc/passwd
+cp /usr/share/archiso/configs/{releng,baseline}/airootfs/etc/shadow
 
 rm -rf /usr/share/archiso/configs/baseline/{syslinux,grub}
 mkarchiso -v /usr/share/archiso/configs/baseline
