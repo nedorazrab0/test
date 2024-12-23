@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-pacman -Sy archiso --noconfirm
+pacman -Sy archiso --noconfirm --disable-sandbox
 cp -r /usr/share/archiso/configs/releng/ archlive
 ls -lh archive 
