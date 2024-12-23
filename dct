@@ -5,6 +5,7 @@ pacman -Sy archiso --noconfirm --disable-sandbox
 ls -lh /usr/share/archiso/configs/baseline
 
 cat << 'EOF' > /usr/share/archiso/configs/baseline/profiledef.sh
+archiso_image="/boot/booster-linux-zen.img"
 iso_name="archlinux-baseline"
 iso_label="ARCH_$(date --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +%Y%m)"
 iso_publisher="Arch Linux <https://archlinux.org>"
