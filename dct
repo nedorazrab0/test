@@ -2,8 +2,8 @@
 
 set -x
 ls -lh
-pacman -S archiso --noconfirm --disable-sandbox
-sudo mkarchiso -v -w /tmp/archiso-tmp /usr/share/archiso/configs/releng -o /usr/123.iso
+pacman -Sy archiso --noconfirm --disable-sandbox
+mkarchiso -v /usr/share/archiso/configs/releng -o /usr/123.iso
 ls -lh /tmp/archiso-tmp
 ls -lh /tmp/archiso-tmp/*
 file /usr/123.iso
