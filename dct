@@ -2,4 +2,6 @@
 
 pacman -Sy archiso --noconfirm --disable-sandbox
 ls -lh /usr/share/archiso/configs/baseline
+cat /usr/share/archiso/configs/baseline/profiledef.sh
+rm -rf /usr/share/archiso/configs/baseline/{syslinux,grub}
 mkarchiso -v /usr/share/archiso/configs/baseline
