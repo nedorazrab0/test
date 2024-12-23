@@ -15,12 +15,10 @@ jobs:
          sudo docker run --name archiso -dt --privileged archlinux
          sudo docker cp ./dct archiso:/
          docker exec archiso bash ./dct
-         sudo docker cp 'archiso:/out/*' .
+         sudo docker cp archiso:/out/archlinux-baseline-1.iso .
      - name: rls
        run: |
-         ls -lh
-         exit
          gh release delete iso --cleanup-tag -y || true
-         gh release create iso hzu*
+         gh release create iso ./archlinux-baseline-1.iso
        env:
          GH_TOKEN: ${{ github.token }}
