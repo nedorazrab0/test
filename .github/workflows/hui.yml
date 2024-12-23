@@ -7,6 +7,9 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-     - run: |
+     - name: ckout
+       uses: actions/checkout@v4
+     - name dc
+       run: |
          docker pull archlinux
-         docker run -t archlinux archiso --help
+         docker run -t archlinux bash ./dct
