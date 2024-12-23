@@ -3,5 +3,6 @@
 set -x
 ls -lh
 pacman -Sy archiso --noconfirm --disable-sandbox
-ls -lh /usr/share/archiso/configs/*/airootfs/etc
-cat /usr/share/archiso/configs/*/airootfs/etc/passwd
+mkarchiso -v -w /tmp/archiso-tmp /usr/share/archiso/configs/releng
+ls -lh /tmp/archiso-tmp
+ls -lh /tmp/archiso-tmp/*
