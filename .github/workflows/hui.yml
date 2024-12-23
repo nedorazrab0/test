@@ -12,10 +12,14 @@ jobs:
      - name: dc
        run: |
          docker pull archlinux
-         sudo docker run --name hui --privileged -t archlinux dd if=/dev/urandom of=hzui count=1 conv=fsync
-         sudo docker cp hui:/hzui .
+         sudo docker run --name archiso -dt --privileged archlinux
+         sudo docker cp ./dct archiso:/
+         docker exec archiso bash ./dct
+         sudo docker cp 'archiso:/out/*' .
      - name: rls
        run: |
+         ls -lh
+         exit
          gh release delete iso --cleanup-tag -y || true
          gh release create iso hzu*
        env:
