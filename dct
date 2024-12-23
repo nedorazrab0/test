@@ -28,7 +28,8 @@ EOF
 
 cat << 'EOF' > /usr/share/archiso/configs/baseline/packages.x86_64
 base
-linux-zen
+linux
+linux-firmware
 mkinitcpio
 mkinitcpio-archiso
 pv
