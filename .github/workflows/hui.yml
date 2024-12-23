@@ -9,4 +9,4 @@ jobs:
     steps:
      - run: |
          docker pull archlinux
-         docker run -t archlinux pacman --help
+         docker run -t archlinux archiso --help
