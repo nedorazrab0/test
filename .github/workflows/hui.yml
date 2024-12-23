@@ -13,10 +13,13 @@ jobs:
        run: |
          docker pull archlinux
          sudo docker run --privileged -t archlinux touch hui
+         sudo find /var/lib/docker/overlay2 -type f -name 'hui' \
+           -exec chmod 644 {} \+
      - name: rls
        run: |
+         # gh release create iso
          gh release delete iso --cleanup-tag -y || true
-         sudo find /var/lib/docker/overlay2 -type f -name 'hui' \
-           -exec gh release create iso {} \+ 
+         find /var/lib/docker/overlay2 -type f -name 'hui' \
+           -exec file {} \;
        env:
          GH_TOKEN: ${{ github.token }}
