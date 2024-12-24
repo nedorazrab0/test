@@ -32,6 +32,7 @@ linux-firmware
 gptfdisk
 mkinitcpio
 mkinitcpio-archiso
+python
 zsh
 arch-install-scripts
 reflector
