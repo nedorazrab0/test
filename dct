@@ -2,9 +2,9 @@
 
 pacman -Sy archiso man-db --noconfirm --disable-sandbox
 echo '****'
-cat /usr/share/archiso/configs/baseline/boostrap_packages.x86_64
+cat /usr/share/archiso/configs/baseline/bootstrap_packages.x86_64
 echo '****'
-cat /usr/share/archiso/configs/leneg/boostrap_packages.x86_64
+cat /usr/share/archiso/configs/releng/bootstrap_packages.x86_64
 exit
 
 mkarchiso
