@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-
+free -wth
+exit
 pacman -Sy archiso --noconfirm --disable-sandbox
 
 cat << 'EOF' > /usr/share/archiso/configs/baseline/profiledef.sh
@@ -43,6 +44,7 @@ EOF
 
 cp /usr/share/archiso/configs/{releng,baseline}/airootfs/etc/passwd
 cp /usr/share/archiso/configs/{releng,baseline}/airootfs/etc/shadow
-
 rm -rf /usr/share/archiso/configs/baseline/{syslinux,grub}
+
+echo '- Building archiso...'
 mkarchiso /usr/share/archiso/configs/baseline
