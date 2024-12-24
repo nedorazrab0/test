@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
-set -x
 
 pacman -Sy archiso man-db --noconfirm --disable-sandbox
 echo '****'
 mkarchiso --help
 echo '****'
-man mkarchiso
+man archiso
+echo '****'
+man -k mkarchiso
 exit
 
 mkarchiso
