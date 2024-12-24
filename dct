@@ -16,7 +16,7 @@ arch="x86_64"
 pacman_conf="pacman.conf"
 airootfs_image_type="erofs"
 #airootfs_image_tool_options=('-zzstd,level=20' '-Efragments,dedupe,all-fragments,force-inode-compact,ztailpacking,^xattr-name-filter')
-airootfs_image_tool_options=('-zzstd,level=20' '-Efragments,dedupe,force-inode-compact,ztailpacking')
+airootfs_image_tool_options=('-zzstd,level=20' '-Efragments,dedupe,force-inode-compact,all-fragments')
 bootstrap_tarball_compression=(zstd -T0 --ultra -20zvc)
 file_permissions=(
   ["/etc/shadow"]="0:0:400"
