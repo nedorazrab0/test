@@ -15,10 +15,10 @@ arch='x86_64'
 pacman_conf="pacman.conf"
 airootfs_image_type='erofs'
 airootfs_image_tool_options=(
-  '-zzstd,level=22'
+  '-zzstd,level=20'
   '-Efragments,dedupe,force-inode-compact,ztailpacking,^xattr-name-filter'
 )
-bootstrap_tarball_compression=('zstd' '-T0' '--ultra' '-20zvc')
+bootstrap_tarball_compression=('zstd' '-T0' '--ultra' '-20zc')
 file_permissions=(
   ['/etc/shadow']='0:0:400'
 )
@@ -49,4 +49,4 @@ rm -rf /usr/share/archiso/configs/baseline/{syslinux,grub}
 mkdir -p ./hui
 mount -t tmpfs -o 'noatime,size=2G' tmpfs ./hui
 echo '- Building archiso...'
-mkarchiso -v -w ./hui /usr/share/archiso/configs/baseline
+mkarchiso -w ./hui /usr/share/archiso/configs/baseline
