@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+lsblk
+mount
+exit
+
 pacman -Sy archiso --noconfirm --disable-sandbox
 
 cat << 'EOF' > /usr/share/archiso/configs/baseline/profiledef.sh
