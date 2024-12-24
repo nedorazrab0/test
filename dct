@@ -2,8 +2,13 @@
 set -x
 
 pacman -Sy archiso --noconfirm --disable-sandbox
-ls -lh /usr/share/archiso/configs/baseline
+echo '****'
+mkarchiso --help
+echo '****'
+man mkarchiso
+exit
 
+mkarchiso
 cat << 'EOF' > /usr/share/archiso/configs/baseline/profiledef.sh
 iso_name="archlinux-baseline"
 iso_label="ARCH_$(date --date="@${SOURCE_DATE_EPOCH:-$(date +%s)}" +%Y%m)"
