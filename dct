@@ -16,7 +16,7 @@ arch='x86_64'
 pacman_conf="pacman.conf"
 airootfs_image_type='erofs'
 airootfs_image_tool_options=(
-  '-zzstd,level=20'
+  '-zzstd,level=20,discsize=1048576'
   '-Efragments,dedupe,force-inode-compact,ztailpacking,^xattr-name-filter'
   '-C262144'
 )
