@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -x
 
-pacman -Sy archiso --noconfirm --disable-sandbox
+pacman -Sy archiso man-db --noconfirm --disable-sandbox
 echo '****'
 mkarchiso --help
 echo '****'
