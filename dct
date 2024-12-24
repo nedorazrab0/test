@@ -15,7 +15,7 @@ arch='x86_64'
 pacman_conf="pacman.conf"
 airootfs_image_type='erofs'
 airootfs_image_tool_options=(
-  '-zzstd,level=20,dictsize=1048576'
+  '-zlzma,level=109,dictsize=8388608'
   '-Efragments,dedupe,force-inode-compact,ztailpacking,^xattr-name-filter'
   '-C262144'
 )
@@ -34,7 +34,7 @@ gptfdisk
 mkinitcpio
 mkinitcpio-archiso
 python
-zsh
+pv
 arch-install-scripts
 reflector
 btrfs-progs
