@@ -2,6 +2,7 @@
 
 pacman -Sy archiso --noconfirm --disable-sandbox
 
+mkfs.erofs --help
 cat << 'EOF' > /usr/share/archiso/configs/baseline/profiledef.sh
 iso_name='archiso'
 iso_label="ARCHISO-v"$(date '+%d%m%y')""
@@ -15,7 +16,7 @@ arch='x86_64'
 pacman_conf="pacman.conf"
 airootfs_image_type='erofs'
 airootfs_image_tool_options=(
-  '-zlz4hc,level=12'
+  '-zzstd,level=20'
   '-Efragments,dedupe,force-inode-compact,ztailpacking,^xattr-name-filter'
   '-C262144'
 )
