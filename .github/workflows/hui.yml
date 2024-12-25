@@ -12,10 +12,10 @@ jobs:
      - name: dc
        run: |
          docker pull archlinux
-         docker run --name archiso -dt --privileged archlinux
-         sudo docker cp ./dct archiso:/
+         docker run --name archiso -dt --tmpfs --privileged archlinux
+         docker cp ./dct archiso:/
          docker exec archiso bash ./dct
-         sudo docker cp archiso:/out/archiso-v-x86_64.iso /dev/shm
+         docker cp archiso:/out/archiso-v-x86_64.iso /dev/shm
      - name: rls
        run: |
          gh release delete iso --cleanup-tag -y || true
