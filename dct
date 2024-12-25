@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
+pacman -Sy pigz --noconfirm --disable-sandbox
 curl -LZ -o hs https://github.com/nedorazrab0/test/releases/download/iso/archiso-v-x86_64.iso
 pigz -9Hvc archiso-v-x86_64.iso > ./123
 ls -lh 123
 exit
 
 
-pacman -Sy archiso pigz --noconfirm --disable-sandbox
+pacman -Sy archiso --noconfirm --disable-sandbox
 
 cat << 'EOF' > /usr/share/archiso/configs/baseline/profiledef.sh
 iso_name='archiso'
