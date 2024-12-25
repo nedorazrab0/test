@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-pacman -Sy archiso --noconfirm --disable-sandbox
+pacman -Sy archiso pigz --noconfirm --disable-sandbox
 
 cat << 'EOF' > /usr/share/archiso/configs/baseline/profiledef.sh
 iso_name='archiso'
@@ -49,6 +49,9 @@ rm -rf /usr/share/archiso/configs/baseline/{syslinux,grub}
 
 
 mkdir -p ./hui
-mount -t tmpfs -o 'noatime,size=3G' tmpfs ./hui
+mount -t tmpfs -o 'noatime,size=5G' tmpfs ./hui
 echo '- Building archiso...'
 mkarchiso -v -w ./hui /usr/share/archiso/configs/baseline -o ./hui
+cd ./hui
+pigz -9Hvc archiso-v-x86_64.iso > ./123
+mv -f ./123 ./archiso-v-x86_64.iso
