@@ -22,13 +22,15 @@ bootmodes=('uefi-x64.systemd-boot.esp')
 arch='x86_64'
 pacman_conf="pacman.conf"
 airootfs_image_type='erofs'
+#'-zlzma,level=109,dictsize=8388608'
 airootfs_image_tool_options=(
-  '-zlzma,level=109,dictsize=8388608'
+  '-zlz4hc,level=12'
   '-Efragments,dedupe,force-inode-compact,ztailpacking'
   '-C262144'
   '--workers=128'
 )
-bootstrap_tarball_compression=('zstd' '-T0' '--ultra' '-20zc')
+#bootstrap_tarball_compression=('zstd' '-T0' '--ultra' '-20zc')
+bootstrap_tarball_compression=('cat')
 file_permissions=(
   ['/etc/shadow']='0:0:400'
 )
