@@ -4,6 +4,9 @@
 set -e
 readonly conf='/baseline'
 
+mount | grep 'tmpfs'
+exit
+
 pacman -Sy archiso --noconfirm --disable-sandbox
 
 
@@ -12,7 +15,7 @@ cp -r "/usr/share/archiso/configs/${conf}" .
 date="$(date '+%d%m%y')"
 cat << 'EOF' > "${conf}/profiledef.sh"
 iso_name='archiso'
-iso_label="ARCHISO-v${date}"
+iso_label="ARCHISO-v$date"
 iso_publisher='Arch Linux <https://archlinux.org>'
 iso_application='Arch Linux baseline'
 iso_version='v'
@@ -33,8 +36,6 @@ file_permissions=(
   ['/etc/shadow']='0:0:400'
 )
 EOF
-
-cat "${conf}/profiledef.sh"
 
 cat << 'EOF' > /usr/share/archiso/configs/baseline/packages.x86_64
 amd-ucode
