@@ -15,7 +15,7 @@ jobs:
          docker run --name archiso -dt --privileged archlinux
          sudo docker cp ./dct archiso:/
          docker exec archiso bash ./dct
-         sudo docker cp archiso:/hui/archiso-v-x86_64.iso /dev/shm
+         sudo docker cp archiso:/out/archiso-v-x86_64.iso /dev/shm
      - name: rls
        run: |
          gh release delete iso --cleanup-tag -y || true
