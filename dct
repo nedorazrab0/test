@@ -4,9 +4,6 @@
 set -e
 readonly conf='/baseline'
 
-mount | grep 'tmpfs'
-exit
-
 pacman -Sy archiso --noconfirm --disable-sandbox
 
 
@@ -62,7 +59,5 @@ echo 'root:x:0:0:root:/root:/usr/bin/bash' \
 echo 'root::1::::::' \
   > "${conf}/airootfs/etc/shadow"
 
-mkdir -p ./build
-mount -t tmpfs -o 'noatime,size=2G' tmpfs ./build
 echo '- Building archiso...'
-mkarchiso -w ./build "${conf}"
+mkarchiso -w ./hui "${conf}"
