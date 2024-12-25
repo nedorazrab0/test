@@ -2,11 +2,15 @@
 #
 #
 set -e
+readonly conf='/baseline'
 
 pacman -Sy archiso --noconfirm --disable-sandbox
 
+
+cp -r "/usr/share/archiso/configs/${conf}" .
+
 date="$(date '+%d%m%y')"
-cat << 'EOF' > /usr/share/archiso/configs/baseline/profiledef.sh
+cat << 'EOF' > "${conf}/profiledef.sh"
 iso_name='archiso'
 iso_label="ARCHISO-v${date}"
 iso_publisher='Arch Linux <https://archlinux.org>'
@@ -30,6 +34,8 @@ file_permissions=(
 )
 EOF
 
+cat "${conf}/profiledef.sh"
+
 cat << 'EOF' > /usr/share/archiso/configs/baseline/packages.x86_64
 amd-ucode
 base
@@ -47,9 +53,6 @@ dosfstools
 iwd
 EOF
 
-
-readonly conf='/baseline'
-cp -r "/usr/share/archiso/configs/${conf}" .
 
 echo "ARCHISO-v$(date '+%d%m%y')" \
   > "${conf}/airootfs/etc/hostname"
