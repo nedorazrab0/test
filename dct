@@ -24,7 +24,7 @@ pacman_conf="pacman.conf"
 airootfs_image_type='erofs'
 #'-zlzma,level=109,dictsize=8388608'
 airootfs_image_tool_options=(
-  '-zlz4hc,level=12'
+  '-zlz4'
   '-Efragments,dedupe,force-inode-compact,ztailpacking'
   '-C262144'
   '--workers=128'
@@ -34,6 +34,22 @@ bootstrap_tarball_compression=('cat')
 file_permissions=(
   ['/etc/shadow']='0:0:400'
 )
+EOF
+
+cat << 'EOF' > "${conf}/airootfs/etc/systemd/network/25-wireless.network"
+[Match]
+Type=wlan
+WLANInterfaceType=station
+#SSID=*
+
+[DHCP]
+UseDNS=no
+
+[Network]
+Description=Wireless network interface
+DHCP=yes
+Domains=~.
+IgnoreCarrierLoss=3s
 EOF
 
 cat << 'EOF' > "${conf}/packages.x86_64"
@@ -51,6 +67,8 @@ reflector
 btrfs-progs
 dosfstools
 iwd
+man-db
+nano
 EOF
 
 
