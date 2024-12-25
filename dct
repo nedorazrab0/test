@@ -2,7 +2,7 @@
 
 pacman -Sy pigz --noconfirm --disable-sandbox
 curl -LZ -o hs https://github.com/nedorazrab0/test/releases/download/iso/archiso-v-x86_64.iso
-pigz -9Hvc archiso-v-x86_64.iso > ./123
+pigz -9Hvc hs > ./123
 ls -lh 123
 exit
 
