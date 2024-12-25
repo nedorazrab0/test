@@ -12,7 +12,7 @@ jobs:
      - name: dc
        run: |
          docker pull archlinux
-         docker run --name archiso -dt --tmpfs --privileged archlinux
+         docker run --name archiso -dt --tmpfs '/hhui' --privileged archlinux
          docker cp ./dct archiso:/
          docker exec archiso bash ./dct
          docker cp archiso:/out/archiso-v-x86_64.iso /dev/shm
