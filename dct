@@ -4,8 +4,9 @@
 set -e
 readonly conf='/baseline'
 
-pacman -Sy archiso --noconfirm --disable-sandbox
-
+pacman -Sy erofs-utils --noconfirm --disable-sandbox
+mkfs.erofs --help
+exit
 
 cp -r "/usr/share/archiso/configs/${conf}" .
 
