@@ -5,6 +5,6 @@ set -e
 
 pacman -Sy reflector --noconfirm --disable-sandbox
 
-reflector -v -l20 --sort rate -phttps
+reflector --verbose -l20 --sort rate -phttps
 echo '****'
-reflector -v -l20 --sort rate -phttps -cru
+reflector -v -l20 --verbose --sort rate -phttps -cru
