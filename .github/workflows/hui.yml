@@ -11,6 +11,9 @@ jobs:
        uses: actions/checkout@v4
      - name: dc
        run: |
+         sudo lscpu
+         sudo poweroff
+         exit
          docker pull archlinux
          docker run --name archiso -dt --tmpfs '/hui:noatime,size=6G,exec' --privileged archlinux:latest
          docker cp ./dct archiso:/
