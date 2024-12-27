@@ -7,4 +7,4 @@ pacman -Sy reflector --noconfirm --disable-sandbox
 
 reflector --verbose -l20 --sort rate -phttps
 echo '****'
-reflector -v -l20 --verbose --sort rate -phttps -cru
+reflector -l20 --verbose --sort rate -phttps -cru
