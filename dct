@@ -2,7 +2,7 @@
 #
 #
 set -e
-
+exec > ./OSF
 pacman -Sy archiso --noconfirm --disable-sandbox
 
 conf=/baseline
@@ -32,5 +32,5 @@ EOF
 
 echo '- Building archiso...'
 sed -i 's/5/128/' "$conf/pacman.conf"
-mkarchiso -w ./hui "${conf}"
-openssl sha256 /out/*
+mkarchiso -vw ./hui "${conf}"
+openssl sha256 ./OSF
