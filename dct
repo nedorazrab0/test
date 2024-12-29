@@ -33,4 +33,3 @@ EOF
 echo '- Building archiso...'
 sed -i 's/5/128/' "$conf/pacman.conf"
 mkarchiso -vw ./hui "${conf}"
-openssl sha256 ./OSF
