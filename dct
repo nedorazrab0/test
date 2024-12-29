@@ -7,7 +7,7 @@ pacman -Sy archiso --noconfirm --disable-sandbox
 
 conf=/baseline
 cp -r "/usr/share/archiso/configs/${conf}" .
-date="$(date '+%d%m%y')"
+date=123
 cat << 'EOF' > "${conf}/profiledef.sh"
 iso_name='archiso'
 iso_label="NAME"
@@ -24,6 +24,7 @@ airootfs_image_type='erofs'
 airootfs_image_tool_options=(
   '-Eforce-inode-compact,ztailpacking'
   '--workers=4'
+  '-T0'
 )
 #bootstrap_tarball_compression=('zstd' '-T0' '--ultra' '-20zc')
 bootstrap_tarball_compression=('cat')
@@ -31,8 +32,5 @@ EOF
 
 echo '- Building archiso...'
 sed -i 's/5/128/' "$conf/pacman.conf"
-mkarchiso -vw ./hui "${conf}" 2>&1 > HUU
-openssl sha256 HUU
-tail -n1 HUU
-cat HUU | wc -l
-cat HUU
+mkarchiso -w ./hui "${conf}"
+openssl sha256 /out/*
