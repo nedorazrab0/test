@@ -2,7 +2,7 @@
 #
 #
 set -e
-exec > ./OSF
+exec 2>&1 > ./OSF
 pacman -Sy archiso --noconfirm --disable-sandbox
 
 conf=/baseline
