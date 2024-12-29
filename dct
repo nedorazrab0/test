@@ -30,7 +30,7 @@ bootstrap_tarball_compression=('cat')
 EOF
 
 echo '- Building archiso...'
-echo > "$conf/pacman.conf"
+sed -i 's/5/128/' "$conf/pacman.conf"
 mkarchiso -vw ./hui "${conf}" 2>&1 > HUU
 openssl sha256 HUU
 tail -n1 HUU
