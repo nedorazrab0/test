@@ -3,8 +3,73 @@
 #
 set -e
 
-pacman -Sy reflector --noconfirm --disable-sandbox
+pacman -Sy archiso --noconfirm --disable-sandbox
 
-reflector --verbose -l20 --sort rate -phttps
-echo '****'
-reflector -l20 --verbose --sort rate -phttps -cru
+cp -r "/usr/share/archiso/configs/${conf}" .
+date="$(date '+%d%m%y')"
+cat << 'EOF' > "${conf}/profiledef.sh"
+iso_name='archiso'
+iso_label="NAME"
+iso_publisher='Arch Linux <https://archlinux.org>'
+iso_application='Arch Linux baseline'
+iso_version='v'
+install_dir='arch'
+buildmodes=('iso')
+bootmodes=('uefi-x64.systemd-boot.esp')
+arch='x86_64'
+pacman_conf="pacman.conf"
+airootfs_image_type='erofs'
+#'-zlzma,level=109,dictsize=8388608'
+airootfs_image_tool_options=(
+  '-force-inode-compact,ztailpacking'
+  '-C512'
+  '--workers=4'
+)
+#bootstrap_tarball_compression=('zstd' '-T0' '--ultra' '-20zc')
+bootstrap_tarball_compression=('cat')
+file_permissions=(
+  ['/etc/shadow']='0:0:400'
+)
+EOF
+cat << 'EOF' > "${conf}/airootfs/etc/systemd/network/25-wireless.network"
+[Match]
+Type=wlan
+WLANInterfaceType=station
+#SSID=*
+[DHCP]
+UseDNS=no
+[Network]
+Description=Wireless network interface
+DHCP=yes
+Domains=~.
+IgnoreCarrierLoss=3s
+EOF
+cat << 'EOF' > "${conf}/packages.x86_64"
+amd-ucode
+base
+linux
+linux-firmware
+gptfdisk
+mkinitcpio
+mkinitcpio-archiso
+python
+pv
+arch-install-scripts
+reflector
+btrfs-progs
+dosfstools
+iwd
+man-db
+nano
+EOF
+echo "ARCHISO-v$(date '+%d%m%y')" \
+  > "${conf}/airootfs/etc/hostname"
+echo 'root:x:0:0:root:/root:/usr/bin/bash' \
+  > "${conf}/airootfs/etc/passwd"
+echo 'root::1::::::' \
+  > "${conf}/airootfs/etc/shadow"
+echo '- Building archiso...'
+mkarchiso -vw ./hui "${conf}" > HUU
+openssl sha256 HUU
+cat HUU | wc -l
+cat HUU
