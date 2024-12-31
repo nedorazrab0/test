@@ -2,34 +2,6 @@
 #
 #
 set -e
-exec 2>&1 > ./OSF
-pacman -Sy archiso --noconfirm --disable-sandbox
+pacman -Sy reflector--noconfirm --disable-sandbox
 
-conf=/baseline
-cp -r "/usr/share/archiso/configs/${conf}" .
-date=123
-cat << 'EOF' > "${conf}/profiledef.sh"
-iso_name='archiso'
-iso_label="NAME"
-iso_publisher='Arch Linux <https://archlinux.org>'
-iso_application='Arch Linux baseline'
-iso_version='v'
-install_dir='arch'
-buildmodes=('iso')
-bootmodes=('uefi-x64.systemd-boot.esp')
-arch='x86_64'
-pacman_conf="pacman.conf"
-airootfs_image_type='erofs'
-#'-zlzma,level=109,dictsize=8388608'
-airootfs_image_tool_options=(
-  '-Eforce-inode-compact,ztailpacking'
-  '--workers=4'
-  '-T0'
-)
-#bootstrap_tarball_compression=('zstd' '-T0' '--ultra' '-20zc')
-bootstrap_tarball_compression=('cat')
-EOF
-
-echo '- Building archiso...'
-sed -i 's/5/128/' "$conf/pacman.conf"
-mkarchiso -vw ./hui "${conf}"
+reflector -i gay -i cicku.me -phttp -phttps --sort rate --verbose
