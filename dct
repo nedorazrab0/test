@@ -2,6 +2,6 @@
 #
 #
 set -e
-pacman -Sy reflector--noconfirm --disable-sandbox
+pacman -Sy reflector --noconfirm --disable-sandbox
 
 reflector -i gay -i cicku.me -phttp -phttps --sort rate --verbose
