@@ -30,7 +30,7 @@ airootfs_image_tool_options=(
 )
 bootstrap_tarball_compression=('zstd' '-T0' '--ultra' '-20zc')
 EOF
-echo 'base' > "${conf}/packages.x86_64"
+printf "base\nmkinitcpio\nmkinitcpio-archiso" > "${conf}/packages.x86_64"
 echo '- Building archiso...'
 sed -i 's/5/128/' "$conf/pacman.conf"
 mkarchiso -w ./hui "${conf}"
