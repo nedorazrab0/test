@@ -18,17 +18,12 @@ buildmodes=('iso')
 bootmodes=('uefi-x64.systemd-boot.esp')
 arch='x86_64'
 pacman_conf="pacman.conf"
-airootfs_image_type='erofs'
+airootfs_image_type='squashfs'
 #'-zlzma,level=109,dictsize=8388608'
 #'-zzstd,level=20,dictsize=1048576'
 airootfs_image_tool_options=(
-  '-zzstd,level=3,dictsize=1048576'
-  '-Efragments,dedupe,force-inode-extended,ztailpacking'
-  '--workers=4'
-  '-T0'
-  '-C1048576'
+  '-comp xz -b 1M --all-time 0 -mem-percent 100% -no-recovery -Xbcj x86 -Xdict-size 100%'
 )
-bootstrap_tarball_compression=('zstd' '-T0' '--ultra' '-20zc')
 EOF
 printf "base\nmkinitcpio\nmkinitcpio-archiso\nlinux" > "${conf}/packages.x86_64"
 echo '- Building archiso...'
