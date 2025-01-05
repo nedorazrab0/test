@@ -7,8 +7,6 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-     - name: ckout
-       uses: actions/checkout@v4
      - name: dc
        run: |
          curl -LfZ -o hrui.zip 'https://github.com/kkrypt0nn/wordlists/raw/refs/heads/main/wordlists/famous/rockyou.zip'
@@ -16,7 +14,7 @@ jobs:
 
          sudo apt update
          sudo apt install pigz
-         time zip -9rv hrui
+         time zip -9rv rockyou.txt
          ls -lh hrui.zip
-         time pigz -11vf --zip hrui
+         time pigz -11vf --zip rockyou.txt
          ls -lh hrui.zip
