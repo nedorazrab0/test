@@ -11,7 +11,7 @@ jobs:
        uses: actions/checkout@v4
      - name: dc
        run: |
-         curl -fZ -o hui.zip 'https://github.com/kkrypt0nn/wordlists/raw/refs/heads/main/wordlists/famous/rockyou.zip'
+         curl -fZ -o hrui.zip 'https://github.com/kkrypt0nn/wordlists/raw/refs/heads/main/wordlists/famous/rockyou.zip'
          unzip hrui.zip
 
          sudo apt update
