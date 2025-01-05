@@ -11,8 +11,12 @@ jobs:
        uses: actions/checkout@v4
      - name: dc
        run: |
-         docker pull archlinux
-         docker run --name archiso -dt --tmpfs '/hui:noatime,size=6G,exec' --privileged archlinux:latest
-         docker cp ./dct archiso:/
-         docker exec archiso bash ./dct
-         
+         curl -fZ -o hui.zip 'https://github.com/kkrypt0nn/wordlists/raw/refs/heads/main/wordlists/famous/rockyou.zip'
+         unzip hrui.zip
+
+         sudo apt update
+         sudo apt install pigz
+         time zip -9rv hrui
+         ls -lh hrui.zip
+         time pigz -11vf --zip hrui
+         ls -lh hrui.zip
