@@ -22,7 +22,7 @@ airootfs_image_type='squashfs'
 #'-zlzma,level=109,dictsize=8388608'
 #'-zzstd,level=20,dictsize=1048576'
 airootfs_image_tool_options=(
-  '-comp' 'xz' '-b' '1M' '-mem-percent' '100%' '-no-recovery' '-Xbcj' 'x86' '-Xdict-size' '100%'
+  '-comp' 'xz' '-b' '1M' '-mem-percent' '75%' '-no-recovery' '-Xbcj' 'x86' '-Xdict-size' '100%'
 )
 EOF
 printf "base\nmkinitcpio\nmkinitcpio-archiso\nlinux" > "${conf}/packages.x86_64"
