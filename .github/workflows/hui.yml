@@ -13,6 +13,8 @@ jobs:
          curl -LfZ -o hrui.zip 'https://github.com/kkrypt0nn/wordlists/raw/refs/heads/main/wordlists/famous/rockyou.zip'
          unzip hrui.zip
 
+         ls -lh
+         file rockyou.txt
          time zip -9rv rockyou.txt
          ls -lh rockyou.txt*
          time pigz -11vf --zip rockyou.txt
