@@ -15,5 +15,5 @@ jobs:
 
          head rockyou.txt
          time zip -9v hui.zip rockyou.txt
-         time pigz -11vf --zip rockyou.txt
+         time pigz -9vf --zip rockyou.txt
          ls -lh
