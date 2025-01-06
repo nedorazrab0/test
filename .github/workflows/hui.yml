@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
      - name: dc
+       uses: actions/checkout@v4
        run: |
          docker pull archlinux
          docker run --name archiso -dt --tmpfs '/hui:noatime,size=6G,exec' --privileged archlinux:latest
