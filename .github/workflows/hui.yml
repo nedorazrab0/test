@@ -9,11 +9,7 @@ jobs:
     steps:
      - name: dc
        run: |
-         set -x
-         curl -LfZ -o hrui.zip 'https://github.com/kkrypt0nn/wordlists/raw/refs/heads/main/wordlists/famous/rockyou.zip'
-         unzip hrui.zip
-
-         head rockyou.txt
-         time zip -9v hui.zip rockyou.txt
-         time pigz -9vf --zip rockyou.txt
-         ls -lh
+                  docker pull archlinux
+         docker run --name archiso -dt --tmpfs '/hui:noatime,size=6G,exec' --privileged archlinux:latest
+         docker cp ./dct archiso:/
+         docker exec archiso bash ./dct
