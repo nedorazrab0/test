@@ -47,7 +47,7 @@ declare -A file_permissions=()
 efibootimg=""
 efiboot_files=()
 
-readonly ucodes='amd-ucode.img'
+readonly ucodes=('amd-ucode.img')
 declare -i need_external_ucodes=0
 
 
