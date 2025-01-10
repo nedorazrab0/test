@@ -22,7 +22,7 @@ airootfs_image_type='erofs'
 #'-zlzma,level=109,dictsize=8388608'
 #'-zzstd,level=20,dictsize=1048576'
 airootfs_image_tool_options=(
-   '-zlzma,level=106' '-Efragments,force-inode-extended,ztailpacking'
+   '-zlz4' '-Efragments,force-inode-extended,ztailpacking'
   '-C262144'
   '-T0'
 )
@@ -30,4 +30,4 @@ EOF
 printf "base\nmkinitcpio\nmkinitcpio-archiso\nlinux" > "${conf}/packages.x86_64"
 echo '- Building archiso...'
 sed -i 's/5/128/' "$conf/pacman.conf"
-mkarchiso -w ./hui "${conf}"
+bash /mkarchiso -w ./hui "${conf}"
