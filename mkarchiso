@@ -1170,7 +1170,6 @@ unset build_date_file
 
 _read_profile
 _set_overrides
-_validate_options
 _build
 
 # vim:ts=4:sw=4:et:
