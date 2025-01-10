@@ -371,9 +371,9 @@ _make_bootmodes() {
         _run_once "_make_bootmode_${bootmode}"
     done
 
-    if [[ "${bootmodes[*]}" != *grub* ]]; then
-        _run_once _make_common_grubenv_and_loopbackcfg
-    fi
+    #if [[ "${bootmodes[*]}" != *grub* ]]; then
+    #    _run_once _make_common_grubenv_and_loopbackcfg
+    #fi
 }
 
 # Copy kernel and initramfs to ISO 9660
