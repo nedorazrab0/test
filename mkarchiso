@@ -304,6 +304,7 @@ _make_packages() {
 
 
     # Unset TMPDIR to work around https://bugs.archlinux.org/task/70580
+    echo "${buildmode_pkg_list[@]}"
     if [[ "${quiet}" = "y" ]]; then
         env -u TMPDIR pacstrap -C "${work_dir}/${buildmode}.pacman.conf" -c -G -M -- "${pacstrap_dir}" "${buildmode_pkg_list[@]}" &>/dev/null
     else
