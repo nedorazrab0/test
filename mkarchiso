@@ -836,7 +836,7 @@ _build_iso_image() {
         #-full-iso9660-filenames \
         #-joliet \
         #-joliet-long \
-        -rational-rock \
+        #-rational-rock \
         -volid "${iso_label}" \
         -appid "${iso_application}" \
         -publisher "${iso_publisher}" \
