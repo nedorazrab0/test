@@ -429,12 +429,14 @@ _make_efibootimg() {
 
     # Convert from bytes to KiB and round up to the next full MiB with an additional 8 MiB for reserved sectors, file
     # and directory entries and to allow adding custom files when repacking the ISO.
-    imgsize_kib="$(
-        awk 'function ceil(x){return int(x)+(x>int(x))}
-            function byte_to_kib(x){return x/1024}
-            function mib_to_kib(x){return x*1024}
-            END {print mib_to_kib(ceil((byte_to_kib($1))/1024))}' <<<"${imgsize_bytes}"
-    )"
+    #imgsize_kib="$(
+    #    awk 'function ceil(x){return int(x)+(x>int(x))}
+    #        function byte_to_kib(x){return x/1024}
+    #        function mib_to_kib(x){return x*1024}
+    #        END {print mib_to_kib(ceil((byte_to_kib($1))/1024))}' <<<"${imgsize_bytes}"
+    #)"
+
+    imgsize_kib="$(( imgsize_bytes / 1024 ))"
 
     # Use FAT32 as early as possible. mkfs.fat selects FAT32 if the size ≥ 512 MiB, but a FAT32 file system can already
     # be created at 36 MiB size (assuming 512 byte logical sector size).
