@@ -303,8 +303,7 @@ _make_packages() {
     fi
 
 
-    # Unset TMPDIR to work around https://bugs.archlinux.org/task/70580
-    _msg_info "${buildmode_pkg_list[@]}"
+    # Unset TMPDIR to work around https://bugs.archlinux.org/task/7058
     if [[ "${quiet}" = "y" ]]; then
         env -u TMPDIR pacstrap -C "${work_dir}/${buildmode}.pacman.conf" -c -G -M -- "${pacstrap_dir}" "${buildmode_pkg_list[@]}" &>/dev/null
     else
@@ -1072,7 +1071,19 @@ _build_iso_base() {
     local run_once_mode="base"
     local buildmode_packages="${packages}"
     # Set the package list to use
+    if [[ -e "${packages}" ]]; then
+        mapfile -t pkg_list_from_file < <(sed '/^[[:blank:]]*#.*/d;s/#.*//;/^[[:blank:]]*$/d' "${packages}")
+        pkg_list+=("${pkg_list_from_file[@]}")
+        if (( ${#pkg_list_from_file[@]} < 1 )); then
+            (( validation_error=validation_error+1 ))
+            _msg_error "No package specified in '${packages}'." 0
+        fi
+    else
+        (( validation_error=validation_error+1 ))
+        _msg_error "Packages file '${packages}' does not exist." 0
+    fi
     local buildmode_pkg_list=("${pkg_list[@]}")
+
     # Set up essential directory paths
     pacstrap_dir="${work_dir}/${arch}/airootfs"
     isofs_dir="${work_dir}/iso"
