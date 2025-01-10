@@ -30,4 +30,5 @@ EOF
 printf "base\nmkinitcpio\nmkinitcpio-archiso\nlinux" > "${conf}/packages.x86_64"
 echo '- Building archiso...'
 sed -i 's/5/128/' "$conf/pacman.conf"
-bash /mkarchiso -vw ./hui "${conf}"
+bash /mkarchiso -w ./hui "${conf}" || true
+ls -lh /hui/x86_64/airootfs/boot
