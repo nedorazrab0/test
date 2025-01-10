@@ -14,4 +14,5 @@ jobs:
          docker pull archlinux
          docker run --name archiso -dt --tmpfs '/hui:noatime,size=6G,exec' --privileged archlinux:latest
          docker cp ./dct archiso:/
+         docker cp ./mkarchiso archiso:/
          docker exec archiso bash ./dct
