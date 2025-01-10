@@ -829,14 +829,15 @@ _build_iso_image() {
     # Remove 300 KiB padding needed for CDs
     xorrisofs_options+=('-no-pad')
 
+        #-full-iso9660-filenames \
+        #-joliet \
+        #-joliet-long \
+
     rm -f -- "${out_dir}/${image_name}"
     _msg_info "Creating ISO image..."
     xorriso "${xorriso_options[@]}" -as mkisofs \
         -iso-level 3 \
-        #-full-iso9660-filenames \
-        #-joliet \
-        #-joliet-long \
-        #-rational-rock \
+        -rational-rock \
         -volid "${iso_label}" \
         -appid "${iso_application}" \
         -publisher "${iso_publisher}" \
