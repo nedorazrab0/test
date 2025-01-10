@@ -436,7 +436,8 @@ _make_efibootimg() {
     #        END {print mib_to_kib(ceil((byte_to_kib($1))/1024))}' <<<"${imgsize_bytes}"
     #)"
 
-    imgsize_kib="$(( imgsize_bytes / 1024 ))"
+    imgsize_kib=65536
+    #"$(( imgsize_bytes / 1024 ))"
 
     # Use FAT32 as early as possible. mkfs.fat selects FAT32 if the size ≥ 512 MiB, but a FAT32 file system can already
     # be created at 36 MiB size (assuming 512 byte logical sector size).
