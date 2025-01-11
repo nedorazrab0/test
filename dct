@@ -34,4 +34,3 @@ bash /mkarchiso -vw ./hui "${conf}"
 
 file /out/*.iso
 sfdisk -l /out/*.iso
-sgdisk -p /out/*.iso
