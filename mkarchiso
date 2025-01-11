@@ -431,7 +431,7 @@ _make_boot_on_fat() {
 # $1: image size in bytes
 _make_efibootimg() {
     local imgsize_kib="0"
-    local imgsize_kib=$(( $1 + 512 ))
+    local imgsize_kib=$(( $1 + 2048 ))
     local mkfs_fat_opts=(-C -n ESP)
 
     # Use FAT32 as early as possible. mkfs.fat selects FAT32 if the size ≥ 512 MiB, but a FAT32 file system can already
