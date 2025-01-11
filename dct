@@ -32,6 +32,6 @@ echo '- Building archiso...'
 sed -i 's/5/128/' "$conf/pacman.conf"
 bash /mkarchiso -vw ./hui "${conf}"
 
-file *.iso
-sfdisk -l *.iso
-sgdisk -p *.iso
+file /out/*.iso
+sfdisk -l /out/*.iso
+sgdisk -p /out/*.iso
