@@ -431,7 +431,7 @@ _make_boot_on_fat() {
 # $1: image size in bytes
 _make_efibootimg() {
     local imgsize_kib="0"
-    local imgsize_kib=$(( $1 + 2048 ))
+    local imgsize_kib=$(( $1 + 1024 ))
     local mkfs_fat_opts=(-C -n ESP)
 
     # Use FAT32 as early as possible. mkfs.fat selects FAT32 if the size ≥ 512 MiB, but a FAT32 file system can already
@@ -607,57 +607,6 @@ _validate_requirements_bootmode_uefi-x64.systemd-boot.esp() {
     if [[ ! " ${pkg_list[*]} " =~ ' memtest86+-efi ' ]]; then
         :
     fi
-}
-
-_validate_requirements_bootmode_uefi-x64.systemd-boot.eltorito() {
-    # shellcheck disable=SC2076
-    if [[ " ${bootmodes[*]} " =~ ' uefi-x64.grub.eltorito ' ]]; then
-        _msg_error "Validating '${bootmode}': cannot be used with bootmode uefi-x64.grub.eltorito!" 0
-    fi
-
-    # uefi-x64.systemd-boot.eltorito has the exact same requirements as uefi-x64.systemd-boot.esp
-    _validate_requirements_bootmode_uefi-x64.systemd-boot.esp
-}
-
-_validate_requirements_bootmode_uefi-ia32.systemd-boot.esp() {
-    # shellcheck disable=SC2076
-    if [[ " ${bootmodes[*]} " =~ ' uefi-ia32.grub.esp ' ]]; then
-        _msg_error "Validating '${bootmode}': cannot be used with bootmode uefi-ia32.grub.esp!" 0
-    fi
-
-    _validate_requirements_common_systemd-boot
-}
-
-_validate_requirements_bootmode_uefi-ia32.systemd-boot.eltorito() {
-    # shellcheck disable=SC2076
-    if [[ " ${bootmodes[*]} " =~ ' uefi-ia32.grub.eltorito ' ]]; then
-        _msg_error "Validating '${bootmode}': cannot be used with bootmode uefi-ia32.grub.eltorito!" 0
-    fi
-
-    # uefi-ia32.systemd-boot.eltorito has the exact same requirements as uefi-ia32.systemd-boot.esp
-    _validate_requirements_bootmode_uefi-ia32.systemd-boot.esp
-}
-
-_validate_requirements_bootmode_uefi-ia32.grub.esp() {
-    # Check if GRUB is available
-    if ! command -v grub-mkstandalone &>/dev/null; then
-        (( validation_error=validation_error+1 ))
-        _msg_error "Validating '${bootmode}': grub-install is not available on this host. Install 'grub'!" 0
-    fi
-
-    # shellcheck disable=SC2076
-    if [[ " ${bootmodes[*]} " =~ ' uefi-x64.systemd-boot.esp ' ]]; then
-        _validate_requirements_bootmode_uefi-x64.systemd-boot.esp
-    elif [[ " ${bootmodes[*]} " =~ ' uefi-x64.grub.esp ' ]]; then
-        _validate_requirements_bootmode_uefi-x64.grub.esp
-    else
-        _msg_error "Validating '${bootmode}': requires one of bootmode uefi-x64.systemd-boot.esp or uefi-x64.grub.esp" 0
-    fi
-}
-
-_validate_requirements_bootmode_uefi-ia32.grub.eltorito() {
-    # uefi-ia32.grub.eltorito has the exact same requirements as uefi-ia32.grub.esp
-    _validate_requirements_bootmode_uefi-ia32.grub.esp
 }
 
 # Build airootfs filesystem image
