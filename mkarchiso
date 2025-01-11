@@ -310,7 +310,12 @@ _make_packages() {
         env -u TMPDIR pacstrap -C "${work_dir}/${buildmode}.pacman.conf" -c -G -M -- "${pacstrap_dir}" "${buildmode_pkg_list[@]}"
     fi
 
-rm -rvf "${pacstrap_dir}/usr/share/man"
+rm -rf "${pacstrap_dir}/usr/share/man"
+rm -rf "${pacstrap_dir}/usr/share/i18n"
+rm -rf "${pacstrap_dir}/usr/share/doc"
+rm -rf "${pacstrap_dir}/usr/share/gtk-doc"
+rm -rf "${pacstrap_dir}/usr/share/locale"
+rm -rf "${pacstrap_dir}/usr/share/licenses"
 
     if [[ -v cert_list[0] ]]; then
         exec {ARCHISO_TLS_FD}<&-
