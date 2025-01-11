@@ -462,6 +462,7 @@ _validate_requirements_buildmode_iso() {
 
 # systemd-boot in an attached EFI system partition
 _add_xorrisofs_options_uefi-x64.systemd-boot.esp() {
+    [[ " ${xorrisofs_options[*]} " =~ ' -partition_offset ' ]] || xorrisofs_options+=('-partition_offset' '16')
     # Attach efiboot.img as a second partition and set its partition type to "EFI system partition"
     xorrisofs_options+=('-append_partition' '2' 'C12A7328-F81F-11D2-BA4B-00A0C93EC93B' "${efibootimg}")
     xorrisofs_options+=('-appended_part_as_gpt')
