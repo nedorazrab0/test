@@ -26,7 +26,6 @@ airootfs_image_tool_options=(
   '-Efragments,dedupe,force-inode-extended,ztailpacking'
   '-C1048576'
   '-T0'
-  '--workers=4'
 )
 EOF
 cat << EOF > "${conf}/packages.x86_64"
