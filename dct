@@ -22,15 +22,35 @@ airootfs_image_type='erofs'
 #'-zlzma,level=109,dictsize=8388608'
 #'-zzstd,level=20,dictsize=1048576'
 airootfs_image_tool_options=(
-   '-zlz4' '-Efragments,force-inode-extended,ztailpacking'
-  '-C262144'
+  '-zlzma'
+  '-Efragments,dedupe,force-inode-extended,ztailpacking'
+  '-C1048576'
   '-T0'
+  '--workers=4'
 )
 EOF
-printf "base\nmkinitcpio\nmkinitcpio-archiso\nlinux" > "${conf}/packages.x86_64"
+cat << EOF > "${conf}/packages.x86_64"
+amd-ucode
+base
+bash-completion
+linux
+linux-firmware
+gptfdisk
+mkinitcpio
+mkinitcpio-archiso
+python
+arch-install-scripts
+reflector
+btrfs-progs
+dosfstools
+iwd
+iptables-nft
+less
+nano
+zram-generator
+EOF
 echo '- Building archiso...'
 sed -i 's/5/128/' "$conf/pacman.conf"
 bash /mkarchiso -vw ./hui "${conf}"
 
-file /out/*.iso
-sfdisk -l /out/*.iso
+blkid /out/*.iso
