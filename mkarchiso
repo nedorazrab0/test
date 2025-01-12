@@ -336,9 +336,9 @@ _make_efibootimg() {
     if [[ "${quiet}" == "y" ]]; then
         # mkfs.fat does not have a -q/--quiet option, so redirect stdout to /dev/null instead
         # https://github.com/dosfstools/dosfstools/issues/103
-        mkfs.fat "${mkfs_fat_opts[@]}" "${efibootimg}" "${imgsize_kib}" >/dev/null
+        mkfs.fat -v "${mkfs_fat_opts[@]}" "${efibootimg}" "${imgsize_kib}"
     else
-        mkfs.fat "${mkfs_fat_opts[@]}" "${efibootimg}" "${imgsize_kib}"
+        mkfs.fat -v "${mkfs_fat_opts[@]}" "${efibootimg}" "${imgsize_kib}"
     fi
 
     # Create the default/fallback boot path in which a boot loaders will be placed later.
