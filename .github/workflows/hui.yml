@@ -15,3 +15,7 @@ jobs:
          docker run --name archiso -dt --tmpfs '/hui:noatime,size=6G,exec' --privileged archlinux:latest
          docker cp ./mkhui.sh archiso:/
          docker exec archiso bash ./mkhui.sh
+         docker cp archiso:/out/archiso-v-x86_64.iso .
+         gh release delete iso || true
+         gh release create iso archiso-v-x86_64.iso
+       env: ${{ GH_TOKEN }}
