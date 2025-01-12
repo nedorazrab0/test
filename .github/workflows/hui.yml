@@ -18,4 +18,5 @@ jobs:
          docker cp archiso:/out/archiso-v-x86_64.iso .
          gh release delete iso || true
          gh release create iso archiso-v-x86_64.iso
-       env: ${{ GH_TOKEN }}
+       env:
+         ${{ GH_TOKEN }}
