@@ -9,6 +9,12 @@ mkdir /hh
 pacstrap -cMG /hh base linux mkinitcpio-archiso
 
 # ESP
+#espsize="$(du --block-size=1024 -cs /boot | tail -n1 | awk '{print $1}')"
+mkfs.fat -F32 -n 'ESP' -C esp.img 50000  #"${espsize}"
+mount esp.img /mnt
+
+mkdir -p /mnt/loader/entries /mnt/EFI/BOOT
+cp /usr/lib/systemd/boot/efi/systemd-bootx64.efi /mnt/EFI/BOOT/BOOTx64.EFI
 cat << EOF > /hh/boot/loader/entries/a.conf
 title a
 linux /vmlinux-linux
@@ -16,9 +22,6 @@ initrd /initramfs-linux.img
 options archisosearchuuid=%uuid%
 EOF
 
-espsize="$(du --block-size=1024 -cs /boot | tail -n1 | awk '{print $1}')"
-mkfs.fat -F32 -n 'ESP' -C esp.img "${espsize}"
-mount esp.img /mnt
 mv -R /hh/boot/. /mnt
 umount /mnt
 
