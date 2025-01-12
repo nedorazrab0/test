@@ -19,4 +19,4 @@ jobs:
          gh release delete iso || true
          gh release create iso archiso-v-x86_64.iso
        env:
-         ${{ GH_TOKEN }}
+         GH_TOKEN: ${{ github.token }}
