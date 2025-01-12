@@ -2,7 +2,7 @@
 #
 #
 set -e
-pacman -Sy arch-install-scripts dosfstools xorriso --noconfirm
+pacman -Sy erofs-utils arch-install-scripts dosfstools xorriso --noconfirm
 
 
 mkdir /hh
