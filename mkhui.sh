@@ -15,7 +15,7 @@ mount esp.img /mnt
 
 mkdir -p /mnt/loader/entries /mnt/EFI/BOOT
 cp /usr/lib/systemd/boot/efi/systemd-bootx64.efi /mnt/EFI/BOOT/BOOTx64.EFI
-cat << EOF > /hh/boot/loader/entries/a.conf
+cat << EOF > /mnt/loader/entries/a.conf
 title a
 linux /vmlinux-linux
 initrd /initramfs-linux.img
