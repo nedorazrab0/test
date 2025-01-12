@@ -22,7 +22,7 @@ initrd /initramfs-linux.img
 options archisosearchuuid=%uuid%
 EOF
 
-mv /hh/boot/. /mnt
+mv /hh/boot/* /mnt
 umount /mnt
 
 #
