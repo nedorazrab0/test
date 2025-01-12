@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 #
 #
-set -e
 pacman -Sy archiso --noconfirm --disable-sandbox
 
 conf=/baseline
@@ -52,5 +51,7 @@ EOF
 echo '- Building archiso...'
 sed -i 's/5/128/' "$conf/pacman.conf"
 bash -x ./mkarchiso -w ./hui "${conf}"
-
+ls -lh /hui/efiboot.img
+file -s /hui/efiboot.img
+head /hui/efiboot.img
 blkid /out/*.iso
