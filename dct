@@ -51,6 +51,6 @@ mandoc
 EOF
 echo '- Building archiso...'
 sed -i 's/5/128/' "$conf/pacman.conf"
-bash -x /usr/bin/mkarchiso -w ./hui "${conf}"
+bash -x ./mkarchiso -w ./hui "${conf}"
 
 blkid /out/*.iso
