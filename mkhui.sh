@@ -11,6 +11,7 @@ pacstrap -cMG /hh base linux mkinitcpio-archiso &>/dev/null
 # ESP
 #espsize="$(du --block-size=1024 -cs /boot | tail -n1 | awk '{print $1}')"
 mkfs.fat -F32 -n 'ESP' -C esp.img 64000  #"${espsize}"
+rm -f /hh/boot/*fallback*
 ls -lh esp.img /hh/boot*
 mount esp.img /mnt
 
