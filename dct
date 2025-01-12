@@ -22,7 +22,7 @@ airootfs_image_type='erofs'
 #'-zlzma,level=109,dictsize=8388608'
 #'-zzstd,level=20,dictsize=1048576'
 airootfs_image_tool_options=(
-  '-zlz4'
+  '-zlzma'
   '-Efragments,dedupe,force-inode-extended,ztailpacking'
   '-C1048576'
   '-T0'
