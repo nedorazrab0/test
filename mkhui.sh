@@ -21,12 +21,13 @@ cat << EOF > /mnt/loader/entries/a.conf
 title a
 linux /vmlinux-linux
 initrd /initramfs-linux.img
-options archisosearchuuid=%uuid%
+options archisosearchuuid=6b012502-9b5a-45bd-a94e-146f91f98fe5
 EOF
 
 mv /hh/boot/* /mnt
 umount /mnt
 
+iso_uuid=6b012502-9b5a-45bd-a94e-146f91f98fe5
 #
 mkfs.erofs -zlz4 -Efragments,dedupe,force-inode-extended,ztailpacking -C262144 -T0 -- /hhh/airootfs.erofs /hh
 xorriso -no_rc -as mkisofs -iso-level 3 -rational-rock -volid NAME -appid 'Arch Linux baseline' -publisher 'Arch Linux <https://archlinux.org>' -preparer 'prepared by mkarchiso' -partition_offset 16 -append_partition 2 C12A7328-F81F-11D2-BA4B-00A0C93EC93B esp.img -appended_part_as_gpt -no-pad -output /out/archiso-v-x86_64.iso /hh
