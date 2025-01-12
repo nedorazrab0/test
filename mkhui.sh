@@ -5,7 +5,7 @@ set -e
 pacman -Sy erofs-utils arch-install-scripts dosfstools xorriso --noconfirm
 
 
-mkdir /hh
+mkdir /hh /hhh
 pacstrap -cMG /hh base linux mkinitcpio-archiso &>/dev/null
 
 # ESP
