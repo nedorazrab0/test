@@ -32,7 +32,7 @@ cat << EOF > "${conf}/packages.x86_64"
 amd-ucode
 base
 bash-completion
-linux
+linux-zen
 linux-firmware
 gptfdisk
 mkinitcpio
@@ -47,9 +47,10 @@ iptables-nft
 less
 nano
 zram-generator
+mandoc
 EOF
 echo '- Building archiso...'
 sed -i 's/5/128/' "$conf/pacman.conf"
-bash /mkarchiso -vw ./hui "${conf}"
+mkarchiso -w ./hui "${conf}"
 
 blkid /out/*.iso
