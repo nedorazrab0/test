@@ -502,7 +502,7 @@ _build_iso_image() {
     rm -f -- "${out_dir}/${image_name}"
     _msg_info "Creating ISO image..."
     set +e
-    _make_bootmode_uefi-x64.systemd-boot.esp
+    #_make_bootmode_uefi-x64.systemd-boot.esp
     ls -lh /hui/efiboot.img
     xorriso "${xorriso_options[@]}" -as mkisofs \
         -iso-level 3 \
@@ -704,6 +704,7 @@ _build_iso_base() {
     _run_once _make_pkglist
     _run_once _cleanup_pacstrap_dir
     _run_once _prepare_airootfs_image
+    _make_bootmodes
 }
 
 # Build the ISO buildmode
