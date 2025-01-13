@@ -25,7 +25,11 @@ EOF
 
 cp -a /hh/so/boot/* /mnt
 find /hh/so/boot/*
+
+mount --bind /hh/so /hh/so
 arch-chroot /hh/so bootctl status
+exit
+
 umount /mnt
 
 iso_uuid=6b012502-9b5a-45bd-a94e-146f91f98fe5
