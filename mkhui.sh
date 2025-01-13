@@ -21,7 +21,7 @@ cat << EOF > /mnt/loader/entries/a.conf
 title a
 linux /vmlinux-linux
 initrd /initramfs-linux.img
-options archisosearchuuid=6b012502-9b5a-45bd-a94e-146f91f98fe5
+options archisobasedir=/ archisosearchuuid=6b012502-9b5a-45bd-a94e-146f91f98fe5
 EOF
 
 mv /hh/boot/* /mnt
