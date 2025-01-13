@@ -24,6 +24,7 @@ options archisobasedir=/so archisosearchuuid=6b012502-9b5a-45bd-a94e-146f91f98fe
 EOF
 
 cp -a /hh/so/boot/* /mnt
+find /hh/so/boot/*
 umount /mnt
 
 iso_uuid=6b012502-9b5a-45bd-a94e-146f91f98fe5
