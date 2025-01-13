@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 #
 #
+date
+echo "$SOURCE_DATE_EPOCH"
+exit
+
 set -e
 pacman -Sy erofs-utils arch-install-scripts dosfstools xorriso --noconfirm
 
