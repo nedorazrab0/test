@@ -18,8 +18,8 @@ mkdir -p /mnt/loader/entries /mnt/EFI/BOOT
 cp /usr/lib/systemd/boot/efi/systemd-bootx64.efi /mnt/EFI/BOOT/BOOTx64.EFI
 cat << 'EOF' > /mnt/loader/entries/a.conf
 title a
-linux /so/boot/vmlinuz-linux
-initrd /so/boot/initramfs-linux.img
+linux /vmlinuz-linux
+initrd /initramfs-linux.img
 options archisobasedir=/so archisosearchuuid=6b012502-9b5a-45bd-a94e-146f91f98fe5
 EOF
 
