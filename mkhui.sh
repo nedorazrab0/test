@@ -22,14 +22,15 @@ linux /vmlinuz-linux
 initrd /initramfs-linux.img
 options archisobasedir=/so archisosearchuuid=6b012502-9b5a-45bd-a94e-146f91f98fe5
 EOF
+echo 'title abc' > /mnt/loader/entries/b.conf
 cp -a /hh/so/boot/* /mnt
 
 ls -lh /mnt
-find /mmt
+find /mnt
 
 
 umount /mnt
-exit
+
 iso_uuid=6b012502-9b5a-45bd-a94e-146f91f98fe5
 #
 mkfs.erofs --quiet -zlz4 -Efragments,dedupe,force-inode-extended,ztailpacking -C262144 -T0 -- /hh/iso/airootfs.erofs /hh/
