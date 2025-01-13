@@ -18,7 +18,7 @@ mkdir -p /mnt/loader/entries /mnt/EFI/BOOT
 cp /usr/lib/systemd/boot/efi/systemd-bootx64.efi /mnt/EFI/BOOT/BOOTx64.EFI
 
 TZ=UTC printf -v iso_uuid '%(%F-%H-%M-%S-00)T' "$SOURCE_DATE_EPOCH"
-cat << "EOF" > /mnt/loader/entries/a.conf
+cat << EOF > /mnt/loader/entries/a.conf
 title a
 linux /vmlinuz-linux
 initrd /initramfs-linux.img
