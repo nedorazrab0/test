@@ -9,7 +9,7 @@ export SOURCE_DATE_EPOCH
 
 SOURCE_DATE_EPOCH=$RANDOM
 
-set -e
+set -ex
 pacman -Sy erofs-utils arch-install-scripts dosfstools xorriso --noconfirm
 
 
@@ -27,7 +27,7 @@ pacstrap -cMG /hh/so base linux-zen mkinitcpio mkinitcpio-archiso &>/dev/null
 
 # ESP
 espsize="$(du --block-size=1024 -cs /boot | tail -n1 | awk '{print $1}')"
-mkfs.fat -F16 -S512 -n 'ESP' -C esp.img "${espsize}"
+mkfs.fat -F16 -S512 -s1 -n 'ESP' -C esp.img "${espsize}"
 mount esp.img /mnt
 
 mkdir -p /mnt/loader/entries /mnt/EFI/BOOT
