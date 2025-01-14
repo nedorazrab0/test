@@ -11,7 +11,7 @@ set -e
 pacman -Sy erofs-utils arch-install-scripts dosfstools xorriso --noconfirm
 
 
-mkdir -p /hh/so/etc/mkititcpio{,.conf}.d /hhh /out /hh/iso/
+mkdir -p /hh/so/etc/mkinitcpio{,.conf}.d /hhh /out /hh/iso/
 
 echo 'HOOKS=(base udev modconf archiso block filesystems)' > /hh/so/etc/mkinitcpio.conf.d/hui.conf
 cat << 'EOF' > /hh/so/etc/mkinitcpio.d/linux-zen.preset
