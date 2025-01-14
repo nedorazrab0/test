@@ -30,7 +30,8 @@ linux /vmlinuz-linux
 initrd /initramfs-linux.img
 options archisobasedir=/hh/so archisosearchuuid=$iso_uuid
 EOF
-mv /hh/so/boot/* /mnt
+echo > /hh/so/boot/${iso_uuid}.uuid
+cp -a /hh/so/boot/* /mnt
 umount /mnt
 
 #
