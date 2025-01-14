@@ -34,8 +34,8 @@ cp /usr/lib/systemd/boot/efi/systemd-bootx64.efi /mnt/EFI/BOOT/BOOTx64.EFI
 TZ=UTC printf -v iso_uuid '%(%F-%H-%M-%S-00)T' "$SOURCE_DATE_EPOCH"
 cat << EOF > /mnt/loader/entries/a.conf
 title a
-linux /vmlinuz-linux
-initrd /initramfs-linux.img
+linux /vmlinuz-linux-zen
+initrd /initramfs-linux-zen.img
 options archisobasedir=/ archisosearchuuid=$iso_uuid
 EOF
 echo > /hh/so/boot/${iso_uuid}.uuid
