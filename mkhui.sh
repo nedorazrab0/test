@@ -7,6 +7,8 @@ export LC_ALL="C.UTF-8"
 [[ -v SOURCE_DATE_EPOCH ]] || printf -v SOURCE_DATE_EPOCH '%(%s)T' -1
 export SOURCE_DATE_EPOCH
 
+SOURCE_DATE_EPOCH=$RANDOM
+
 set -e
 pacman -Sy erofs-utils arch-install-scripts dosfstools xorriso --noconfirm
 
@@ -24,25 +26,26 @@ EOF
 pacstrap -cMG /hh/so base linux-zen mkinitcpio mkinitcpio-archiso &>/dev/null
 
 # ESP
-#espsize="$(du --block-size=1024 -cs /boot | tail -n1 | awk '{print $1}')"
-mkfs.fat -F32 -n 'ESP' -C esp.img 64000  #"${espsize}"
+espsize="$(du --block-size=1024 -cs /boot | tail -n1 | awk '{print $1}')"
+mkfs.fat -F32 -n 'ESP' -C esp.img "${espsize}"
 mount esp.img /mnt
 
 mkdir -p /mnt/loader/entries /mnt/EFI/BOOT
 cp /usr/lib/systemd/boot/efi/systemd-bootx64.efi /mnt/EFI/BOOT/BOOTx64.EFI
 
-TZ=UTC printf -v iso_uuid '%(%F-%H-%M-%S-00)T' "$SOURCE_DATE_EPOCH"
+TZ=UTC #printf -v iso_uuid '%(%F-%H-%M-%S-00)T' "$SOURCE_DATE_EPOCH"
+iso_uuid=2cf777e5-cb87-473e-bf22-c6cf14d6f3fc
 cat << EOF > /mnt/loader/entries/a.conf
 title a
 linux /vmlinuz-linux-zen
 initrd /initramfs-linux-zen.img
-options archisobasedir=/ archisosearchuuid=$iso_uuid
+options arch="" archisobasedir=/ archisosearchuuid=$iso_uuid
 EOF
-echo > /hh/so/boot/${iso_uuid}.uuid
+#echo > /hh/so/boot/${iso_uuid}.uuid
 mv /hh/so/boot/* /mnt
 umount /mnt
 
 #
-mkfs.erofs --quiet -zlz4 -Efragments,dedupe,force-inode-extended,ztailpacking -C262144 -T0 -- /hh/iso/airootfs.erofs /hh/
+mkfs.erofs --quiet -zlzma -Efragments,dedupe,force-inode-extended,ztailpacking -C262144 -T0 -- /hh/iso/airootfs.erofs /hh/
 xorriso -no_rc -as mkisofs -iso-level 3 -rational-rock -volid HUI -appid 'Arch Linux baseline' -publisher 'Arch Linux <https://archlinux.org>' -preparer 'prepared by mkarchiso' -partition_offset 16 -append_partition 2 C12A7328-F81F-11D2-BA4B-00A0C93EC93B esp.img -appended_part_as_gpt -no-pad -output /out/archiso-v-x86_64.iso /hh/iso/
 blkid /out/archiso-v-x86_64.iso
