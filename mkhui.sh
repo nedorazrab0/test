@@ -11,8 +11,17 @@ set -e
 pacman -Sy erofs-utils arch-install-scripts dosfstools xorriso --noconfirm
 
 
-mkdir -p /hh/so /hhh /out /hh/iso/
-pacstrap -cMG /hh/so base linux mkinitcpio-archiso &>/dev/null
+mkdir -p /hh/so/etc/mkititcpio{,.conf}.d /hhh /out /hh/iso/
+
+echo 'HOOKS=(base udev modconf archiso block filesystems)' > /hh/so/etc/mkinitcpio.conf.d/hui.conf
+cat << 'EOF' > /hh/so/etc/mkinitcpio.d/linux-zen.preset
+PRESETS=('archiso')
+ALL_kver='/boot/vmlinuz-linux-zen'
+archiso_config='/etc/mkinitcpio.conf.d/archiso.conf'
+archiso_image="/boot/initramfs-linux-zen.img"
+EOF
+
+pacstrap -cMG /hh/so base linux-zen mkinitcpio mkinitcpio-archiso &>/dev/null
 
 # ESP
 #espsize="$(du --block-size=1024 -cs /boot | tail -n1 | awk '{print $1}')"
@@ -28,10 +37,10 @@ cat << EOF > /mnt/loader/entries/a.conf
 title a
 linux /vmlinuz-linux
 initrd /initramfs-linux.img
-options archisobasedir=/hh/so archisosearchuuid=$iso_uuid
+options archisobasedir=/ archisosearchuuid=$iso_uuid
 EOF
 echo > /hh/so/boot/${iso_uuid}.uuid
-cp -a /hh/so/boot/* /mnt
+mv /hh/so/boot/* /mnt
 umount /mnt
 
 #
