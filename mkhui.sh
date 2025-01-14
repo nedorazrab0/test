@@ -17,7 +17,7 @@ echo 'HOOKS=(base udev modconf archiso block filesystems)' > /hh/so/etc/mkinitcp
 cat << 'EOF' > /hh/so/etc/mkinitcpio.d/linux-zen.preset
 PRESETS=('archiso')
 ALL_kver='/boot/vmlinuz-linux-zen'
-archiso_config='/etc/mkinitcpio.conf.d/archiso.conf'
+hui_config='/etc/mkinitcpio.conf.d/hui.conf'
 archiso_image="/boot/initramfs-linux-zen.img"
 EOF
 
