@@ -17,13 +17,15 @@ mkdir -p /hh/so/etc/mkinitcpio{,.conf}.d /hhh /out /hh/iso/
 
 echo 'HOOKS=(base udev modconf archiso block filesystems)' > /hh/so/etc/mkinitcpio.conf.d/hui.conf
 cat << 'EOF' > /hh/so/etc/mkinitcpio.d/linux-zen.preset
-PRESETS=('archiso')
 ALL_kver='/boot/vmlinuz-linux-zen'
-hui_config='/etc/mkinitcpio.conf.d/hui.conf'
-archiso_image="/boot/initramfs-linux-zen.img"
+ALL_config='/etc/mkinitcpio.conf.d/hui.conf'
+ALL_image="/boot/initramfs-linux-zen.img"
 EOF
 
-pacstrap -cMG /hh/so base linux-zen mkinitcpio mkinitcpio-archiso linux-firmware &>/dev/null
+pacstrap -cMG /hh/so base linux-zen busybox mkinitcpio mkinitcpio-archiso linux-firmware &>/dev/null
+mkdir -p /hh/so/etc/systemd/system-generators
+ln -sf /dev/null /hh/so/etc/systemd/system-generators/systemd-gpt-auto-generator
+
 
 # ESP
 espsize="$(du --block-size=1024 -cs /hh/so/boot | tail -n1 | awk '{print $1}')"
@@ -42,7 +44,7 @@ cat << EOF > /mnt/loader/entries/a.conf
 title a
 linux /vmlinuz-linux-zen
 initrd /initramfs-linux-zen.img
-options arch="" archisobasedir=/hhh archisosearchuuid=$iso_uuid
+options arch=/ archisobasedir=/ archisosearchuuid=$iso_uuid
 EOF
 #echo > /hh/so/boot/${iso_uuid}.uuid
 mv /hh/so/boot/* /mnt
