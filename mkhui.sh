@@ -22,7 +22,7 @@ ALL_config='/etc/mkinitcpio.conf.d/hui.conf'
 ALL_image="/boot/initramfs-linux-zen.img"
 EOF
 
-pacstrap -cMG /hh/so base linux-zen busybox mkinitcpio mkinitcpio-archiso linux-firmware &>/dev/null
+pacstrap -cMG /hh/so base linux-zen mkinitcpio mkinitcpio-archiso &>/dev/null
 mkdir -p /hh/so/etc/systemd/system-generators
 ln -sf /dev/null /hh/so/etc/systemd/system-generators/systemd-gpt-auto-generator
 
