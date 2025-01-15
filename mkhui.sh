@@ -28,7 +28,8 @@ pacstrap -cMG /hh/so base linux-zen mkinitcpio mkinitcpio-archiso &>/dev/null
 # ESP
 espsize="$(du --block-size=1024 -cs /hh/so/boot | tail -n1 | awk '{print $1}')"
 
-mkfs.fat -v -F32 -S512 -s1 -n 'ESP' -C esp.img "${espsize}" || true
+espsize="$((espsize + 1024))"
+mkfs.fat -v -F32 -S512 -s1 -n 'ESP' -C esp.img "${espsize}"
 #mkfs.fat -v -F16 -S512 -s1 -n 'ESP' -C esp.img "${espsize}"
 mount esp.img /mnt
 
