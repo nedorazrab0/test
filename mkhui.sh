@@ -48,6 +48,8 @@ EOF
 mv /hh/so/boot/* /mnt
 umount /mnt
 
+rm -rf /hh/so/usr/share/{doc,man}
+
 #
 mkfs.erofs --quiet -zlzma -Efragments,dedupe,force-inode-extended,ztailpacking -C262144 -T0 -- /hh/iso/airootfs.erofs /hh/
 xorriso -no_rc -as mkisofs -iso-level 1 -rational-rock -volid HUI -appid 'Arch Linux baseline' -publisher 'Arch Linux <https://archlinux.org>' -preparer 'prepared by mkarchiso' -partition_offset 2048 -append_partition 2 C12A7328-F81F-11D2-BA4B-00A0C93EC93B esp.img -appended_part_as_gpt -no-pad -output /out/archiso-v-x86_64.iso /hh/iso/
