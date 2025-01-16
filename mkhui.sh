@@ -17,9 +17,10 @@ mkdir -p /hh/so/etc/mkinitcpio{,.conf}.d /hhh /out /hh/iso/
 
 echo 'HOOKS=(base udev modconf archiso block filesystems)' > /hh/so/etc/mkinitcpio.conf.d/hui.conf
 cat << 'EOF' > /hh/so/etc/mkinitcpio.d/linux-zen.preset
+PRESETS=('hui')
 ALL_kver='/boot/vmlinuz-linux-zen'
 hui_config='/etc/mkinitcpio.conf.d/hui.conf'
-ALL_image="/boot/initramfs-linux-zen.img"
+hui_image="/boot/initramfs-linux-zen.img"
 EOF
 
 pacstrap -cMG /hh/so base linux-zen mkinitcpio mkinitcpio-archiso &>/dev/null
