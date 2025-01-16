@@ -24,8 +24,8 @@ ALL_image="/boot/initramfs-linux-zen.img"
 EOF
 
 pacstrap -cMG /hh/so base linux-zen mkinitcpio mkinitcpio-archiso &>/dev/null
-mkdir -p /hh/so/etc/systemd/system-generators
-ln -sf /dev/null /hh/so/etc/systemd/system-generators/systemd-gpt-auto-generator
+#mkdir -p /hh/so/etc/systemd/system-generators
+#ln -sf /dev/null /hh/so/etc/systemd/system-generators/systemd-gpt-auto-generator
 
 
 # ESP
@@ -49,6 +49,7 @@ options arch=/ archisobasedir=/ archisosearchuuid=$iso_uuid
 EOF
 #echo > /hh/so/boot/${iso_uuid}.uuid
 mv /hh/so/boot/* /mnt
+find /mnt
 umount /mnt
 
 rm -rf /hh/so/usr/share/{doc,man}
