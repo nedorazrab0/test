@@ -15,17 +15,16 @@ pacman -Sy erofs-utils arch-install-scripts dosfstools xorriso python --noconfir
 
 mkdir -p /hh/so/etc/mkinitcpio{,.conf}.d /hhh /out /hh/iso/
 
-echo 'HOOKS=(base udev modconf archiso block filesystems)' > /hh/so/etc/mkinitcpio.conf.d/archiso.conf
+echo 'HOOKS=(base udev modconf archiso block filesystems)' > /hh/so/etc/mkinitcpio.conf.d/hui.conf
 cat << 'EOF' > /hh/so/etc/mkinitcpio.d/linux-zen.preset
-PRESETS=('archiso')
 ALL_kver='/boot/vmlinuz-linux-zen'
-archiso_config='/etc/mkinitcpio.conf.d/hui.conf'
-archiso_image="/boot/initramfs-linux-zen.img"
+ALL_config='/etc/mkinitcpio.conf.d/hui.conf'
+ALL_image="/boot/initramfs-linux-zen.img"
 EOF
 
 pacstrap -cMG /hh/so base linux-zen mkinitcpio mkinitcpio-archiso &>/dev/null
-#mkdir -p /hh/so/etc/systemd/system-generators
-#ln -sf /dev/null /hh/so/etc/systemd/system-generators/systemd-gpt-auto-generator
+mkdir -p /hh/so/etc/systemd/system-generators
+ln -sf /dev/null /hh/so/etc/systemd/system-generators/systemd-gpt-auto-generator
 
 
 # ESP
