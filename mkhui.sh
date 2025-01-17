@@ -28,7 +28,6 @@ btrfs-progs
 dosfstools
 iwd
 iptables-nft
-mandoc
 less
 nano
 zram-generator'
