@@ -32,7 +32,7 @@ zram-generator'
 
 mkdir -p /hh/etc/mkinitcpio{,.conf}.d /hhh /hh
 
-echo 'HOOKS=(base udev modconf archiso block filesystems keyboard)' > /hh/etc/mkinitcpio.conf.d/hui.conf
+echo 'HOOKS=(base systemd modconf archiso block filesystems keyboard)' > /hh/etc/mkinitcpio.conf.d/hui.conf
 cat << 'EOF' > /hh/etc/mkinitcpio.d/linux-zen.preset
 PRESETS=('hui')
 ALL_kver='/boot/vmlinuz-linux-zen'
