@@ -47,7 +47,7 @@ mkdir -p /hh/so/etc/systemd/system-generators
 ln -sf /dev/null /hh/so/etc/systemd/system-generators/systemd-gpt-auto-generator
 
 
-du -a /hh/so/usr/share | sort -nr | head -n50
+du -a /hh/so/usr/ | sort -nr | head -n50
 exit
 
 
