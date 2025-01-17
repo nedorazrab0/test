@@ -29,7 +29,7 @@ mkdir -p /hh/so/etc/systemd/system-generators
 ln -sf /dev/null /hh/so/etc/systemd/system-generators/systemd-gpt-auto-generator
 
 # ESP
-bootsize="$(du --block-size=1 -cs /hh/so/boot
+bootsize="$(du --block-size=1 -cs /hh/so/boot \
   | tail -n1 | awk '{print $1}')"
 espsize="$((bootsize + 1*1024*1024))"
 
