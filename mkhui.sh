@@ -13,6 +13,25 @@ set -ex
 cd /var
 pacman -Sy erofs-utils arch-install-scripts dosfstools xorriso python --noconfirm
 
+pkgs='amd-ucode
+base
+bash-completion
+linux-zen
+linux-firmware
+gptfdisk
+mkinitcpio
+mkinitcpio-archiso
+python
+arch-install-scripts
+reflector
+btrfs-progs
+dosfstools
+iwd
+iptables-nft
+mandoc
+less
+nano
+zram-generator'
 
 mkdir -p /hh/so/etc/mkinitcpio{,.conf}.d /hhh /out /hh/iso/
 
