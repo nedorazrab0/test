@@ -29,11 +29,12 @@ mkdir -p /hh/so/etc/systemd/system-generators
 ln -sf /dev/null /hh/so/etc/systemd/system-generators/systemd-gpt-auto-generator
 
 # ESP
-espsize="$(du --block-size=1 -cs /hh/so/boot | tail -n1 | awk '{print $1}')"
+bootsize="$(du --block-size=1 -cs /hh/so/boot
+  | tail -n1 | awk '{print $1}')"
+espsize="$((bootsize + 1*1024*1024))"
 
 dd if=/dev/zero of=./esp.img iflag=fullblock oflag=noatime ibs="${espsize}" count=1 obs=256K conv=fsync
 
-#espsize="$((espsize + 1024))"
 mkfs.fat -v -F32 -S512 -s1 -n 'ESP' ./esp.img
 mount esp.img /mnt
 
