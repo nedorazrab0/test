@@ -27,12 +27,6 @@ pacstrap -cMG /hh/so base linux-zen mkinitcpio mkinitcpio-archiso &>/dev/null
 mkdir -p /hh/so/etc/systemd/system-generators
 ln -sf /dev/null /hh/so/etc/systemd/system-generators/systemd-gpt-auto-generator
 
-
-set +e
-find /hh/so/ -type f -name init
-pacman -Q | grep sysv
-exit
-
 # ESP
 espsize="$(du --block-size=1024 -cs /hh/so/boot | tail -n1 | awk '{print $1}')"
 
@@ -50,9 +44,9 @@ cat << EOF > /mnt/loader/entries/a.conf
 title a
 linux /vmlinuz-linux-zen
 initrd /initramfs-linux-zen.img
-options arch=/ archisobasedir=/ archisosearchuuid=$iso_uuid
+options archisosearchuuid=$iso_uuid arch=/ init=/usr/lib/systemd archisobasedir=/
 EOF
-#echo > /hh/so/boot/${iso_uuid}.uuid
+
 mv /hh/so/boot/* /mnt
 find /mnt
 umount /mnt
