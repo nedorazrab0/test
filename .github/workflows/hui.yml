@@ -11,11 +11,8 @@ jobs:
        uses: actions/checkout@v4
      - name: dc
        run: |
-         ls -l /sbin/init
-         exit
-
          docker pull archlinux
-         docker run --name archiso -dt --tmpfs '/hui:noatime,size=6G,exec' --privileged archlinux:latest
+         docker run --name archiso -dt --privileged archlinux:latest
          docker cp ./mkhui.sh archiso:/
          docker exec archiso bash ./mkhui.sh
          docker cp archiso:/out/archiso-v-x86_64.iso .
