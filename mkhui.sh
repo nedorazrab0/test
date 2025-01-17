@@ -61,6 +61,7 @@ TZ=UTC printf -v iso_uuid '%(%F-%H-%M-%S-00)T' "$SOURCE_DATE_EPOCH"
 cat << EOF > /mnt/loader/entries/a.conf
 title a
 linux /vmlinuz-linux-zen
+initrd /amd-ucode.img
 initrd /initramfs-linux-zen.img
 options archisosearchuuid=$iso_uuid arch=/ init=/usr/lib/systemd/systemd archisobasedir=/
 EOF
