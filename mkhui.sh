@@ -46,6 +46,11 @@ pacstrap -cMG /hh/so ${pkgs} &>/dev/null
 mkdir -p /hh/so/etc/systemd/system-generators
 ln -sf /dev/null /hh/so/etc/systemd/system-generators/systemd-gpt-auto-generator
 
+
+du -a /hh/so/usr/share | sort -nr | head -n50
+exit
+
+
 # ESP
 bootsize="$(du --block-size=1 -cs /hh/so/boot \
   | tail -n1 | awk '{print $1}')"
