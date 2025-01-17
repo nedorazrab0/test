@@ -30,22 +30,22 @@ less
 nano
 zram-generator'
 
-mkdir -p /hh/so/etc/mkinitcpio{,.conf}.d /hhh /out /hh/iso/
+mkdir -p /hh/etc/mkinitcpio{,.conf}.d /hhh /hh
 
-echo 'HOOKS=(base udev modconf archiso block filesystems keyboard)' > /hh/so/etc/mkinitcpio.conf.d/hui.conf
-cat << 'EOF' > /hh/so/etc/mkinitcpio.d/linux-zen.preset
+echo 'HOOKS=(base udev modconf archiso block filesystems keyboard)' > /hh/etc/mkinitcpio.conf.d/hui.conf
+cat << 'EOF' > /hh/etc/mkinitcpio.d/linux-zen.preset
 PRESETS=('hui')
 ALL_kver='/boot/vmlinuz-linux-zen'
 hui_config='/etc/mkinitcpio.conf.d/hui.conf'
 hui_image='/boot/initramfs-linux-zen.img'
 EOF
 
-pacstrap -cMG /hh/so ${pkgs} &>/dev/null
-mkdir -p /hh/so/etc/systemd/system-generators
-ln -sf /dev/null /hh/so/etc/systemd/system-generators/systemd-gpt-auto-generator
+pacstrap -cMG /hh ${pkgs} &>/dev/null
+mkdir -p /hh/etc/systemd/system-generators
+ln -sf /dev/null /hh/etc/systemd/system-generators/systemd-gpt-auto-generator
 
 # ESP
-bootsize="$(du --block-size=1 -cs /hh/so/boot \
+bootsize="$(du --block-size=1 -cs /hh/boot \
   | tail -n1 | awk '{print $1}')"
 espsize="$((bootsize + 1*1024*1024))"
 
@@ -66,11 +66,11 @@ initrd /initramfs-linux-zen.img
 options archisosearchuuid=$iso_uuid arch=/ init=/usr/lib/systemd/systemd archisobasedir=/
 EOF
 
-mv /hh/so/boot/* /mnt
+mv /hh/boot/* /mnt
 find /mnt
 umount /mnt
 
-rm -rf /hh/so/usr/share/{doc,man}
+rm -rf /hh/usr/share/{doc,man}
 
 #
 mkfs.erofs --quiet -zlzma,109,dictsize=8388608 -Efragments,dedupe,force-inode-extended,ztailpacking   -C1048576 -T0 -- /hhh/airootfs.erofs /hh/
