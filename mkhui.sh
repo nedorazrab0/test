@@ -29,7 +29,7 @@ mkdir -p /hh/so/etc/systemd/system-generators
 ln -sf /dev/null /hh/so/etc/systemd/system-generators/systemd-gpt-auto-generator
 
 # ESP
-espsize="$(du -cs /hh/so/boot | tail -n1 | awk '{print $1}')"
+espsize="$(du --block-size=1 -cs /hh/so/boot | tail -n1 | awk '{print $1}')"
 
 dd if=/dev/zero of=./esp.img iflag=fullblock oflag=noatime ibs="${espsize}" count=1 obs=256K conv=fsync
 
