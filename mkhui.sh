@@ -57,7 +57,7 @@ umount /mnt
 rm -rf /hh/so/usr/share/{doc,man}
 
 #
-mkfs.erofs --quiet -zlzma -Efragments,dedupe,force-inode-extended,ztailpacking   -C1048576 -T0 -- /hhh/airootfs.erofs /hh/
+mkfs.erofs --quiet -zlzma,109,dictsize=8388608 -Efragments,dedupe,force-inode-extended,ztailpacking   -C1048576 -T0 -- /hhh/airootfs.erofs /hh/
 xorriso -no_rc -as mkisofs -iso-level 2 -rational-rock -volid HUI -appid 'Arch Linux baseline' -publisher 'Arch Linux <https://archlinux.org>' -preparer 'prepared by mkarchiso' -partition_offset 16 -append_partition 2 C12A7328-F81F-11D2-BA4B-00A0C93EC93B esp.img -appended_part_as_gpt -no-pad -output /out/archiso-v-x86_64.iso /hhh
 blkid /out/archiso-v-x86_64.iso
 sfdisk -l /out/archiso-v-x86_64.iso
