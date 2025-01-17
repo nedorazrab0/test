@@ -44,7 +44,7 @@ cat << EOF > /mnt/loader/entries/a.conf
 title a
 linux /vmlinuz-linux-zen
 initrd /initramfs-linux-zen.img
-options archisosearchuuid=$iso_uuid arch=/ init=/usr/lib/systemd archisobasedir=/
+options archisosearchuuid=$iso_uuid arch=/ init=/usr/lib/systemd/systemd archisobasedir=/
 EOF
 
 mv /hh/so/boot/* /mnt
