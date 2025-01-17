@@ -7,8 +7,6 @@ export LC_ALL="C.UTF-8"
 [[ -v SOURCE_DATE_EPOCH ]] || printf -v SOURCE_DATE_EPOCH '%(%s)T' -1
 export SOURCE_DATE_EPOCH
 
-#SOURCE_DATE_EPOCH=$RANDOM
-
 set -ex
 cd /var
 pacman -Sy erofs-utils arch-install-scripts dosfstools xorriso python --noconfirm
@@ -65,7 +63,6 @@ mkdir -p /mnt/loader/entries /mnt/EFI/BOOT
 cp /usr/lib/systemd/boot/efi/systemd-bootx64.efi /mnt/EFI/BOOT/BOOTx64.EFI
 
 TZ=UTC printf -v iso_uuid '%(%F-%H-%M-%S-00)T' "$SOURCE_DATE_EPOCH"
-iso_uuid=2cf777e5-cb87-473e-bf22-c6cf14d6f3fc
 cat << EOF > /mnt/loader/entries/a.conf
 title a
 linux /vmlinuz-linux-zen
