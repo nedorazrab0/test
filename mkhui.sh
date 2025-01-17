@@ -33,7 +33,7 @@ zram-generator'
 mkdir -p /hh/etc/mkinitcpio{,.conf}.d /hhh /hh /out
 
 cat << EOF > /hh/etc/mkinitcpio.conf.d/hui.conf
-HOOKS=(base udev archiso_loop_mnt modconf archiso block filesystems keyboard)
+HOOKS=(base udev archiso_loop_mnt modconf archiso block filesystems)
 COMPRESSION="xz"
 COMPRESSION_OPTIONS=(-9e)
 EOF
