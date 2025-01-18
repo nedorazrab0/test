@@ -7,7 +7,7 @@ export LC_ALL="C.UTF-8"
 #[[ -v SOURCE_DATE_EPOCH ]] || printf -v SOURCE_DATE_EPOCH '%(%s)T' -1
 #export SOURCE_DATE_EPOCH
 
-set -ex
+set -x
 cd /var
 pacman -Sy erofs-utils arch-install-scripts dosfstools xorriso python --noconfirm
 
