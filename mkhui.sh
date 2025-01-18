@@ -36,7 +36,7 @@ zram-generator'
 
 mkdir -p "${idir}/etc/mkinitcpio"{,.conf}.d "${odir}" "${idir}" "${isodir}"
 
-cat << 'EOF' > "${idir}/etc/mkinitcpio.conf.d/hui.conf
+cat << 'EOF' > "${idir}/etc/mkinitcpio.conf.d/hui.conf"
 HOOKS=(base udev archiso_loop_mnt modconf archiso block filesystems)
 COMPRESSION='xz'
 COMPRESSION_OPTIONS=(-9e -T0 -M100%)
