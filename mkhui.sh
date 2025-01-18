@@ -2,12 +2,11 @@
 #
 #
 
-umask 0022
-export LC_ALL="C.UTF-8"
-#[[ -v SOURCE_DATE_EPOCH ]] || printf -v SOURCE_DATE_EPOCH '%(%s)T' -1
-#export SOURCE_DATE_EPOCH
+# poshol nahui dolbaeb kotoriy pridumal pihat datu v uuid
+[[ -v SOURCE_DATE_EPOCH ]] || printf -v SOURCE_DATE_EPOCH '%(%s)T' -1
+printf -v iso_uuid '%(%F-%H-%M-%S-00)T' "$SOURCE_DATE_EPOCH"
 
-set -x
+set -ex
 cd /var
 pacman -Sy erofs-utils arch-install-scripts dosfstools xorriso python --noconfirm
 
@@ -81,7 +80,7 @@ rm -rf ./hh/usr/share/{doc,man}
 mkfs.erofs -Efragments,dedupe,force-inode-extended,ztailpacking -T0 \
   --quiet -zlzma,1,dictsize=8388608 -C1048576 ./hhh/airootfs.erofs ./hh
 #aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-xorriso -no_rc -abort-on NEVER -volume_date f "$(uuidgen)" -temp_mem_limit 1024m -as mkisofs -iso-level 2 -rational-rock \
+xorriso -no_rc -temp_mem_limit 1024m -as mkisofs -iso-level 2 -rational-rock \
   -volid 'ARCHISO' -appid 'archiso-v' -preparer 'prepared by archiso-v' \
   -publisher 'arch-v <https://github.com/nedorazrab0/archiso-v>' \
   -append_partition 2 'C12A7328-F81F-11D2-BA4B-00A0C93EC93B' ./esp.img \
