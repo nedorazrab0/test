@@ -12,6 +12,7 @@ isodir='/var/archiso-v/iso'
 # poshol nahui dolbaeb kotoriy pridumal pihat datu v uuid
 [[ -v SOURCE_DATE_EPOCH ]] || printf -v SOURCE_DATE_EPOCH '%(%s)T' -1
 printf -v iso_uuid '%(%F-%H-%M-%S-00)T' "${SOURCE_DATE_EPOCH}"
+export SOURCE_DATE_EPOCH
 
 pacman -Sy erofs-utils arch-install-scripts dosfstools xorriso python --noconfirm
 
