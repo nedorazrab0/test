@@ -77,9 +77,9 @@ umount /mnt
 
 rm -rf ./hh/usr/share/{doc,man}
 
-#,dictsize=8388608
+#
 mkfs.erofs -Efragments,dedupe,force-inode-extended,ztailpacking -T0 \
-   -zlz4 -C1048576 ./hhh/airootfs.erofs ./hh
+  --quiet -zlzma,1,dictsize=8388608 -C1048576 ./hhh/airootfs.erofs ./hh
 #aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 xorriso -no_rc -as mkisofs -temp_mem_limit 1024m -iso-level 2 -rational-rock \
   -volid 'ARCHISO' -appid 'archiso-v' -preparer 'prepared by archiso-v'  \
