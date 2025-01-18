@@ -72,8 +72,8 @@ options archisosearchuuid=$iso_uuid arch=/ archisobasedir=/
 EOF
 
 mv ./hh/boot/* /mnt
-find ./mnt
-umount ./mnt
+find /mnt
+umount /mnt
 
 rm -rf ./hh/usr/share/{doc,man}
 
