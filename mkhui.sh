@@ -85,7 +85,7 @@ xorriso -no_rc -temp_mem_limit 1024m -as mkisofs -iso-level 2 -rational-rock \
   -volid 'ARCHISO' -appid 'archiso-v' -preparer 'prepared by archiso-v'  \
   -publisher 'arch-v <https://github.com/nedorazrab0/archiso-v>' \
   -append_partition 2 'C12A7328-F81F-11D2-BA4B-00A0C93EC93B' ./esp.img \
-  -appended_part_as_gpt -partition_offset 16 -no-pad -volume_date="$(uuidgen)" \
+  -appended_part_as_gpt -partition_offset 16 -no-pad -volume_date "$(uuidgen)" \
   -output ./out/archiso-v-x86_64.iso /hhh
 blkid ./out/archiso-v-x86_64.iso
 sfdisk -l ./out/archiso-v-x86_64.iso
