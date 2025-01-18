@@ -53,6 +53,15 @@ pacstrap -cMG "${idir}" ${pkgs} &>/dev/null
 mkdir -p "${idir}/etc/systemd/system-generators"
 ln -sf /dev/null "${idir}/etc/systemd/system-generators/systemd-gpt-auto-generator"
 
+date +'archiso_v%d-%m-%y' \
+  > "${idir}/etc/hostname"
+
+echo 'root:x:0:0:root:/root:/usr/bin/bash' \
+  > "${idir}/etc/passwd"
+echo 'root::1::::::' \
+  > "${idir}/etc/shadow"
+chmod 400 "${idir}/etc/shadow"
+
 # ESP
 bootsize="$(du --block-size=1 -cs "${idir}/boot" \
   | tail -n1 | awk '{print $1}')"
@@ -67,6 +76,9 @@ mount "${isodir}/esp.img" /mnt
 mkdir -p /mnt/loader/entries /mnt/EFI/BOOT
 cp /usr/lib/systemd/boot/efi/systemd-bootx64.efi /mnt/EFI/BOOT/BOOTx64.EFI
 
+echo 'editor no' \
+  > /mnt/loader/loader.conf
+  
 cat << EOF > /mnt/loader/entries/archiso-zen.conf
 title ArchISO-V ZEN
 linux /vmlinuz-linux-zen
