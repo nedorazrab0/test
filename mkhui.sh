@@ -38,7 +38,7 @@ zram-generator'
 mkdir -p "${idir}/etc/mkinitcpio"{,.conf}.d "${odir}" "${idir}" "${isodir}"
 
 cat << 'EOF' > "${idir}/etc/mkinitcpio.conf.d/hui.conf"
-HOOKS=(base udev archiso_loop_mnt modconf archiso block filesystems)
+HOOKS=(base udev archiso_loop_mnt microcode modconf archiso block filesystems)
 COMPRESSION='xz'
 COMPRESSION_OPTIONS=(-9e -T0 -M100%)
 EOF
@@ -50,7 +50,7 @@ hui_config='/etc/mkinitcpio.conf.d/hui.conf'
 hui_image='/boot/initramfs-linux-zen.img'
 EOF
 
-pacstrap -cMGP "${idir}" ${pkgs}
+pacstrap -cGP "${idir}" ${pkgs}
 mkdir -p "${idir}/etc/systemd/system-generators"
 ln -sf /dev/null "${idir}/etc/systemd/system-generators/systemd-gpt-auto-generator"
 
@@ -62,6 +62,8 @@ echo 'root:x:0:0::/root:/usr/bin/bash' \
 echo 'root::1::::::' \
   > "${idir}/etc/shadow"
 chmod 400 "${idir}/etc/shadow"
+
+rm -rf "${idir}/usr/share/"{doc,man}
 
 # ESP
 bootsize="$(du --block-size=1024 -cs "${idir}/boot" \
@@ -78,7 +80,6 @@ echo 'editor no' \
 cat << EOF > /var/archiso-zen.conf
 title ArchISO-V ZEN
 linux /vmlinuz-linux-zen
-initrd /amd-ucode.img
 initrd /initramfs-linux-zen.img
 options archisosearchuuid=${iso_uuid} arch=/ archisobasedir=/
 EOF
@@ -88,7 +89,7 @@ mmd -i "${isodir}/esp.img" \
   '::/EFI' '::/EFI/BOOT'
 
 mcopy -i "${isodir}/esp.img" \
-  "${idir}/boot/"{vmlinuz-linux-zen,initramfs-linux-zen.img,amd-ucode.img} \
+  "${idir}/boot/"{vmlinuz-linux-zen,initramfs-linux-zen.img} \
   '::/'
 mcopy -i "${isodir}/esp.img" \
   "${idir}/usr/lib/systemd/boot/efi/systemd-bootx64.efi" \
@@ -100,13 +101,11 @@ mcopy -i "${isodir}/esp.img" \
 
 rm -rf "${idir}/boot/"*
 
-
-rm -rf "${idir}/usr/share/"{doc,man}
-
-#
-mkfs.erofs -Efragments,dedupe,force-inode-extended,ztailpacking -T0 \
-  --quiet -zlzma,109,dictsize=8388608 -C1048576 "${odir}/airootfs.erofs" "${idir}"
+# EROFS compressed img
+mkfs.erofs -Efragments,dedupe,force-inode-extended,ztailpacking --quiet \
+  -T0 -zlzma,109,dictsize=8388608 -C1048576 "${odir}/airootfs.erofs" "${idir}"
 #aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+# ISO file
 xorriso -no_rc -temp_mem_limit 1024m -as mkisofs -iso-level 2 -rational-rock \
   -volid 'ARCHISO' -appid 'archiso-v' -preparer 'prepared by archiso-v' \
   -publisher 'arch-v <https://github.com/nedorazrab0/archiso-v>' \
