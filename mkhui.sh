@@ -57,21 +57,19 @@ ln -sf /dev/null "${idir}/etc/systemd/system-generators/systemd-gpt-auto-generat
 date +'archiso_v%d-%m-%y' \
   > "${idir}/etc/hostname"
 
-echo 'root:x:0:0:root:/root:/usr/bin/bash' \
+echo 'root:x:0:0::/root:/usr/bin/bash' \
   > "${idir}/etc/passwd"
 echo 'root::1::::::' \
   > "${idir}/etc/shadow"
 chmod 400 "${idir}/etc/shadow"
 
 # ESP
-bootsize="$(du --block-size=1 -cs "${idir}/boot" \
+bootsize="$(du --block-size=1024 -cs "${idir}/boot" \
   | tail -n1 | awk '{print $1}')"
-espsize="$((bootsize + 1*1024*1024))"
+espsize="$((bootsize + 512))"
 
-dd if=/dev/zero of="${isodir}/esp.img" iflag=fullblock oflag=noatime \
-  ibs="${espsize}" obs=256K count=1 conv=fsync
-
-mkfs.fat -v -F32 -S512 -s1 -n 'ESP' "${isodir}/esp.img"
+mkfs.fat -v -F16 -S512 -f1 -s1 -b0 -n 'ISOESP' \
+  --codepage=437 -C "${isodir}/esp.img" "${espsize}"
 mount "${isodir}/esp.img" /mnt
 
 mkdir -p /mnt/loader/entries /mnt/EFI/BOOT
