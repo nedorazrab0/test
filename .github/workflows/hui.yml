@@ -12,7 +12,7 @@ jobs:
      - name: dc
        run: |
          docker pull archlinux
-         docker run --name archiso -dt archlinux:latest
+         docker run --name archiso -dt --privileged archlinux:latest
          docker cp ./mkhui.sh archiso:/
          docker exec archiso bash ./mkhui.sh
          docker cp archiso:/var/archiso-v/iso/archiso-v.iso .
