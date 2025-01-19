@@ -68,7 +68,7 @@ bootsize="$(du --block-size=1024 -cs "${idir}/boot" \
   | tail -n1 | awk '{print $1}')"
 espsize="$((bootsize + 512))"
 
-mkfs.fat -v -F32 -R1 -S512 -f1 -s1 -b0 -n 'ISOESP' \
+mkfs.fat -F32 -S512 -R2 -v -f1 -s1 -b0 -n 'ISOESP' \
   --codepage=437 -C "${isodir}/esp.img" "${espsize}"
 mount "${isodir}/esp.img" /mnt
 
