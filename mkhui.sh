@@ -50,7 +50,7 @@ hui_config='/etc/mkinitcpio.conf.d/hui.conf'
 hui_image='/boot/initramfs-linux-zen.img'
 EOF
 
-env -u TMPDIR pacstrap -cMGP "${idir}" ${pkgs} #&>/dev/null
+pacstrap -cMGP "${idir}" ${pkgs}
 mkdir -p "${idir}/etc/systemd/system-generators"
 ln -sf /dev/null "${idir}/etc/systemd/system-generators/systemd-gpt-auto-generator"
 
