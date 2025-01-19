@@ -14,7 +14,7 @@ isodir='/var/archiso-v/iso'
 printf -v iso_uuid '%(%F-%H-%M-%S-00)T' "${SOURCE_DATE_EPOCH}"
 export SOURCE_DATE_EPOCH
 
-pacman -Sy erofs-utils arch-install-scripts dosfstools xorriso python --noconfirm
+pacman -Sy erofs-utils arch-install-scripts dosfstools mtools xorriso python --noconfirm
 
 pkgs='amd-ucode
 base
@@ -66,19 +66,16 @@ chmod 400 "${idir}/etc/shadow"
 # ESP
 bootsize="$(du --block-size=1024 -cs "${idir}/boot" \
   | tail -n1 | awk '{print $1}')"
-espsize="$((bootsize + 512))"
+espsize="$((bootsize + 0))"
 
 mkfs.fat -F32 -S512 -R2 -v -f1 -s1 -b0 -n 'ISOESP' \
   --codepage=437 -C "${isodir}/esp.img" "${espsize}"
 mount "${isodir}/esp.img" /mnt
 
-mkdir -p /mnt/loader/entries /mnt/EFI/BOOT
-cp /usr/lib/systemd/boot/efi/systemd-bootx64.efi /mnt/EFI/BOOT/BOOTx64.EFI
-
 echo 'editor no' \
-  > /mnt/loader/loader.conf
+  > /var/loader.conf
   
-cat << EOF > /mnt/loader/entries/archiso-zen.conf
+cat << EOF > /var/archiso-zen.conf
 title ArchISO-V ZEN
 linux /vmlinuz-linux-zen
 initrd /amd-ucode.img
@@ -86,9 +83,23 @@ initrd /initramfs-linux-zen.img
 options archisosearchuuid=${iso_uuid} arch=/ archisobasedir=/
 EOF
 
-mv "${idir}/boot/"* /mnt
-find /mnt
-umount /mnt
+mmd -i "${isodir}/esp.img" \
+  '::/loader' '::/loader/entries' \
+  '::/EFI' '::/EFI/BOOT'
+
+mcopy -i "${isodir}/esp.img" \
+  "${idir}/boot/"{vmlinuz-linux-zen,initramfs-linux-zen.img,amd-ucode.img} \
+  '::/'
+mcopy -i "${isodir}/esp.img" \
+  "${idir}/usr/lib/systemd/boot/efi/systemd-bootx64.efi" \
+  '::/EFI/BOOT/BOOTx64.EFI'
+mcopy -i "${isodir}/esp.img" \
+  /var/loader '::/loader'
+mcopy -i "${isodir}/esp.img" \
+  /var/archiso-zen.conf '::/loader/entries'
+
+rm -rf "${idir}/boot/"*
+
 
 rm -rf "${idir}/usr/share/"{doc,man}
 
