@@ -66,6 +66,7 @@ chmod 400 "${idir}/etc/shadow"
 rm -rf "${idir}/usr/share/"{doc,man}
 
 # ESP
+rm -f "${idir}/boot/amd-ucode.img"
 bootsize="$(du --block-size=1024 -cs "${idir}/boot" \
   | tail -n1 | awk '{print $1}')"
 espsize="$((bootsize + 512))"
