@@ -66,7 +66,7 @@ chmod 400 "${idir}/etc/shadow"
 # ESP
 bootsize="$(du --block-size=1024 -cs "${idir}/boot" \
   | tail -n1 | awk '{print $1}')"
-espsize="$((bootsize + 256))"
+espsize="$((bootsize + 512))"
 
 mkfs.fat -F32 -S512 -R2 -v -f1 -s1 -b0 -n 'ISOESP' \
   --codepage=437 -C "${isodir}/esp.img" "${espsize}"
