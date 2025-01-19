@@ -94,7 +94,7 @@ mcopy -i "${isodir}/esp.img" \
   "${idir}/usr/lib/systemd/boot/efi/systemd-bootx64.efi" \
   '::/EFI/BOOT/BOOTx64.EFI'
 mcopy -i "${isodir}/esp.img" \
-  /var/loader '::/loader'
+  /var/loader.conf '::/loader'
 mcopy -i "${isodir}/esp.img" \
   /var/archiso-zen.conf '::/loader/entries'
 
