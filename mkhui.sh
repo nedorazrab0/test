@@ -52,8 +52,9 @@ EOF
 
 pacstrap -cGP "${idir}" ${pkgs}
 
-find /usr -name '*libgo*'
-du /usr | sort -nr | head -n100
+du -h /usr/lib/python*/test
+find /usr -name '*libgo.so* -name '*libicudata.so*'
+du -a /usr | sort -nr | head -n100
 exit
 
 mkdir -p "${idir}/etc/systemd/system-generators"
