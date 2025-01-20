@@ -50,9 +50,10 @@ hui_config='/etc/mkinitcpio.conf.d/hui.conf'
 hui_image='/boot/initramfs-linux-zen.img'
 EOF
 
-pacstrap -cGP "${idir}" ${pkgs}
+pacstrap -cGP "${idir}" ${pkgs} &>/dev/null
 
-du -h /usr/lib/python*/test
+du -h /usr/include
+du -h /usr/lib/python3.13/test
 find /usr -name '*libgo.so* -name '*libicudata.so*'
 du -a /usr | sort -nr | head -n100
 exit
