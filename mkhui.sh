@@ -52,12 +52,8 @@ EOF
 
 pacstrap -cGP "${idir}" ${pkgs} &>/dev/null
 
-#du -h /usr/include
-#ls -lh /usr/lib/python
-
-find /usr -name '*libgo.so*' -name '*libicudata.so*'
-du -a /usr | sort -nr | head -n100
-exit
+rm -rf /usr/include /usr/lib/lib{go,icudata}.so* /usr/share/locale /usr/share/info /usr/share/terminfo /usr/share/locale
+find /usr/lib/python -type f -name '*.pyo' -delete
 
 mkdir -p "${idir}/etc/systemd/system-generators"
 ln -sf /dev/null "${idir}/etc/systemd/system-generators/systemd-gpt-auto-generator"
