@@ -7,7 +7,7 @@ umask 0077
 idir='/var/archiso-v/idir'
 odir='/var/archiso-v/odir'
 isodir='/var/archiso-v/iso'
-
+export LC_ALL='C.UTF-8'
 
 # poshol nahui dolbaeb kotoriy pridumal pihat datu v uuid
 [[ -v SOURCE_DATE_EPOCH ]] || printf -v SOURCE_DATE_EPOCH '%(%s)T' -1
@@ -104,12 +104,15 @@ rm -rf "${idir}/boot/"*
 
 # EROFS compressed img
 mkfs.erofs -Efragments,dedupe,force-inode-extended,ztailpacking --quiet \
-  -T0 -zlzma,109,dictsize=8388608 -C1048576 "${odir}/airootfs.erofs" "${idir}"
+  -T0 -zlzma,109,dictsize=8388608 -C1048576 -U00000000000000000000000000000000 "${odir}/airootfs.erofs" "${idir}"
 #aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 # ISO file
-xorriso -no_rc -temp_mem_limit 1024m -as mkisofs -iso-level 2 -rational-rock \
+xorriso -no_rc -temp_mem_limit 1024m -as mkisofs -iso-level 2 -rational-rock -uid 0 -gid 0 -dir-mode 0755 -file-mode 0644 --gpt_disk_guid 00000000000000000000000000000000 --set_all_file_dates set_to_mtime --modification-date=1970010100000000 -input-charset utf8 \
   -volid 'ARCHISO' -appid 'archiso-v' -preparer 'prepared by archiso-v' \
   -publisher 'arch-v <https://github.com/nedorazrab0/archiso-v>' \
   -append_partition 2 'C12A7328-F81F-11D2-BA4B-00A0C93EC93B' "${isodir}/esp.img" \
   -appended_part_as_gpt -partition_offset 16 -no-pad \
   -output "${isodir}/archiso-v.iso" "${odir}"
+
+echo '****'
+openssl sha256 "${isodir}/archiso-v.iso"
