@@ -55,7 +55,7 @@ pacstrap -cGP "${idir}" ${pkgs} &>/dev/null
 #du -h /usr/include
 #ls -lh /usr/lib/python
 
-find /usr -name '*libgo.so* -name '*libicudata.so*'
+find /usr -name '*libgo.so*' -name '*libicudata.so*'
 du -a /usr | sort -nr | head -n100
 exit
 
