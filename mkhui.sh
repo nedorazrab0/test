@@ -104,7 +104,7 @@ rm -rf "${idir}/boot/"*
 
 # EROFS compressed img
 mkfs.erofs -Efragments,dedupe,force-inode-extended,ztailpacking --quiet \
-  -T0 -zlzma,109,dictsize=8388608 -C1048576 -U00000000000000000000000000000000 "${odir}/airootfs.erofs" "${idir}"
+  -T0 -zlzma,109,dictsize=8388608 -C1048576 -U00000000-0000-0000-0000-000000000000 "${odir}/airootfs.erofs" "${idir}"
 #aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 # ISO file
 xorriso -no_rc -temp_mem_limit 1024m -as mkisofs -iso-level 2 -rational-rock -uid 0 -gid 0 -dir-mode 0755 -file-mode 0644 --gpt_disk_guid 00000000000000000000000000000000 --set_all_file_dates set_to_mtime --modification-date=1970010100000000 -input-charset utf8 \
