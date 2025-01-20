@@ -15,7 +15,7 @@ jobs:
          docker run --name archiso -dt --privileged archlinux:latest
          docker cp ./mkhui.sh archiso:/
          docker exec archiso bash ./mkhui.sh
-         docker cp archiso:/var/archiso-v/iso/arch9660.iso .
+         docker cp archiso:/var/arch9660/iso/arch9660.iso .
          gh release delete iso || true
          gh release create iso arch9660.iso
        env:
