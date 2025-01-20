@@ -52,6 +52,9 @@ EOF
 
 pacstrap -cGP "${idir}" ${pkgs} &>/dev/null
 
+du -h -d 1 /usr
+exit
+
 rm -rvf /usr/include /usr/lib/lib{go,icudata}.so* /usr/share/locale /usr/share/info /usr/share/terminfo
 
 mkdir -p "${idir}/etc/systemd/system-generators"
