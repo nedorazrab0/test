@@ -52,7 +52,7 @@ EOF
 
 pacstrap -cGP "${idir}" ${pkgs} &>/dev/null
 
-rm -rvf /usr/include /usr/lib/lib{go,icudata}.so* /usr/share/locale /usr/share/info /usr/share/terminfo /usr/share/locale
+rm -rvf /usr/include /usr/lib/lib{go,icudata}.so* /usr/share/locale /usr/share/info /usr/share/terminfo /usr/share/locale /usr/share/i18n /usr/share/zone*
 find /usr/lib/python* -type f -name '*.pyo'
 find /usr/lib/python* -type f -name '*.pyo' -delete
 find /usr -type f -name '*.a'
