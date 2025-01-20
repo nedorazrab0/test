@@ -52,7 +52,7 @@ EOF
 
 pacstrap -cGP "${idir}" ${pkgs} &>/dev/null
 
-rm -rvf /usr/include /usr/lib/lib{go,icudata}.so* /usr/share/locale /usr/share/info /usr/share/terminfo  /usr/lib/modules
+rm -rvf /usr/include /usr/lib/lib{go,icudata}.so* /usr/share/locale /usr/share/info /usr/share/terminfo
 
 mkdir -p "${idir}/etc/systemd/system-generators"
 ln -sf /dev/null "${idir}/etc/systemd/system-generators/systemd-gpt-auto-generator"
