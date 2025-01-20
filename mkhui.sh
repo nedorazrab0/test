@@ -29,6 +29,7 @@ arch-install-scripts
 reflector
 btrfs-progs
 dosfstools
+mandoc
 iwd
 iptables-nft
 less
@@ -106,7 +107,7 @@ mcopy -i "${isodir}/esp.img" \
 
 rm -rf "${idir}/"{boot,var,tmp}/*
 rm -rf /usr/include \
-  /usr/lib/lib{go,icudata}.so* /usr/share/info /usr/share/terminfo
+  /usr/lib/lib{go,icudata}.so*
 find "${idir}" -name '*.pacnew' \
   -o -name '*.pacsave' -o -name '*.pacorig' -delete
 
