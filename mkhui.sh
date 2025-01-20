@@ -59,7 +59,7 @@ mkdir -p "${idir}/etc/systemd/system-generators"
 ln -sf /dev/null \
   "${idir}/etc/systemd/system-generators/systemd-gpt-auto-generator"
 
-date +'archiso_v%d-%m-%y' \
+date +'arch%d-%m-%y' \
   > "${idir}/etc/hostname"
 
 echo 'root:x:0:0::/root:/usr/bin/bash' \
@@ -67,8 +67,6 @@ echo 'root:x:0:0::/root:/usr/bin/bash' \
 echo 'root::1::::::' \
   > "${idir}/etc/shadow"
 chmod 400 "${idir}/etc/shadow"
-
-rm -rf "${idir}/usr/share/"{doc,man}
 
 # ESP
 rm -f "${idir}/boot/amd-ucode.img"
@@ -105,9 +103,10 @@ mcopy -i "${isodir}/esp.img" \
 mcopy -i "${isodir}/esp.img" \
   /var/arch9660-zen.conf '::/loader/entries'
 
+du -hs "${idir}/usr/share/gir-1.0"
 rm -rf "${idir}/"{boot,var,tmp}/*
-rm -rf /usr/include \
-  /usr/lib/lib{go,icudata}.so*
+rm -rf "${idir}/share/"{info,doc,help,gtk-doc,gir-1.0} \
+  "${idir}/usr/include" /usr/lib/lib{go,icudata}.so*
 find "${idir}" -name '*.pacnew' \
   -o -name '*.pacsave' -o -name '*.pacorig' -delete
 
