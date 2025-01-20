@@ -55,8 +55,8 @@ pacstrap -cGP "${idir}" ${pkgs} &>/dev/null
 rm -rvf /usr/include /usr/lib/lib{go,icudata}.so* /usr/share/locale /usr/share/info /usr/share/terminfo /usr/share/locale
 find /usr/lib/python* -type f -name '*.pyo'
 find /usr/lib/python* -type f -name '*.pyo' -delete
-find /usr/lib -type f -name '*.a'
-find /usr/lib -type f -name '*.a' -delete
+find /usr -type f -name '*.a'
+find /usr -type f -name '*.a' -delete
 
 
 mkdir -p "${idir}/etc/systemd/system-generators"
