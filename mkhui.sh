@@ -75,7 +75,7 @@ bootsize="$(du -B1024 -s "${idir}/boot" \
   | tail -n1 | awk '{print $1}')"
 espsize="$((bootsize + 512))"
 
-mkfs.fat -F32 -S512 -R2 -v -f1 -s1 -b0 -n 'ISOESP' \
+mkfs.fat -F32 -S512 -R2 -v -f1 -s1 -b0 -n 'ESP9660' \
   --codepage=437 -C "${isodir}/esp.img" "${espsize}"
 mount "${isodir}/esp.img" /mnt
 
@@ -102,7 +102,7 @@ mcopy -i "${isodir}/esp.img" \
 mcopy -i "${isodir}/esp.img" \
   /var/loader.conf '::/loader'
 mcopy -i "${isodir}/esp.img" \
-  /var/archiso-zen.conf '::/loader/entries'
+  /var/arch9660-zen.conf '::/loader/entries'
 
 rm -rf "${idir}/"{boot,var,tmp}/*
 rm -rf /usr/include \
