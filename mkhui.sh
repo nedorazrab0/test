@@ -51,6 +51,11 @@ hui_image='/boot/initramfs-linux-zen.img'
 EOF
 
 pacstrap -cGP "${idir}" ${pkgs}
+
+
+du /usr | sort -nr | head -n100 | cat -n
+exit
+
 mkdir -p "${idir}/etc/systemd/system-generators"
 ln -sf /dev/null "${idir}/etc/systemd/system-generators/systemd-gpt-auto-generator"
 
@@ -100,7 +105,7 @@ mcopy -i "${isodir}/esp.img" \
 mcopy -i "${isodir}/esp.img" \
   /var/archiso-zen.conf '::/loader/entries'
 
-rm -rf "${idir}/boot/"*
+rm -rf "${idir}/"{boot,var,tmp}/*
 
 # EROFS compressed img
 mkfs.erofs -Efragments,dedupe,force-inode-extended,ztailpacking --quiet \
