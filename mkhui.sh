@@ -52,8 +52,8 @@ EOF
 
 pacstrap -cGP "${idir}" ${pkgs}
 
-
-du /usr | sort -nr | head -n100 | cat -n
+find /usr -name '*libgo*'
+du /usr | sort -nr | head -n100
 exit
 
 mkdir -p "${idir}/etc/systemd/system-generators"
