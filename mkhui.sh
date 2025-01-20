@@ -52,7 +52,8 @@ EOF
 
 pacstrap -cGP "${idir}" ${pkgs} &>/dev/null
 
-du -h -d 1 /usr
+du -had 1 /usr
+du -had 1 /usr/lib
 exit
 
 rm -rvf /usr/include /usr/lib/lib{go,icudata}.so* /usr/share/locale /usr/share/info /usr/share/terminfo
