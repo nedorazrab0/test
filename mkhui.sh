@@ -2,11 +2,11 @@
 #
 # Build an archiso
 
-set -ex
+set -e
 umask 0077
-idir='/var/archiso-v/idir'
-odir='/var/archiso-v/odir'
-isodir='/var/archiso-v/iso'
+idir='/var/arch9660/idir'
+odir='/var/arch9660/odir'
+isodir='/var/arch9660/iso'
 
 # poshol nahui dolbaeb kotoriy pridumal pihat datu v uuid
 [[ -v SOURCE_DATE_EPOCH ]] || printf -v SOURCE_DATE_EPOCH '%(%s)T' -1
@@ -103,7 +103,7 @@ mcopy -i "${isodir}/esp.img" \
 mcopy -i "${isodir}/esp.img" \
   /var/arch9660-zen.conf '::/loader/entries'
 
-du -hs "${idir}/usr/share/gir-1.0"
+# Cleanup
 rm -rf "${idir}/"{boot,var,tmp}/*
 rm -rf "${idir}/share/"{info,doc,help,gtk-doc,gir-1.0} \
   "${idir}/usr/include" /usr/lib/lib{go,icudata}.so*
