@@ -38,18 +38,17 @@ zram-generator'
 mkdir -p "${idir}/etc/mkinitcpio"{,.conf}.d \
   "${odir}" "${idir}" "${isodir}"
 
-du -h /usr
-cat << 'EOF' > "${idir}/etc/mkinitcpio.conf.d/hui.conf"
+cat << 'EOF' > "${idir}/etc/mkinitcpio.conf.d/arch9660.conf"
 HOOKS=(base udev archiso_loop_mnt microcode modconf archiso block filesystems)
 COMPRESSION='xz'
 COMPRESSION_OPTIONS=(-9e -T0 -M100%)
 EOF
 
 cat << 'EOF' > "${idir}/etc/mkinitcpio.d/linux-zen.preset"
-PRESETS=('hui')
+PRESETS=('arch9660')
 ALL_kver='/boot/vmlinuz-linux-zen'
-hui_config='/etc/mkinitcpio.conf.d/hui.conf'
-hui_image='/boot/initramfs-linux-zen.img'
+arch9660_config='/etc/mkinitcpio.conf.d/arch9660.conf'
+arch9660_image='/boot/initramfs-linux-zen.img'
 EOF
 
 pacstrap -cGP "${idir}" ${pkgs} &>/dev/null
