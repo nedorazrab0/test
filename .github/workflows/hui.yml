@@ -7,16 +7,13 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-     - name: hui
-       uses: actions/checkout@v4
      - name: dc
        run: |
-         docker pull archlinux
-         docker run --name archiso -dt --privileged archlinux:latest
-         docker cp ./mkhui.sh archiso:/
-         docker exec archiso bash ./mkhui.sh
-         docker cp archiso:/var/arch9660/iso/arch9660.iso .
-         gh release delete iso || true
-         gh release create iso arch9660.iso
-       env:
-         GH_TOKEN: ${{ github.token }}
+         sudo apt update
+         sudo apt install xxhash
+         dd if=/dev/zero of=z bs=20G count=1 conv=fsync
+         dd if=/dev/zero of=z ibs=20G obs=256K count=1 conv=fsync
+         time -p xxhsum -H0 ./z
+         time -p xxhsum -H1 ./z
+         time -p xxhsum -H2 --tag ./z
+         time -p xxhsum -H3 ./z
