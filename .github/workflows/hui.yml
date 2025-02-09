@@ -11,7 +11,7 @@ jobs:
      - name: dc
        run: |
          sudo apt update
-         sudo apt install f2fs-progs
+         sudo apt install f2fs-tools
 
          sudo bash ./huih.sh
          
