@@ -8,13 +8,13 @@ cd ./hui
 truncate -s 9G z
 mkdir ./n
 
-mkfs.btrfs -m single -n65536 ./z
+mkfs.btrfs -m single -n4096  ./z
 mount -o ssd,nodiscard,nodatacow,nodatasum,nobarrier ./z ./n
 
 dd if=/dev/zero of=./n/h ibs=8G obs=256K count=1 conv=fsync
 
 umount ./z
-mkfs.xfs -f -i 'size=1024' ./z
+mkfs.xfs -f ./z
 mount ./z ./n
 
 dd if=/dev/zero of=./n/h ibs=8G obs=256K count=1 conv=fsync
