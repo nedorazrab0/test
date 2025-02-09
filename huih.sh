@@ -8,8 +8,8 @@ cd ./hui
 truncate -s 9G z
 mkdir ./n
 
-mke2fs -t ext2 ./z
-mount ./z ./n
+mkfs.btrfs -m single -n65536 ./z
+mount -o ssd,nodiscard,nodatacow,nodatasum,nobarrier ./z ./n
 
 dd if=/dev/zero of=./n/h ibs=8G obs=256K count=1 conv=fsync
 
