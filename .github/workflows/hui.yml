@@ -11,7 +11,7 @@ jobs:
      - name: dc
        run: |
          sudo apt update
-         sudo apt install xfsprogs
+         sudo apt install f2fs-progs
 
          sudo bash ./huih.sh
          
