@@ -8,7 +8,7 @@ cd ./hui
 truncate -s 9G z
 mkdir ./n
 
-umount ./z
+
 mkfs.xfs -i size=1024 -m crc=0 ./z
 mount -o dax=always ./z ./n
 
