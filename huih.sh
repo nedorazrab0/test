@@ -14,13 +14,7 @@ mount -o ssd,nodiscard,nodatacow,nodatasum,nobarrier,noatime ./z ./n
 dd if=/dev/zero of=./n/h ibs=8G obs=256K count=1 conv=fsync
 
 umount ./z
-mkfs.xfs -i size=1024 -m crc=0  -f ./z
-mount ./z ./n
-
-dd if=/dev/zero of=./n/h ibs=8G obs=256K count=1 conv=fsync
-
-umount ./z
-mkfs.f2fs -f ./z
+mkfs.xfs -i size=1024 -m crc=0 -l size=512b logdev=/dev/null  -f ./z
 mount ./z ./n
 
 dd if=/dev/zero of=./n/h ibs=8G obs=256K count=1 conv=fsync
