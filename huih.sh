@@ -2,7 +2,7 @@
 set -ex
 
 mkdir ./hui
-mount -t tmpfs -o size=9G,mode=1777 hui ./hui
+############################################################################################################mount -t tmpfs -o size=9G,mode=1777 hui ./hui
 cd ./hui
 
 dd if=/dev/zero of=./z ibs=9G obs=256K count=1 conv=fsync
