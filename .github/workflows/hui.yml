@@ -10,8 +10,5 @@ jobs:
      - uses: actions/checkout@v4
      - name: dc
        run: |
-         sudo apt update
-         sudo apt install f2fs-tools
-
          sudo bash ./huih.sh
          
