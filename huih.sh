@@ -2,7 +2,7 @@
 set -ex
 
 cd /dev/shm
-dd if=/dev/zero of=./z ibs=7200M obs=256K count=1 conv=fsync
+dd if=/dev/zero of=./z ibs=7500M obs=256K count=1 conv=fsync
 mkdir ./n
 
 mke2fs -t ext4 -Fq -I1024 -m0 -O "^has_journal,^metadata_csum,sparse_super2,\
