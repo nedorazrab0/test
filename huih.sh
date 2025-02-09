@@ -9,7 +9,7 @@ truncate -s 9G z
 mkdir ./n
 
 mkfs.btrfs -m single -n65536 --csum xxhash  ./z
-mount -o ssd,nodiscard,nobarrier,noatime ./z ./n
+mount -o compression=zstd:3,ssd,nodiscard,nobarrier,noatime ./z ./n
 
 dd if=/dev/zero of=./n/h ibs=8G obs=256K count=1 conv=fsync
 
