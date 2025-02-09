@@ -14,7 +14,7 @@ mount -o compress=zstd:3,ssd,nodiscard,nobarrier,noatime ./z ./n
 dd if=/dev/zero of=./n/h ibs=8G obs=256K count=1 conv=fsync
 
 umount ./z
-mkfs.xfs -i size=1024 -m crc=1 -l size=2097152 -f ./z
+mke2fs -t ext4 -I1024 -F ./z
 mount ./z ./n
 
 dd if=/dev/zero of=./n/h ibs=8G obs=256K count=1 conv=fsync
