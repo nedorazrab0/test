@@ -8,14 +8,13 @@ cd ./hui
 truncate -s 9G z
 mkdir ./n
 
-mke2fs -t ext4 -Fq -I1024 -m0 -O "^has_journal,^metadata_csum,sparse_super2,\
-^metadata_csum_seed,^resize_inode,stable_inodes,uninit_bg,extra_isize" ./z
+mke2fs -t ext2 ./z
 mount ./z ./n
 
 dd if=/dev/zero of=./n/h ibs=8G obs=256K count=1 conv=fsync
 
 umount ./z
-mkfs.xfs -f -i 'size=2048' ./z
+mkfs.xfs -f -i 'size=1024' ./z
 mount ./z ./n
 
 dd if=/dev/zero of=./n/h ibs=8G obs=256K count=1 conv=fsync
