@@ -10,5 +10,9 @@ jobs:
      - uses: actions/checkout@v4
      - name: dc
        run: |
-         sudo bash ./huih.sh
+         sudo apt update
+         sudo apt install zfsutils-linux
+         
+     - name: hui
+       run: sudo bash ./huih.sh
          
