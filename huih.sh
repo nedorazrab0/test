@@ -8,8 +8,9 @@ cd ./hui
 truncate -s 9G z
 mkdir ./n
 
+zpool create test ./z
 
-mkfs.xfs -i size=1024 -m crc=0 ./z
-mount -o dax=inode ./z ./n
+#mkfs.xfs -i size=1024 -m crc=0 ./z
+mount ./z ./n
 
 dd if=/dev/zero of=./n/h ibs=8G obs=256K count=1 conv=fsync
