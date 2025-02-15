@@ -17,4 +17,4 @@ zfs set mountpoint="$(realpath ./n)" test
 #mount /dev/loop0 ./n
 
 dd if=/dev/zero of=./n/h ibs=8G obs=256K count=1 conv=fsync
-openssl sha256sum ./n/z
+openssl sha256sum ./n/z #
