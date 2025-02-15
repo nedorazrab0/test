@@ -16,5 +16,5 @@ zfs set mountpoint="$(realpath ./n)" test
 #mkfs.xfs -i size=1024 -m crc=0 ./z
 #mount /dev/loop0 ./n
 
-dd if=/dev/urandom of=./n/h ibs=8G obs=256K count=1 conv=fsync
-openssl sha256sum ./n/z
+dd if=/dev/zero of=./n/h ibs=8G obs=256K count=1 conv=fsync
+openssl sha256 ./n/z
