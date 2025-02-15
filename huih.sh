@@ -13,7 +13,7 @@ zpool create -O acltype=posixacl -O compression=zstd -O mountpoint="$(realpath .
 
 zfs set mountpoint="$(realpath ./n)" test
 
-mkfs.xfs -i size=1024 -m crc=0 ./z
-mount /dev/loop0 ./n
+#mkfs.xfs -i size=1024 -m crc=0 ./z
+#mount /dev/loop0 ./n
 
 dd if=/dev/urandom of=./n/h ibs=8G obs=256K count=1 conv=fsync
