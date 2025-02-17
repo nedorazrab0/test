@@ -10,6 +10,10 @@ jobs:
      #- uses: actions/checkout@v4
      - name: dc
        run: |
+
+         sudo apt update
+         sudo apt install lzop
+
          curl -fZL 'https://download.fedoraproject.org/pub/fedora/linux/releases/41/Server/aarch64/images/Fedora-Server-41-1.4.aarch64.raw.xz' \
            | xz -dvc -T0 -M100% > hui.raw
          file hui.raw
