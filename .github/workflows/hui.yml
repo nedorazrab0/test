@@ -20,7 +20,7 @@ jobs:
 
          time lz4 --favor-decSpeed -12zv hui.raw hz.lz4
          sleep 1
-         time lzop -12v hui.raw hoz.lzo
+         time lzop -12v hui.raw
          sleep 1
          
          ls -lh
@@ -29,4 +29,4 @@ jobs:
 
          time lz4 --favor-decSpeed -df hz.lz4
          sleep 1
-         time lzop -df hoz.lzo
+         time lzop -df hui.raw.lzo
