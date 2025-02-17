@@ -7,12 +7,20 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-     - uses: actions/checkout@v4
+     #- uses: actions/checkout@v4
      - name: dc
        run: |
-         sudo apt update
-         sudo apt install zfsutils-linux
-         
-     - name: hui
-       run: sudo bash ./huih.sh
-         
+         curl -fZL 'https://download.fedoraproject.org/pub/fedora/linux/releases/41/Server/aarch64/images/Fedora-Server-41-1.4.aarch64.raw.xz' \
+           | xz -dvc -T0 -M100% > hui.raw
+         file hui.raw
+
+         time lz4 -12zv hui.raw
+         sleep 1
+         time lzop -12zv hui.raw
+         sleep 1
+
+         ls -lh
+
+         time lz4 -df hui.raw.lz4
+         sleep 1
+         time lzop -df hui.raw.lzo
