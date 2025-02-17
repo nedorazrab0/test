@@ -20,7 +20,7 @@ jobs:
 
          time lz4 -12zv hui.raw hz.lz4
          sleep 1
-         time lzop -12zv hui.raw hoz.lzo
+         time lzop -12v hui.raw hoz.lzo
          sleep 1
          
          ls -lh
