@@ -18,7 +18,7 @@ jobs:
            | xz -dvc -T0 -M100% > hui.raw
          file hui.raw
 
-         time lz4 --favor-decSpeed -12zv hui.raw hz.lz4
+         time lz4 -12zv hui.raw hz.lz4
          sleep 1
          time lzop -12v hui.raw
          sleep 1
