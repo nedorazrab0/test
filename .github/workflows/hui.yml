@@ -20,7 +20,9 @@ jobs:
          sleep 1
 
          ls -lh
+         echo '****'
+         du -h
 
-         time lz4 -df hz.lz4
+         time lz4 --favor-decSpeed -df hz.lz4
          sleep 1
          time lzop -df hoz.lzo
