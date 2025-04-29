@@ -7,8 +7,4 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-     - uses: actions/checkout@v4
-     - name: dc
-       run: |
-
-         sudo bash ./huih.sh
+      - run: ls -l /sys/block
