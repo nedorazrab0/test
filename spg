@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+#
+# Shell password generator
+set -e
+
+export LC_ALL='C.UTF-8'
+opt="${1}"
+len="${2}"
+cust_chars="${3}"
+
+usage() {
+  echo '- Generate 20 chars lenght password'
+  echo '- Warning'
+  echo '  Remember, shell is not good for generate passwords ;)'
+
+  exit "${1}"
+}
+
+generate_a_password() {
+  rand | tr -dc '[[:graph:]]' | head -c20; echo
+}
+
+rand() {
+  if ! command -v openssl > /dev/null; then
+    openssl rand 256K
+  else
+    dd if=/dev/random ibs=256K obs=4M iflag=fullblock status=none
+  fi
+}
+
+std() {
+  echo 'Generating passwords...'
+  for i in {0..6}; do
+    echo "- $(generate_a_password)"
+  done
+}
+
+main() {
+  if [[ "${opt}" =~ '-h' ]]; then
+    usage 0
+  else
+    std
+  fi
+}
+
+main
