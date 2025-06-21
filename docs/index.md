@@ -1,11 +1,13 @@
-# Cspl
+tihuihuihui csp2
 
-tihuihuihui
+## Navigation
 
+To navigate this page use anchor links, like this:
+`https://nedorazrab0.github.io/test/index.html#727`
 
 ## Res
 
-cwjjjjjjjjj [gg](https://google.com)
+cwjjjjjjjjj [gg](../hui.c)
 
 ### 252
 
