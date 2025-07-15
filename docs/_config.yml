@@ -1,3 +1,5 @@
-remote_theme: pages-themes/primer
+remote_theme: jekyll/minima
 plugins:
 - jekyll-remote-theme
+minima:
+  skin: dark
