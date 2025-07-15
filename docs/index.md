@@ -1,17 +1,19 @@
-tihuihuihui csp2 10x
+Here is a list of target points with conditions for getting them
 
 ## Guide
 
-bphz
-u1405peonw0x
+Use non event cards, all 1* 5MR (2% EB) and all 4* 0MR (50% EB), play ebi on
+easy with 0x
 
 ## Navigation
 
-To navigate this page, use anchor links like this `https://nedorazrab0.github.io/test/index.html#727`
+To navigate this page, use anchor links like this
+`https://nedorazrab0.github.io/pjsk-parking/index.html#727`
 
-## Res
+## Points order
 
-cwjjjjjjjjj [gg](../hui.c)
+Calculated with
+[spc](https://github.com/nedorazrab0/pjsk-parking/blob/main/spc)
 
 ### 252
 
